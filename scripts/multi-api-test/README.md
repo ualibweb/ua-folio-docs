@@ -24,6 +24,21 @@ Depending on your environment, additional logic may have to be added to the
 The current example is truncating a RMB-based `test_mod_calendar` schema a
 relational Spring `diku_mod_calendar` schema.
 
+## Special API Routes
+
+A set of special API routes may be inserted into the Charles session and are
+used to indicate when a test begins, ends, and when the database should be
+truncated. These are as follows:
+
+- `GET /_/tests/_/database-truncate` every time the database is truncated
+- `GET /_/tests/class/method` before every test begins
+- `GET /_/tests/_/finish` after every test finishes (successful or otherwise)
+
+Please note that the `/_/tests/class/method` will be repeated by the tester to
+`localhost:80`. This is on a different port intentionally to differentiate from
+other requests this script makes to actually evaluate the module, allowing easy
+visualization of where each test starts in the proxy log.
+
 ## Demo
 
 [![asciicast](https://asciinema.org/a/ywrS51wPONvpuBwlmP1uDUjpG.svg)](https://asciinema.org/a/ywrS51wPONvpuBwlmP1uDUjpG)

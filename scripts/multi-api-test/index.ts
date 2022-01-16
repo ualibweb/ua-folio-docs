@@ -97,6 +97,9 @@ async function run(): Promise<void> {
         log(chalk.bold.bgRed.white(`Test ${currentTest} failed`));
       }
     } else if (call.path.startsWith("/_/tests/")) {
+      await fetch("http://localhost" + call.path, {
+        agent: proxy,
+      });
       currentTest = call.path.substring(9);
       success = true;
 
@@ -193,20 +196,7 @@ async function run(): Promise<void> {
           );
           log(chalk.bold.red(`Actual response code: ${testResponseCode}`));
         }
-        const answer = (
-          await prompt.get({
-            properties: {
-              result: {
-                description:
-                  "Please classify this result as fail, warn, or pass",
-                pattern: /f(ail)?|w(arn)?|p(ass)?/,
-                default: "fail",
-                message: "Please enter fail, warn, or pass",
-                required: true,
-              },
-            },
-          })
-        ).result as string;
+        const answer = "fail";
 
         if (answer.startsWith("f")) {
           success = false;
