@@ -12,7 +12,7 @@ errors to be presented in the UI improperly.
 
 For example, trying to get information about a period that does not exist:
 
-```json
+```json5
 // GET /calendar/periods/22222222-2222-2222-2222-222222222222/period/22222222-2222-2222-2222-222222222222
 {
   "errors": [
