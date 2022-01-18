@@ -1,5 +1,22 @@
 # `mod-calendar` API Changes Introduced with v2.0.0
 
+- [`mod-calendar` API Changes Introduced with v2.0.0](#mod-calendar-api-changes-introduced-with-v200)
+  - [Error Responses](#error-responses)
+    - [Error Codes](#error-codes)
+    - [HTTP Error Codes](#http-error-codes)
+    - [Error Schema](#error-schema)
+  - [Service Point Validation](#service-point-validation)
+  - [`GET /calendar/periods`](#get-calendarperiods)
+    - [Incorrect Legacy Behavior Trimming at Boundaries](#incorrect-legacy-behavior-trimming-at-boundaries)
+    - [Legacy not Deduplicating Times Opened by Multiple Calendars](#legacy-not-deduplicating-times-opened-by-multiple-calendars)
+  - [`POST /calendar/periods/{servicePointId}/period`](#post-calendarperiodsservicepointidperiod)
+    - [ID Validation](#id-validation)
+    - [Name Validation](#name-validation)
+    - [Date Validation](#date-validation)
+  - [`GET /calendar/periods/{servicePointId}/period/{periodId}`](#get-calendarperiodsservicepointidperiodperiodid)
+  - [`PUT /calendar/periods/{servicePointId}/period/{periodId}`](#put-calendarperiodsservicepointidperiodperiodid)
+  - [`DELETE /calendar/periods/{servicePointId}/period/{periodId}`](#delete-calendarperiodsservicepointidperiodperiodid)
+
 ## Error Responses
 
 As a whole, error responses have changed with the new `mod-calendar`.
@@ -12,7 +29,7 @@ errors to be presented in the UI improperly.
 
 For example, trying to get information about a period that does not exist:
 
-```json5
+```jsonc
 // GET /calendar/periods/22222222-2222-2222-2222-222222222222/period/22222222-2222-2222-2222-222222222222
 {
   "errors": [
@@ -149,7 +166,7 @@ would be thrown, however, the error message is an unreadable JSON blob straight
 from the database, making it difficult to determine the error. It also suffers
 from all of the aforementioned error issues.
 
-## Name Validation
+### Name Validation
 
 Calendars with empty names should not be permitted. If an attempt is made to
 create a calendar with an empty name (`""`), the legacy endpoint would return a
@@ -160,7 +177,7 @@ Calendars with only-whitespace names should not be allowed either (for example,
 one consisting solely of spaces). The legacy API provided no validation for this
 case.
 
-## Date Validation
+### Date Validation
 
 Previously, no validation was done to ensure that the provided dates made sense
 (for example, the calendar should not start on `2021-12-31` and end on
