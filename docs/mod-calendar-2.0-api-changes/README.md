@@ -1,6 +1,7 @@
 # `mod-calendar` API Changes Introduced with v2.0.0
 
 - [`mod-calendar` API Changes Introduced with v2.0.0](#mod-calendar-api-changes-introduced-with-v200)
+  - [(Breaking) Change Summary](#breaking-change-summary)
   - [Error Responses](#error-responses)
     - [Error Codes](#error-codes)
     - [HTTP Error Codes](#http-error-codes)
@@ -16,6 +17,20 @@
   - [`GET /calendar/periods/{servicePointId}/period/{periodId}`](#get-calendarperiodsservicepointidperiodperiodid)
   - [`PUT /calendar/periods/{servicePointId}/period/{periodId}`](#put-calendarperiodsservicepointidperiodperiodid)
   - [`DELETE /calendar/periods/{servicePointId}/period/{periodId}`](#delete-calendarperiodsservicepointidperiodperiodid)
+
+## (Breaking) Change Summary
+
+These are the most significant changes to the API:
+
+- The `servicePointId` provided in each route's path is now actually verified
+  [ref](#service-point-validation)
+- Error responses no longer always return `422` and `intervalsOverlap`
+  [ref](#error-responses)
+- `/calendar/periods` now returns more predictable and consistent output
+  [ref](#get-calendarperiods)
+
+For a full changelog and information about each of these, please continue
+reading.
 
 ## Error Responses
 
