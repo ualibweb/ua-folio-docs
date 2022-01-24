@@ -141,6 +141,12 @@ For example, if there exists a calendar ID
 `DELETE /calendar/periods/99999999-9999-9999-9999-999999999999/period/dddddddd-dddd-dddd-dddd-dddddddddddd`
 would have previously succeeded, despite it being semantically incorrect.
 
+We would like to eventually check that the provided service point ID
+actually is a service point, however, at this point in time, nothing more
+than a UUID check is performed.  Future scope of this may relate to
+permissions/calling service point APIs; see
+https://github.com/ualibweb/mod-calendar/issues/19.
+
 ## `GET /calendar/periods`
 
 **This endpoint is the only one with changes that should affect current FOLIO
