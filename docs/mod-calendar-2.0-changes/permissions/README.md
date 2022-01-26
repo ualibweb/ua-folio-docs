@@ -22,11 +22,6 @@ can be assigned through the interface whereas "Checked Permissions" refers to
 permissions that are verified by Okapi before a request is forwarded to an
 endpoint (via `modulePermissions`).
 
-## TODO
-
-- [ ] Consider adding a permission to separate service point assignment from
-      `modperms.calendar.update`.
-
 ## Explanation
 
 ### Current
