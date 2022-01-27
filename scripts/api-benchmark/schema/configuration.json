@@ -30,6 +30,6 @@
       "examples": ["http://localhost:8888"]
     }
   },
-  "required": ["urlPrefixes", "outputFilename"],
+  "required": ["urls", "outputFilename"],
   "additionalProperties": false
 }
