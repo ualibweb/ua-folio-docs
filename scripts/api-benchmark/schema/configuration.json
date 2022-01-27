@@ -12,7 +12,7 @@
       "examples": [
         [
           {
-            "url": "https://localhost:8084/",
+            "base": "https://localhost:8084/",
             "headers": { "x-okapi-tenant": "diku" }
           }
         ]
