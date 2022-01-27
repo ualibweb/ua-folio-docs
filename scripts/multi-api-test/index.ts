@@ -5,7 +5,6 @@ import createProxyAgent from "https-proxy-agent";
 import fetch from "node-fetch";
 import { Client } from "pg";
 import prompt from "prompt";
-import { promisify } from "util";
 import capture from "./capture.json";
 
 const client = new Client({
@@ -18,9 +17,9 @@ client.connect();
 
 const log = console.log;
 
-const CORRECT_PATH = "http://localhost:8084";
+const CORRECT_PATH = "http://localhost:9198";
 const CORRECT_TENANT = "test";
-const TEST_PATH = "http://localhost:8080";
+const TEST_PATH = "http://localhost:9198";
 const TEST_TENANT = "diku";
 
 prompt.start();
@@ -37,42 +36,9 @@ async function truncate(): Promise<void> {
     log(chalk.red("Could not truncate database: " + e));
   }
 
-  log(chalk.blue("Truncating test_mod_calendar (legacy):"));
+  log(chalk.blue("Truncating test_mod_calendar ():"));
   try {
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.actual_opening_hours CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.audit_actual_opening_hours CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.audit_exceptional_hours CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.audit_exceptions CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.audit_openings CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.audit_regular_hours CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.exceptional_hours CASCADE"
-    );
-    await client.query("TRUNCATE TABLE test_mod_calendar.exceptions CASCADE");
-    await client.query("TRUNCATE TABLE test_mod_calendar.openings CASCADE");
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.regular_hours CASCADE"
-    );
-    await client.query("TRUNCATE TABLE test_mod_calendar.rmb_internal CASCADE");
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.rmb_internal_analyze CASCADE"
-    );
-    await client.query(
-      "TRUNCATE TABLE test_mod_calendar.rmb_internal_index CASCADE"
-    );
-    await client.query("TRUNCATE TABLE test_mod_calendar.rmb_job CASCADE");
+    await client.query("TRUNCATE TABLE test_mod_calendar.calendars CASCADE");
   } catch (e) {
     log(chalk.red("Could not truncate database: " + e));
   }
