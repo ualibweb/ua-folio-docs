@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "api-benchmark Settings",
+  "description": "Configuration for an entire api-benchmark run",
+  "type": "object",
+  "properties": {
+    "urls": {
+      "type": "array",
+      "items": {
+        "$ref": "configuration-url.json"
+      },
+      "examples": [
+        [
+          {
+            "url": "https://localhost:8084/",
+            "headers": { "x-okapi-tenant": "diku" }
+          }
+        ]
+      ],
+      "minItems": 1,
+      "description": "The list of URLs to test against with any special properties"
+    },
+    "outputFilename": {
+      "type": "string",
+      "default": "results.csv",
+      "description": "Where results should be saved"
+    },
+    "proxy": {
+      "type": ["string", "null"],
+      "examples": ["http://localhost:8888"]
+    }
+  },
+  "required": ["urlPrefixes", "outputFilename"],
+  "additionalProperties": false
+}

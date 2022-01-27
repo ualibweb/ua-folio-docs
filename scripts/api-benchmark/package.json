@@ -1,0 +1,27 @@
+{
+  "name": "multi-api-test",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Noah Overcash <ncovercash@ua.edu>",
+  "license": "Unlicense",
+  "scripts": {
+    "start": "npx ts-node index.ts --unhandled-rejections=strict",
+    "dump-schema": "npx ts-node schema/resolve.ts --unhandled-rejections=strict"
+  },
+  "dependencies": {
+    "@types/prompt": "^1.1.2",
+    "chalk": "^4.1.2",
+    "eslint": "^8.6.0",
+    "https-proxy-agent": "^5.0.0",
+    "node-fetch": "^2.6.6",
+    "prompt": "^1.2.1",
+    "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.9",
+    "@types/node": "^17.0.8",
+    "@types/node-fetch": "^2.5.3",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}

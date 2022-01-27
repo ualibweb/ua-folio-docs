@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "api-benchmark Internal Benchmark",
+  "description": "Configuration for a benchmark to be used only (not itself ran)",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "init": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "endpoint.json"
+        }
+      ]
+    },
+    "endpoints": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "endpoint.json"
+        }
+      ]
+    },
+    "teardown": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "endpoint.json"
+        }
+      ]
+    },
+    "internal": {
+      "const": true
+    }
+  },
+  "required": ["id", "endpoints", "internal"],
+  "additionalProperties": false
+}

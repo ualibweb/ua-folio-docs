@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "api-benchmark Test URL",
+  "description": "Configuration for a single URL to test against to run",
+  "type": "object",
+  "properties": {
+    "base": {
+      "type": "string",
+      "examples": ["http://localhost:8084"]
+    },
+    "headers": {
+      "type": "object"
+    }
+  },
+  "required": ["base"],
+  "additionalProperties": false
+}
