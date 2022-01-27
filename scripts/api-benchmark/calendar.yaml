@@ -1,0 +1,22 @@
+configuration:
+  urls:
+    - base: https://localhost:8084/
+      headers:
+        x-okapi-tenant: diku
+  outputFilename: results.csv
+  proxy: http://localhost:8888
+benchmarks:
+  - id: <string>
+    name: <string>
+    description: <string>
+    init: <string>
+    endpoints: <string>
+    teardown: <string>
+    runs: 2154
+  - id: <string>
+    name: <string>
+    description: <string>
+    init: <string>
+    endpoints: <string>
+    teardown: <string>
+    internal: true
