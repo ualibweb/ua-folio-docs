@@ -57,6 +57,7 @@ async function loadConfig(): Promise<MainConfiguration> {
   if (!valid) {
     chalk.red("Configuration file is invalid:");
     console.error(validator.errors);
+    throw new Error("Bad configuration");
   }
 
   debug("Validation successful: %o", data);
@@ -154,6 +155,8 @@ function parseBenchmarks(
 
   return [map, toRun];
 }
+
+function runBenchmark(benchmark: AnyBenchmark, root: boolean = true): void {}
 
 async function run(): Promise<void> {
   const debug = debugFactory("api-benchmark:main");
