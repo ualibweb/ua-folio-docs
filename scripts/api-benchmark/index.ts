@@ -2,6 +2,7 @@ import parser from "@apidevtools/json-schema-ref-parser";
 import ajv from "ajv";
 import chalk from "chalk";
 import { MultiBar, SingleBar } from "cli-progress";
+import { createArrayCsvWriter } from "csv-writer";
 import debugFactory from "debug";
 import { Stats } from "fast-stats";
 import { readFileSync } from "fs";
@@ -121,7 +122,6 @@ function updateProgressBar(
   i: number,
   progress: number
 ) {
-  return;
   if (prefix !== "") {
     return; // no progress bars for non-root
   }
@@ -264,7 +264,7 @@ async function runEndpointSetForRequestGenerator(
     }
   }
   const overallResult: BenchmarkResult = {
-    id: `${prefix}`,
+    id: `${prefix.replace(/-+$/g, "")}`,
     name,
     description: `Aggregate of ${name}`,
     runs: 1,
@@ -462,6 +462,70 @@ async function runBenchmark(
   return awaited;
 }
 
+async function writeResults(
+  results: BenchmarkResult[][],
+  config: Settings
+): Promise<void> {
+  const debug = debugFactory("api-benchmark:writer");
+
+  const header1 = ["", "", "", ""];
+  const header2 = ["ID", "Name", "Description", "Runs"];
+
+  config.urls.forEach((url) => {
+    header1.push(url.base);
+    header1.push("", "", "", "", "", "");
+
+    header2.push(
+      "Mean (ms)",
+      "Median (ms)",
+      "Min (ms)",
+      "Max (ms)",
+      "Standard Deviation (ms)",
+      "95% CI Lower (ms)",
+      "95% CI Upper (ms)"
+    );
+  });
+
+  debug("Creating writer");
+  const writer = createArrayCsvWriter({
+    header: header1,
+    path: config.outputFilename,
+  });
+
+  debug("Writing headers");
+  await writer.writeRecords([header2]);
+
+  if (results.length === 0) {
+    return;
+  }
+
+  for (let i = 0; i < results[0].length; i++) {
+    debug("Writing result %d (%s)", i, results[0][i].id);
+
+    const row = [
+      results[0][i].id,
+      results[0][i].name,
+      results[0][i].description,
+      results[0][i].runs,
+    ];
+
+    results.forEach((resultSet) => {
+      const stats = resultSet[i].results;
+      row.push(
+        stats.amean().toFixed(1),
+        stats.median().toFixed(1),
+        stats.min.toFixed(1),
+        stats.max.toFixed(1),
+        stats.stddev().toFixed(1),
+        (stats.amean() - stats.moe()).toFixed(1),
+        (stats.amean() + stats.moe()).toFixed(1)
+      );
+    });
+
+    await writer.writeRecords([row]);
+  }
+}
+
 async function run(): Promise<void> {
   const debug = debugFactory("api-benchmark:main");
 
@@ -492,9 +556,14 @@ async function run(): Promise<void> {
     }
   }
 
+  debug("Result: %o", results);
+
   stopAllProgressBars();
 
-  debug("Result: %O", results);
+  debug("Writing results");
+  await writeResults(results, config.configuration);
+
+  debug("Done!");
 }
 
 run();
