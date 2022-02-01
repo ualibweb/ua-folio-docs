@@ -11,6 +11,7 @@ import { load as parseYaml } from "js-yaml";
 import memoizee from "memoizee";
 import mergeOptions from "merge-options";
 import fetch, { RequestInit } from "node-fetch";
+import path from "path";
 import prompt from "prompt";
 import { URLSearchParams } from "url";
 import yargs from "yargs";
@@ -44,14 +45,21 @@ async function loadConfig(): Promise<MainConfiguration> {
 
   debug("Read command line args: %O", argv);
 
-  const schema = await parser.bundle(__dirname + "/schema/base.json");
+  const schema = await parser.bundle(
+    path.resolve(__dirname, "schema", "base.json")
+  );
   debug("Dereferenced schema: %o", schema);
 
   const validator = new ajv({ allErrors: true }).compile(schema);
 
-  debug("Reading the contents of file %s", argv.filename);
+  debug(
+    "Reading the contents of file %s",
+    path.resolve(process.env.INIT_CWD, argv.filename as string)
+  );
 
-  const fileContents = readFileSync(argv.filename as string).toString();
+  const fileContents = readFileSync(
+    path.resolve(process.env.INIT_CWD, argv.filename as string)
+  ).toString();
 
   debug("Attempting to parse the file as %s", argv._[0]);
 
@@ -105,7 +113,9 @@ const getBody = memoizee(
     if (filename === null || filename === undefined) {
       return undefined;
     }
-    return readFileSync(__dirname + "/bodies/" + filename).toString();
+    return readFileSync(
+      path.resolve(process.env.INIT_CWD, "bodies", filename)
+    ).toString();
   }
 );
 
@@ -504,7 +514,7 @@ async function writeResults(
   debug("Creating writer");
   const writer = createArrayCsvWriter({
     header: header1,
-    path: config.outputFilename,
+    path: path.resolve(process.env.INIT_CWD, config.outputFilename),
   });
 
   debug("Writing headers");
