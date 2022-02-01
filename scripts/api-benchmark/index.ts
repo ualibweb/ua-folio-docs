@@ -1,17 +1,27 @@
 import parser from "@apidevtools/json-schema-ref-parser";
 import ajv from "ajv";
 import chalk from "chalk";
+import { MultiBar, SingleBar } from "cli-progress";
 import debugFactory from "debug";
+import { Stats } from "fast-stats";
 import { readFileSync } from "fs";
 import createProxyAgent from "https-proxy-agent";
 import { load as parseYaml } from "js-yaml";
 import memoizee from "memoizee";
 import mergeOptions from "merge-options";
-import fetch, { RequestInit, Response } from "node-fetch";
+import fetch, { RequestInit } from "node-fetch";
 import prompt from "prompt";
 import { URLSearchParams } from "url";
 import yargs from "yargs";
-import { AnyBenchmark, Endpoint, MainConfiguration, Settings } from "./types";
+import {
+  AnyBenchmark,
+  BenchmarkPrimary,
+  BenchmarkResult,
+  Endpoint,
+  MainConfiguration,
+  Settings,
+  TimedResponse,
+} from "./types";
 
 prompt.start();
 
@@ -98,9 +108,58 @@ const getBody = memoizee(
   }
 );
 
+const progressBarFactory = new MultiBar({
+  forceRedraw: true,
+  format:
+    " [{bar}] {benchmark} | Elapsed: {duration_formatted} | ETA: {eta_formatted} | {value}/{total}",
+});
+const progressBars: Record<string, SingleBar> = {};
+
+function updateProgressBar(
+  prefix: string,
+  benchmark: AnyBenchmark,
+  i: number,
+  progress: number
+) {
+  return;
+  if (prefix !== "") {
+    return; // no progress bars for non-root
+  }
+  const key = `${benchmark.id}[${i}]`;
+  if (!Object.hasOwnProperty.call(progressBars, key)) {
+    progressBars[key] = progressBarFactory.create(
+      (benchmark as BenchmarkPrimary).runs,
+      progress,
+      {
+        benchmark: key,
+      }
+    );
+  }
+
+  progressBars[key].update(progress);
+}
+
+function stopProgressBar(
+  prefix: string,
+  benchmark: AnyBenchmark,
+  i: number
+): void {
+  if (prefix !== "") {
+    return; // no progress bars for non-root
+  }
+  const key = `${benchmark.id}[${i}]`;
+  if (Object.hasOwnProperty.call(progressBars, key)) {
+    progressBars[key].stop();
+  }
+}
+
+function stopAllProgressBars(): void {
+  progressBarFactory.stop();
+}
+
 function createRequestGenerators(
   config: Settings
-): ((endpoint: Endpoint) => Promise<Response>)[] {
+): ((endpoint: Endpoint) => Promise<TimedResponse>)[] {
   return config.urls.map((url) => {
     const options: RequestInit = {};
     options.headers = url.headers;
@@ -118,6 +177,8 @@ function createRequestGenerators(
       }
 
       return new Promise((resolve, reject) => {
+        const startTime = process.hrtime();
+
         fetch(
           url.base + endpoint.path + queryString,
           mergeOptions(options, {
@@ -132,7 +193,9 @@ function createRequestGenerators(
               reject(`Status ${response.statusText} is not valid`);
             }
 
-            resolve(response);
+            const result = process.hrtime(startTime);
+
+            resolve({ response, timeMs: result[0] * 1e3 + result[1] / 1e6 });
           })
           .catch(reject);
       });
@@ -156,7 +219,248 @@ function parseBenchmarks(
   return [map, toRun];
 }
 
-function runBenchmark(benchmark: AnyBenchmark, root: boolean = true): void {}
+function resolveBenchmark(
+  benchmark: string | AnyBenchmark,
+  benchmarks: Record<string, AnyBenchmark>
+): AnyBenchmark {
+  if (typeof benchmark === "string") {
+    return benchmarks[benchmark];
+  }
+  return benchmark;
+}
+
+async function runEndpointSetForRequestGenerator(
+  debug: debugFactory.Debugger,
+  i: number,
+  name: string,
+  requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
+  endpoints: (string | Endpoint)[],
+  benchmarks: Record<string, AnyBenchmark>,
+  prefix: string
+) {
+  const results: BenchmarkResult[] = [];
+  for (const endpoint of endpoints) {
+    if (typeof endpoint === "string") {
+      debug(`Recursing to run ${prefix}${endpoint}`);
+      results.push(
+        ...(await runBenchmarkForRequestGenerator(
+          i,
+          requestGenerator,
+          benchmarks,
+          resolveBenchmark(endpoint, benchmarks),
+          prefix
+        ))
+      );
+    } else {
+      debug(`Running endpoint ${endpoint.method} ${endpoint.path}`);
+      const response = await requestGenerator(endpoint);
+      results.push({
+        id: `${prefix}untitled`,
+        name: `${endpoint.method} ${endpoint.path}`,
+        description: `${endpoint.method} ${endpoint.path}`,
+        runs: 1,
+        results: new Stats({ sampling: true }).push(response.timeMs),
+      });
+    }
+  }
+  const overallResult: BenchmarkResult = {
+    id: `${prefix}`,
+    name,
+    description: `Aggregate of ${name}`,
+    runs: 1,
+    results: new Stats({ sampling: true }).push(
+      results.map((result) => result.results.sum)
+    ),
+  };
+
+  return [overallResult, ...results];
+}
+
+async function runBenchmarkForRequestGenerator(
+  i: number,
+  requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
+  benchmarks: Record<string, AnyBenchmark>,
+  benchmark: AnyBenchmark,
+  prefix = ""
+): Promise<BenchmarkResult[]> {
+  const debug = debugFactory(`api-benchmark:${prefix}${benchmark.id}[${i}]`);
+
+  const result: BenchmarkResult[] = [];
+
+  updateProgressBar(prefix, benchmark, i, 0);
+
+  debug("Running init(s): %O", benchmark.init);
+  if (Array.isArray(benchmark.init)) {
+    result.push(
+      ...(await runEndpointSetForRequestGenerator(
+        debug,
+        i,
+        "Initialization",
+        requestGenerator,
+        benchmark.init,
+        benchmarks,
+        `${prefix}${benchmark.id}-init-`
+      ))
+    );
+  }
+
+  if (Object.hasOwnProperty.call(benchmark, "endpoints")) {
+    benchmark = benchmark as BenchmarkPrimary;
+    debug("Running main endpoint(s): %O", benchmark.endpoints);
+    result.push(
+      ...(await runMainEndpointSetForRequestGenerator(
+        debug,
+        benchmarks,
+        requestGenerator,
+        i,
+        benchmark,
+        prefix
+      ))
+    );
+  }
+
+  debug("Running teardown(s): %O", benchmark.teardown);
+  if (Array.isArray(benchmark.teardown)) {
+    result.push(
+      ...(await runEndpointSetForRequestGenerator(
+        debug,
+        i,
+        "Teardown",
+        requestGenerator,
+        benchmark.teardown,
+        benchmarks,
+        `${prefix}${benchmark.id}-teardown-`
+      ))
+    );
+  }
+
+  stopProgressBar(prefix, benchmark, i);
+
+  return result;
+}
+
+async function runMainEndpointSetForRequestGenerator(
+  debug: debugFactory.Debugger,
+  benchmarks: Record<string, AnyBenchmark>,
+  requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
+  i: number,
+  benchmark: BenchmarkPrimary,
+  prefix: string
+) {
+  const mainResults: BenchmarkResult[] = [];
+
+  for (const endpoint of benchmark.endpoints) {
+    if (typeof endpoint === "string") {
+      mainResults.push({
+        id: `${prefix}${benchmark.id}-${endpoint}`,
+        name: `${endpoint}`,
+        description: `${endpoint}`,
+        runs: benchmark.runs,
+        results: new Stats({ sampling: true }),
+      });
+    } else {
+      mainResults.push({
+        id: `${prefix}${benchmark.id}-untitled`,
+        name: `${endpoint.method} ${endpoint.path}`,
+        description: `${endpoint.method} ${endpoint.path}`,
+        runs: benchmark.runs,
+        results: new Stats({ sampling: true }),
+      });
+    }
+  }
+
+  for (let run = 1; run <= benchmark.runs; run++) {
+    for (
+      let endpointIndex = 0;
+      endpointIndex < benchmark.endpoints.length;
+      endpointIndex++
+    ) {
+      const endpoint = benchmark.endpoints[endpointIndex];
+
+      if (typeof endpoint === "string") {
+        debug(`Recursing to run ${prefix}${endpoint}`);
+        mainResults[endpointIndex].results.push(
+          (
+            await runBenchmarkForRequestGenerator(
+              i,
+              requestGenerator,
+              benchmarks,
+              resolveBenchmark(endpoint, benchmarks),
+              prefix
+            )
+          )
+            .shift()
+            ?.results.amean() ?? 0
+        );
+      } else {
+        debug(`Running endpoint ${endpoint.method} ${endpoint.path}`);
+        const response = await requestGenerator(endpoint);
+        mainResults[endpointIndex].results.push(response.timeMs);
+      }
+    }
+    updateProgressBar(prefix, benchmark, i, run);
+  }
+
+  return [
+    {
+      id: `${prefix}${benchmark.id}`,
+      name: benchmark.name ?? "Untitled",
+      description: benchmark.description ?? "",
+      runs: benchmark.runs,
+      results: aggregate2DStats(mainResults),
+    },
+    ...mainResults,
+  ];
+}
+
+function aggregate2DStats(mainResults: BenchmarkResult[]) {
+  return new Stats({ sampling: true }).push(
+    // sum up each series of endpoints from each run
+    // Stats typings incorrectly do not specify raw .data access
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    (() => {
+      if (mainResults.length === 0) return [];
+      const first = (mainResults.shift()?.results as any).data;
+      return mainResults.reduce((prev: number[], curr: BenchmarkResult) => {
+        return prev.map((a, j) => a + (curr.results as any).data[j]);
+      }, first);
+    })()
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+  );
+}
+
+async function runBenchmark(
+  requestGenerators: ((endpoint: Endpoint) => Promise<TimedResponse>)[],
+  benchmarks: Record<string, AnyBenchmark>,
+  benchmark: AnyBenchmark
+): Promise<BenchmarkResult[][]> {
+  const debug = debugFactory(`api-benchmark:${benchmark.id}`);
+
+  const promises: Promise<BenchmarkResult[]>[] = [];
+
+  // multiple promises can execute concurrently to different request generators
+  for (let i = 0; i < requestGenerators.length; i++) {
+    debug("Running for request generator %d", i);
+
+    promises.push(
+      runBenchmarkForRequestGenerator(
+        i,
+        requestGenerators[i],
+        benchmarks,
+        benchmark,
+        ""
+      )
+    );
+  }
+
+  const awaited: BenchmarkResult[][] = [];
+
+  for (const promise of promises) {
+    awaited.push(await promise);
+  }
+
+  return awaited;
+}
 
 async function run(): Promise<void> {
   const debug = debugFactory("api-benchmark:main");
@@ -171,6 +475,26 @@ async function run(): Promise<void> {
   const [benchmarks, benchmarksToRun] = parseBenchmarks(config.benchmarks);
 
   debug("Got: %O, %O", benchmarks, benchmarksToRun);
+
+  const results: BenchmarkResult[][] = [];
+  for (const benchmarkId of benchmarksToRun) {
+    debug("Running %s", benchmarkId);
+    const result = await runBenchmark(
+      requestGenerators,
+      benchmarks,
+      resolveBenchmark(benchmarkId, benchmarks)
+    );
+    for (let i = 0; i < result.length; i++) {
+      while (i >= results.length) {
+        results.push([]);
+      }
+      results[i].push(...result[i]);
+    }
+  }
+
+  stopAllProgressBars();
+
+  debug("Result: %O", results);
 }
 
 run();

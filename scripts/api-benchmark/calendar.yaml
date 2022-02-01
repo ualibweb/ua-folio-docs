@@ -1,22 +1,31 @@
 configuration:
   urls:
-    - base: https://localhost:8084/
+    - base: http://localhost:8080/
       headers:
         x-okapi-tenant: diku
+    - base: http://localhost:8080/
+      headers:
+        x-okapi-tenant: test
   outputFilename: results.csv
   proxy: http://localhost:8888
 benchmarks:
-  - id: <string>
-    name: <string>
-    description: <string>
-    init: <string>
-    endpoints: <string>
-    teardown: <string>
-    runs: 2154
-  - id: <string>
-    name: <string>
-    description: <string>
-    init: <string>
-    endpoints: <string>
-    teardown: <string>
-    internal: true
+  - id: test1
+    name: <string1>
+    description: <stringaa>
+    init:
+      - path: /
+        method: GET
+    endpoints:
+      - path: /aaaab
+        method: GET
+    runs: 254
+  - id: test2
+    name: <string2>
+    description: <stringaa>
+    init:
+      - path: /
+        method: GET
+    endpoints:
+      - path: /aa
+        method: GET
+    runs: 200
