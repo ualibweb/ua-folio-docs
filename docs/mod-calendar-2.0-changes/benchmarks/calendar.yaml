@@ -1,0 +1,186 @@
+configuration:
+  urls:
+    - name: New
+      base: http://localhost:8080
+      headers:
+        x-okapi-tenant: test
+    - name: Old
+      base: http://localhost:8084
+      headers:
+        x-okapi-tenant: diku
+  outputFilename: results.csv
+  proxy: http://localhost:8888
+benchmarks:
+  - id: forceClean
+    name: Force Clean
+    description: Forcibly deletes any calendars that may be made anywhere
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        method: DELETE
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+        method: DELETE
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/cccccccc-cccc-cccc-cccc-cccccccccccc
+        method: DELETE
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/dddddddd-dddd-dddd-dddd-dddddddddddd
+        method: DELETE
+    internal: true
+
+  - id: createCalendarA
+    name: Create Calendar A
+    description: Creates a calendar for November of 2021
+    init:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period
+        method: POST
+        requestBody: a.json
+        requiredResponseCode: 200
+    internal: true
+  - id: deleteCalendarA
+    name: Delete Calendar A
+    description: Deletes a calendar for November of 2021
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        method: DELETE
+        requiredResponseCode: 200
+    internal: true
+  - id: createCalendarB
+    name: Create Calendar B
+    description: Creates a calendar for December of 2021
+    init:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period
+        method: POST
+        requestBody: b.json
+        requiredResponseCode: 200
+    internal: true
+  - id: deleteCalendarB
+    name: Delete Calendar B
+    description: Deletes a calendar for December of 2021
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+        method: DELETE
+        requiredResponseCode: 200
+    internal: true
+  - id: createCalendarC
+    name: Create Calendar C
+    description: Creates a calendar for an exceptional closure
+    init:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period
+        method: POST
+        requestBody: c.json
+        requiredResponseCode: 200
+    internal: true
+  - id: deleteCalendarC
+    name: Delete Calendar C
+    description: Deletes a calendar for an exceptional closure
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/cccccccc-cccc-cccc-cccc-cccccccccccc
+        method: DELETE
+        requiredResponseCode: 200
+    internal: true
+  - id: createCalendarD
+    name: Create Calendar D
+    description: Creates a calendar for an exceptional opening
+    init:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period
+        method: POST
+        requestBody: d.json
+        requiredResponseCode: 200
+    internal: true
+  - id: deleteCalendarD
+    name: Delete Calendar D
+    description: Deletes a calendar for an exceptional opening
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/dddddddd-dddd-dddd-dddd-dddddddddddd
+        method: DELETE
+        requiredResponseCode: 200
+    internal: true
+
+  - id: createCalendars
+    name: Create All Test Calendars
+    description: Creates calendars to test POST speed
+    init:
+      - createCalendarA
+      - createCalendarB
+      - createCalendarC
+      - createCalendarD
+    internal: true
+
+  - id: deleteCalendars
+    name: Delete All Test Calendars
+    description: Deletes calendars made with createCalendars
+    teardown:
+      - deleteCalendarA
+      - deleteCalendarB
+      - deleteCalendarC
+      - deleteCalendarD
+    internal: true
+
+  - id: postDeleteTest
+    name: Create and Delete All Test Calendars
+    description: Creates and deletes calendars to test POST/DELETE speed
+    init:
+      - forceClean
+    endpoints:
+      - createCalendars
+      - deleteCalendars
+    runs: 50
+
+  - id: getPeriodTest
+    name: Retrieving period information
+    description: Tests the various GET endpoints
+    init:
+      - forceClean
+      - createCalendars
+    endpoints:
+      - method: GET
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/calculateopening
+        query:
+          requestedDate: "2021-12-31"
+        requiredResponseCode: 200
+      - method: GET
+        path: /calendar/periods
+        requiredResponseCode: 200
+      - method: GET
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period
+        requiredResponseCode: 200
+      - method: GET
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        requiredResponseCode: 200
+      - method: GET
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+        requiredResponseCode: 200
+      - method: GET
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/cccccccc-cccc-cccc-cccc-cccccccccccc
+        requiredResponseCode: 200
+      - method: GET
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/dddddddd-dddd-dddd-dddd-dddddddddddd
+        requiredResponseCode: 200
+    teardown:
+      - deleteCalendars
+    runs: 200
+
+  - id: updatePeriodTest
+    name: Updating period information
+    description: Tests the various PUT endpoints
+    init:
+      - forceClean
+      - createCalendars
+    endpoints:
+      - method: PUT
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+        requiredResponseCode: 200
+        requestBody: b-modified.json
+      - method: PUT
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb
+        requiredResponseCode: 200
+        requestBody: b.json
+      - method: PUT
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/cccccccc-cccc-cccc-cccc-cccccccccccc
+        requiredResponseCode: 200
+        requestBody: c-modified.json
+      - method: PUT
+        path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/cccccccc-cccc-cccc-cccc-cccccccccccc
+        requiredResponseCode: 200
+        requestBody: c.json
+    teardown:
+      - deleteCalendars
+    runs: 25
