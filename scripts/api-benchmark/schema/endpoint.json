@@ -10,7 +10,7 @@
     "method": {
       "enum": ["GET", "POST", "PUT", "DELETE"]
     },
-    "queryString": {
+    "query": {
       "oneOf": [{ "type": "string" }, { "type": "object" }],
       "description": "The query parameters, as key-value parameters, or as a prepared string (without the question mark)"
     },

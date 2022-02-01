@@ -51,7 +51,7 @@ export interface BenchmarkPrimary {
 export interface Endpoint {
   path: string;
   method: "GET" | "POST" | "PUT" | "DELETE";
-  queryString?: string | Record<string, string>;
+  query?: string | Record<string, string>;
   requestBody?: null | string;
   /**
    * The allowed response code range, rounded to the nearest hundred
