@@ -1,31 +1,49 @@
 configuration:
   urls:
-    - base: http://localhost:8080/
-      headers:
-        x-okapi-tenant: diku
-    - base: http://localhost:8080/
+    - name: New
+      base: http://localhost:8080
       headers:
         x-okapi-tenant: test
+    - name: Old
+      base: http://localhost:8084
+      headers:
+        x-okapi-tenant: diku
   outputFilename: results.csv
   proxy: http://localhost:8888
 benchmarks:
-  - id: test1
-    name: <string1>
-    description: <stringaa>
+  - id: createCalendarA
+    name: Create Calendar A
+    description: Creates a calendar for November of 2021
     init:
-      - path: /
-        method: GET
-    endpoints:
-      - path: /aaaab
-        method: GET
-    runs: 254
-  - id: test2
-    name: <string2>
-    description: <stringaa>
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period
+        method: POST
+        requestBody: a.json
+        requiredResponseCode: 200
+    internal: true
+  - id: deleteCalendarA
+    name: Delete Calendar A
+    description: Deletes a calendar for November of 2021
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        method: DELETE
+        requiredResponseCode: 200
+    internal: true
+  - id: forceClean
+    name: Force Clean
+    description: Forcibly deletes any calendars that may be made anywhere
+    teardown:
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        method: DELETE
+    internal: true
+  - id: createCalendars
+    name: Create Test Calendars
+    description: Creates calendars to test POST speed
     init:
-      - path: /
-        method: GET
+      - forceClean
     endpoints:
-      - path: /aa
+      - createCalendarA
+      - path: /calendar/periods/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/period/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
         method: GET
-    runs: 200
+        requiredResponseCode: 200
+      - deleteCalendarA
+    runs: 5

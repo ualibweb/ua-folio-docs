@@ -26,19 +26,6 @@
         ]
       }
     },
-    "endpoints": {
-      "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "$ref": "endpoint.json"
-          }
-        ]
-      }
-    },
     "teardown": {
       "type": "array",
       "items": {
@@ -56,6 +43,6 @@
       "const": true
     }
   },
-  "required": ["id", "endpoints", "internal"],
+  "required": ["id", "internal"],
   "additionalProperties": false
 }

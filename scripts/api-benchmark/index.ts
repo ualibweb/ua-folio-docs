@@ -481,7 +481,7 @@ async function writeResults(
   const header2 = ["ID", "Name", "Description", "Runs"];
 
   config.urls.forEach((url) => {
-    header1.push(url.base);
+    header1.push(url.name);
     header1.push("", "", "", "", "", "");
 
     header2.push(

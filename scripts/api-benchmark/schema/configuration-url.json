@@ -4,6 +4,9 @@
   "description": "Configuration for a single URL to test against to run",
   "type": "object",
   "properties": {
+    "name": {
+      "type": "string"
+    },
     "base": {
       "type": "string",
       "examples": ["http://localhost:8084"]
@@ -12,6 +15,6 @@
       "type": "object"
     }
   },
-  "required": ["base"],
+  "required": ["name", "base"],
   "additionalProperties": false
 }

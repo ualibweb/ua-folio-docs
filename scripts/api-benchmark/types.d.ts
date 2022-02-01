@@ -29,6 +29,7 @@ export interface Settings {
  * Configuration for a single URL to test against to run
  */
 export interface TestURL {
+  name: string;
   base: string;
   headers?: Record<string, string>;
 }
