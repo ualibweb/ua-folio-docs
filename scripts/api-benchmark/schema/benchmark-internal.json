@@ -14,34 +14,43 @@
       "type": "string"
     },
     "init": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "endpoint.json"
-        }
-      ]
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "endpoint.json"
+          }
+        ]
+      }
     },
     "endpoints": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "endpoint.json"
-        }
-      ]
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "endpoint.json"
+          }
+        ]
+      }
     },
     "teardown": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "$ref": "endpoint.json"
-        }
-      ]
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "$ref": "endpoint.json"
+          }
+        ]
+      }
     },
     "internal": {
       "const": true

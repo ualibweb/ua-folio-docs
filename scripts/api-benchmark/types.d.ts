@@ -1,3 +1,6 @@
+import { Stats } from "fast-stats";
+import { Response } from "node-fetch";
+
 /**
  * The main schema for api-benchmark configuration
  */
@@ -36,9 +39,9 @@ export interface BenchmarkPrimary {
   id: string;
   name?: string;
   description?: string;
-  init?: string | Endpoint;
-  endpoints: string | Endpoint;
-  teardown?: string | Endpoint;
+  init?: (string | Endpoint)[];
+  endpoints: (string | Endpoint)[];
+  teardown?: (string | Endpoint)[];
   runs: number;
 }
 /**
@@ -71,8 +74,20 @@ export interface BenchmarkInternal {
   id: string;
   name?: string;
   description?: string;
-  init?: string | Endpoint;
-  endpoints: string | Endpoint;
-  teardown?: string | Endpoint;
+  init?: (string | Endpoint)[];
+  teardown?: (string | Endpoint)[];
   internal: true;
+}
+
+export interface BenchmarkResult {
+  id: string;
+  name: string;
+  description: string;
+  runs: number;
+  results: Stats;
+}
+
+export interface TimedResponse {
+  response: Response;
+  timeMs: number;
 }
