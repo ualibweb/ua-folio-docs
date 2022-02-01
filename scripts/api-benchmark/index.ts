@@ -184,13 +184,21 @@ function createRequestGenerators(
           mergeOptions(options, {
             method: endpoint.method,
             body: getBody(endpoint.requestBody),
+            headers: {
+              "Content-Type":
+                endpoint.requestBody === undefined
+                  ? "text/plain"
+                  : "application/json",
+            },
           })
         )
           .then((response) => {
             if (
               !checkResponseCode(endpoint.requiredResponseCode, response.status)
             ) {
-              reject(`Status ${response.statusText} is not valid`);
+              reject(
+                `Status ${response.status} ${response.statusText} is not valid`
+              );
             }
 
             const result = process.hrtime(startTime);
@@ -289,7 +297,7 @@ async function runBenchmarkForRequestGenerator(
 
   updateProgressBar(prefix, benchmark, i, 0);
 
-  debug("Running init(s): %O", benchmark.init);
+  debug("Running init(s): %o", benchmark.init);
   if (Array.isArray(benchmark.init)) {
     result.push(
       ...(await runEndpointSetForRequestGenerator(
@@ -306,7 +314,7 @@ async function runBenchmarkForRequestGenerator(
 
   if (Object.hasOwnProperty.call(benchmark, "endpoints")) {
     benchmark = benchmark as BenchmarkPrimary;
-    debug("Running main endpoint(s): %O", benchmark.endpoints);
+    debug("Running main endpoint(s): %o", benchmark.endpoints);
     result.push(
       ...(await runMainEndpointSetForRequestGenerator(
         debug,
@@ -319,7 +327,7 @@ async function runBenchmarkForRequestGenerator(
     );
   }
 
-  debug("Running teardown(s): %O", benchmark.teardown);
+  debug("Running teardown(s): %o", benchmark.teardown);
   if (Array.isArray(benchmark.teardown)) {
     result.push(
       ...(await runEndpointSetForRequestGenerator(
@@ -386,11 +394,11 @@ async function runMainEndpointSetForRequestGenerator(
               requestGenerator,
               benchmarks,
               resolveBenchmark(endpoint, benchmarks),
-              prefix
+              `${prefix}${benchmark.id}-`
             )
           )
-            .shift()
-            ?.results.amean() ?? 0
+            .map((result) => result.results.amean())
+            .reduce((p, c) => p + c, 0)
         );
       } else {
         debug(`Running endpoint ${endpoint.method} ${endpoint.path}`);
@@ -420,8 +428,9 @@ function aggregate2DStats(mainResults: BenchmarkResult[]) {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     (() => {
       if (mainResults.length === 0) return [];
-      const first = (mainResults.shift()?.results as any).data;
-      return mainResults.reduce((prev: number[], curr: BenchmarkResult) => {
+      const copy = [...mainResults] as [BenchmarkResult, ...BenchmarkResult[]];
+      const first = (copy.shift().results as any).data;
+      return copy.reduce((prev: number[], curr: BenchmarkResult) => {
         return prev.map((a, j) => a + (curr.results as any).data[j]);
       }, first);
     })()
