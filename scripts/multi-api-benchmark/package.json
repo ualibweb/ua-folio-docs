@@ -1,6 +1,6 @@
 {
   "name": "multi-api-benchmark",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A simple tool for testing API speeds",
   "author": "Noah Overcash <ncovercash@ua.edu>",
   "license": "Unlicense",
@@ -11,7 +11,8 @@
     "build": "tsc -p tsconfig.json && copyfiles -V schema/**/*.json dist && copyfiles -V bin.js dist",
     "start": "npx ts-node index.ts --unhandled-rejections=strict",
     "dump-schema": "npx ts-node schema/bundle.ts --unhandled-rejections=strict",
-    "test": ""
+    "test": "",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.9",
