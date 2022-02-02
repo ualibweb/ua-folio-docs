@@ -1,11 +1,12 @@
 {
   "name": "multi-api-benchmark",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple tool for testing API speeds",
   "author": "Noah Overcash <ncovercash@ua.edu>",
   "license": "Unlicense",
   "main": "./dist/index.js",
   "bin": "./dist/bin.js",
+  "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json && copyfiles -V schema/**/*.json dist && copyfiles -V bin.js dist",
     "start": "npx ts-node index.ts --unhandled-rejections=strict",
