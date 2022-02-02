@@ -1,6 +1,6 @@
 {
   "name": "multi-api-benchmark",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A simple tool for testing API speeds",
   "author": "Noah Overcash <ncovercash@ua.edu>",
   "license": "Unlicense",

@@ -14,6 +14,7 @@ import fetch, { RequestInit } from "node-fetch";
 import path from "path";
 import { URLSearchParams } from "url";
 import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
 import {
   AnyBenchmark,
   BenchmarkPrimary,
@@ -27,8 +28,7 @@ import {
 async function loadConfig(): Promise<MainConfiguration> {
   const debug = debugFactory("api-benchmark:load-config");
 
-  const argv = await yargs
-    .scriptName("npm run start")
+  const argv = await yargs(hideBin(process.argv))
     .command(
       "yaml filename",
       "Run benchmarks from a configuration file written in YAML"
