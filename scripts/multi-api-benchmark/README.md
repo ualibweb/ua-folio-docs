@@ -214,13 +214,13 @@ npm --prefix ../multi-api-test run start yaml configuration.json
 
 If something is not working right, you can enable debug logging through the
 `DEBUG` environment variable. If the error is within this tool, set `DEBUG` to
-`api-benchmark:*`.
+`multi-api-benchmark:*`.
 
 This can be done with:
 
 ```sh
-export DEBUG=api-benchmark:*     # Mac/Linux
-${env:DEBUG}='api-benchmark:*'   # Windows PowerShell
+export DEBUG=multi-api-benchmark:*     # Mac/Linux
+${env:DEBUG}='multi-api-benchmark:*'   # Windows PowerShell
 ```
 
 Note that this will set the variable for the remainder of the current terminal

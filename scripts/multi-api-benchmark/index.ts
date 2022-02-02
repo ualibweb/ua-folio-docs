@@ -25,8 +25,10 @@ import {
   TimedResponse,
 } from "./types";
 
+const debugPrefix = "multi-api-benchmark";
+
 async function loadConfig(): Promise<MainConfiguration> {
-  const debug = debugFactory("api-benchmark:load-config");
+  const debug = debugFactory(`${debugPrefix}:load-config`);
 
   const argv = await yargs(hideBin(process.argv))
     .scriptName("multi-api-test")
@@ -301,7 +303,7 @@ async function runBenchmarkForRequestGenerator(
   prefix = ""
 ): Promise<BenchmarkResult[]> {
   const debug = debugFactory(
-    `api-benchmark:${prefix}${benchmark.id}[${urlName}]`
+    `${debugPrefix}:${prefix}${benchmark.id}[${urlName}]`
   );
 
   const result: BenchmarkResult[] = [];
@@ -465,7 +467,7 @@ async function runRequestGenerator(
   benchmarks: Record<string, AnyBenchmark>,
   benchmarksToRun: string[]
 ): Promise<BenchmarkResult[]> {
-  const debug = debugFactory(`api-benchmark:${urlName}`);
+  const debug = debugFactory(`${debugPrefix}:${urlName}`);
 
   const results = [];
 
@@ -490,7 +492,7 @@ async function writeResults(
   results: BenchmarkResult[][],
   config: Settings
 ): Promise<void> {
-  const debug = debugFactory("api-benchmark:writer");
+  const debug = debugFactory(`${debugPrefix}:writer`);
 
   const header1 = ["", "", "", ""];
   const header2 = ["ID", "Name", "Description", "Runs"];
@@ -551,7 +553,7 @@ async function writeResults(
 }
 
 async function run(): Promise<void> {
-  const debug = debugFactory("api-benchmark:main");
+  const debug = debugFactory(`${debugPrefix}:main`);
 
   debug("Loading config");
   const config = await loadConfig();
