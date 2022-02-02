@@ -24,6 +24,14 @@ npm run start yaml configuration.yaml # for YAML
 npm run start json configuration.json # for JSON
 ```
 
+Note that these files are relative to your current directory. If the code is in
+a different directory from your configuration, `cd` to the configuration and use
+`--prefix` to point to the root of this project. For example:
+
+```sh
+npm --prefix ../multi-api-test run start yaml configuration.json
+```
+
 ## Basic Example
 
 The simplest configuration is something like this:
