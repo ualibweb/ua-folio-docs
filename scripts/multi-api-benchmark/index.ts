@@ -29,6 +29,8 @@ async function loadConfig(): Promise<MainConfiguration> {
   const debug = debugFactory("api-benchmark:load-config");
 
   const argv = await yargs(hideBin(process.argv))
+    .scriptName("multi-api-test")
+    .version(false)
     .command(
       "yaml filename",
       "Run benchmarks from a configuration file written in YAML"
