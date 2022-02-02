@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "api-benchmark Endpoint",
+  "description": "Configuration for an endpoint to send a request to",
+  "type": "object",
+  "properties": {
+    "path": {
+      "type": "string"
+    },
+    "method": {
+      "enum": ["GET", "POST", "PUT", "DELETE"]
+    },
+    "query": {
+      "oneOf": [{ "type": "string" }, { "type": "object" }],
+      "description": "The query parameters, as key-value parameters, or as a prepared string (without the question mark)"
+    },
+    "requestBody": {
+      "oneOf": [{ "type": "null" }, { "type": "string" }]
+    },
+    "requiredResponseCode": {
+      "enum": ["100", "200", "300", "400", "500", 100, 200, 300, 400, 500],
+      "description": "The allowed response code range, rounded to the nearest hundred"
+    }
+  },
+  "required": ["path", "method"],
+  "additionalProperties": false
+}
