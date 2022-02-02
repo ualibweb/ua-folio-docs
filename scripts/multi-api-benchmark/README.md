@@ -7,29 +7,26 @@ in through a configuration file, written either in JSON or YAML.
 Please note that all examples here are written in YAML, however, the equivalent
 JSON will work the same.
 
+- [multi-api-benchmark](#multi-api-benchmark)
+  - [Basic Usage](#basic-usage)
+  - [Basic Example](#basic-example)
+  - [Full Schema](#full-schema)
+    - [`configuration`](#configuration)
+    - [`benchmarks`](#benchmarks)
+    - [`endpoints`](#endpoints)
+  - [Interpreting Results](#interpreting-results)
+  - [Advanced Example](#advanced-example)
+  - [Development Install](#development-install)
+  - [Debugging](#debugging)
+
 ## Basic Usage
 
-After cloning or downloading the code, be sure to run the following to install
-all dependencies:
+Once you install [`npm`](https://npmjs.com/), you can do the following to run
+with a YAML or JSON configuration file:
 
 ```sh
-npm install
-```
-
-Then, with this, you can use one of the following to run with a YAML or JSON
-configuration file:
-
-```sh
-npm run start yaml configuration.yaml # for YAML
-npm run start json configuration.json # for JSON
-```
-
-Note that these files are relative to your current directory. If the code is in
-a different directory from your configuration, `cd` to the configuration and use
-`--prefix` to point to the root of this project. For example:
-
-```sh
-npm --prefix ../multi-api-test run start yaml configuration.json
+npx multi-api-benchmark yaml configuration.yaml # for YAML
+npx multi-api-benchmark json configuration.json # for JSON
 ```
 
 ## Basic Example
@@ -185,6 +182,33 @@ however, are left in for the sake of increased information.
 An in-depth example with many endpoints, self-referencing endpoints, internal
 endpoints, proxy, and much more, can be found
 [here](https://github.com/ualibweb/ua-folio-docs/blob/68f7a7e0abff7d8ea0cf3f29c1de55678396ec4f/docs/mod-calendar-2.0-changes/benchmarks/calendar.yaml).
+
+## Development Install
+
+If you want to run/work on the code locally, use these instructions.
+
+After cloning or downloading the code, be sure to run the following to install
+all dependencies:
+
+```sh
+npm install
+```
+
+Then, with this, you can use one of the following to run with a YAML or JSON
+configuration file:
+
+```sh
+npm run start yaml configuration.yaml # for YAML
+npm run start json configuration.json # for JSON
+```
+
+Note that these files are relative to your current directory. If the code is in
+a different directory from your configuration, `cd` to the configuration and use
+`--prefix` to point to the root of this project. For example:
+
+```sh
+npm --prefix ../multi-api-test run start yaml configuration.json
+```
 
 ## Debugging
 

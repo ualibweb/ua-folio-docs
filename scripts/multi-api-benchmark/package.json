@@ -1,6 +1,6 @@
 {
   "name": "multi-api-benchmark",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple tool for testing API speeds",
   "author": "Noah Overcash <ncovercash@ua.edu>",
   "license": "Unlicense",
@@ -26,6 +26,7 @@
     "js-yaml": "^4.1.0",
     "memoizee": "^0.4.15",
     "merge-options": "^3.0.4",
+    "multi-api-benchmark": "^1.1.1",
     "node-fetch": "^2.6.6",
     "supports-color": "^9.2.1",
     "yaml": "^1.10.2",
