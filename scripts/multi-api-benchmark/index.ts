@@ -12,7 +12,6 @@ import memoizee from "memoizee";
 import mergeOptions from "merge-options";
 import fetch, { RequestInit } from "node-fetch";
 import path from "path";
-import prompt from "prompt";
 import { URLSearchParams } from "url";
 import yargs from "yargs";
 import {
@@ -24,8 +23,6 @@ import {
   Settings,
   TimedResponse,
 } from "./types";
-
-prompt.start();
 
 async function loadConfig(): Promise<MainConfiguration> {
   const debug = debugFactory("api-benchmark:load-config");
