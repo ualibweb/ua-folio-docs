@@ -2,6 +2,8 @@
 
 ## Prerequisites
 
+Please note, you will likely need at least 20 GB of ram to run the full FOLIO environment.
+
 ### Command Line Tools
 
 To use compilers and other development features, you need to install the macOS
