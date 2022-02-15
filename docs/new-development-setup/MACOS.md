@@ -127,16 +127,6 @@ To install Java 11 itself (the version we use), use:
 brew install openjdk@11
 ```
 
-Maven, the build tool, can be installed with (note that this is an improved version of normal
-`maven` with improved colors, formatting, and benchmarking):
-
-```sh
-brew tap jcgay/jcgay
-brew install maven-deluxe
-brew unlink maven # Optional
-brew link maven-deluxe
-```
-
 ### Git Client
 
 Git, used for version control, is very powerful and, unfortunately, the tools in
