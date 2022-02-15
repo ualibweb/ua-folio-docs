@@ -1,8 +1,10 @@
 # Vagrantfile
 
-Enclosed is a simple `Vagrantfile` that creates a box for use with FOLIO's test
-environment, `folio/testing`. With this, you can run a Vagrant environment
-locally and access all of FOLIO's modules on your own machine.
+Enclosed in this folder is a simple `Vagrantfile` that creates a box for use
+with FOLIO's test environment, `folio/testing`. With this, you can run a
+Vagrant environment locally and access all of FOLIO's modules on your own
+machine.  For the alternative `Vagrantfile` options, be sure to rename it
+to just `Vagrantfile` after you download it.
 
 The main changes to this from the default is in port forwarding. Typically,
 FOLIO will use port 9130 for the backend (Okapi) and 3000 for the frontend
@@ -20,6 +22,14 @@ An important note about Vagrant is that the VM will be able to access the folder
 that the Vagrantfile is in. Therefore, it is optimal to ensure that whatever
 code you may want to use in Vagrant will be available in the same folder -- an
 easy (although unsafe) solution is to use your home directory.
+
+There are a few other Vagrant boxes that may be of interest:
+
+* `folio/testing`, the latest of all modules (used for the `Vagrantfile`)
+* `folio/release`, the latest full "flower" quarterly release
+* `folio/release-core`, a slimmed down version (only 12 gb) of `folio/release`
+  (used for `Vagrantfile-lite`)
+* Many more, as listed [here](https://app.vagrantup.com/folio)
 
 ## Basic Commands
 
