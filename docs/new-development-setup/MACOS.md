@@ -129,13 +129,15 @@ brew install openjdk@11
 ### Git Client
 
 Git, used for version control, is very powerful and, unfortunately, the tools in VS Code are not
-comprehensive. To make up this gap, I like [Sublime Merge](https://sublimemerge.com/):
+comprehensive. To make up this gap, I like [GitKraken](https://gitkraken.com).  The PRO version
+is free through the [GitHub Education Program](https://education.github.com/toolbox) for students
+and (I believe) faculty/staff.
 
 ```sh
-brew install --cask sublime-merge
+brew install --cask gitkraken
 ```
 
-This is a paid product, however, the free trial is unlimited.
+[Sublime Merge](https://sublimemerge.com/) is also a nice choice, however, this is a paid product.
 
 ### API Debugging
 
