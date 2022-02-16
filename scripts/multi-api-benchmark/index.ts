@@ -33,33 +33,25 @@ async function loadConfig(): Promise<MainConfiguration> {
   const argv = await yargs(hideBin(process.argv))
     .scriptName("multi-api-test")
     .version(false)
-    .command(
-      "yaml filename",
-      "Run benchmarks from a configuration file written in YAML"
-    )
-    .command(
-      "json filename",
-      "Run benchmarks from a configuration file written in JSON"
-    )
+    .command("yaml filename", "Run benchmarks from a configuration file written in YAML")
+    .command("json filename", "Run benchmarks from a configuration file written in JSON")
     .demandCommand(1, 1)
     .help().argv;
 
   debug("Read command line args: %O", argv);
 
-  const schema = await parser.bundle(
-    path.resolve(__dirname, "schema", "base.json")
-  );
+  const schema = await parser.bundle(path.resolve(__dirname, "schema", "base.json"));
   debug("Dereferenced schema: %o", schema);
 
   const validator = new ajv({ allErrors: true }).compile(schema);
 
   debug(
     "Reading the contents of file %s",
-    path.resolve(process.env.INIT_CWD, argv.filename as string)
+    path.resolve(process.env.INIT_CWD, argv.filename as string),
   );
 
   const fileContents = readFileSync(
-    path.resolve(process.env.INIT_CWD, argv.filename as string)
+    path.resolve(process.env.INIT_CWD, argv.filename as string),
   ).toString();
 
   debug("Attempting to parse the file as %s", argv._[0]);
@@ -106,19 +98,15 @@ const checkResponseCode = memoizee(
       default:
         return true;
     }
-  }
+  },
 );
 
-const getBody = memoizee(
-  (filename: string | null | undefined): string | undefined => {
-    if (filename === null || filename === undefined) {
-      return undefined;
-    }
-    return readFileSync(
-      path.resolve(process.env.INIT_CWD, "bodies", filename)
-    ).toString();
+const getBody = memoizee((filename: string | null | undefined): string | undefined => {
+  if (filename === null || filename === undefined) {
+    return undefined;
   }
-);
+  return readFileSync(path.resolve(process.env.INIT_CWD, "bodies", filename)).toString();
+});
 
 const progressBarFactory = new MultiBar({
   forceRedraw: true,
@@ -131,30 +119,22 @@ function updateProgressBar(
   prefix: string,
   benchmark: AnyBenchmark,
   urlName: string,
-  progress: number
+  progress: number,
 ) {
   if (prefix !== "") {
     return; // no progress bars for non-root
   }
   const key = `${benchmark.id}[${urlName}]`;
   if (!Object.hasOwnProperty.call(progressBars, key)) {
-    progressBars[key] = progressBarFactory.create(
-      (benchmark as BenchmarkPrimary).runs,
-      progress,
-      {
-        benchmark: key,
-      }
-    );
+    progressBars[key] = progressBarFactory.create((benchmark as BenchmarkPrimary).runs, progress, {
+      benchmark: key,
+    });
   }
 
   progressBars[key].update(progress);
 }
 
-function stopProgressBar(
-  prefix: string,
-  benchmark: AnyBenchmark,
-  urlName: string
-): void {
+function stopProgressBar(prefix: string, benchmark: AnyBenchmark, urlName: string): void {
   if (prefix !== "") {
     return; // no progress bars for non-root
   }
@@ -169,7 +149,7 @@ function stopAllProgressBars(): void {
 }
 
 function createRequestGenerators(
-  config: Settings
+  config: Settings,
 ): ((endpoint: Endpoint) => Promise<TimedResponse>)[] {
   return config.urls.map((url) => {
     const options: RequestInit = {};
@@ -197,19 +177,13 @@ function createRequestGenerators(
             body: getBody(endpoint.requestBody),
             headers: {
               "Content-Type":
-                endpoint.requestBody === undefined
-                  ? "text/plain"
-                  : "application/json",
+                endpoint.requestBody === undefined ? "text/plain" : "application/json",
             },
-          })
+          }),
         )
           .then((response) => {
-            if (
-              !checkResponseCode(endpoint.requiredResponseCode, response.status)
-            ) {
-              reject(
-                `Status ${response.status} ${response.statusText} is not valid`
-              );
+            if (!checkResponseCode(endpoint.requiredResponseCode, response.status)) {
+              reject(`Status ${response.status} ${response.statusText} is not valid`);
             }
 
             const result = process.hrtime(startTime);
@@ -222,9 +196,7 @@ function createRequestGenerators(
   });
 }
 
-function parseBenchmarks(
-  benchmarks: AnyBenchmark[]
-): [Record<string, AnyBenchmark>, string[]] {
+function parseBenchmarks(benchmarks: AnyBenchmark[]): [Record<string, AnyBenchmark>, string[]] {
   const map: Record<string, AnyBenchmark> = {};
   const toRun: string[] = [];
 
@@ -240,7 +212,7 @@ function parseBenchmarks(
 
 function resolveBenchmark(
   benchmark: string | AnyBenchmark,
-  benchmarks: Record<string, AnyBenchmark>
+  benchmarks: Record<string, AnyBenchmark>,
 ): AnyBenchmark {
   if (typeof benchmark === "string") {
     return benchmarks[benchmark];
@@ -255,7 +227,7 @@ async function runEndpointSetForRequestGenerator(
   requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
   endpoints: (string | Endpoint)[],
   benchmarks: Record<string, AnyBenchmark>,
-  prefix: string
+  prefix: string,
 ) {
   const results: BenchmarkResult[] = [];
   for (const endpoint of endpoints) {
@@ -267,8 +239,8 @@ async function runEndpointSetForRequestGenerator(
           requestGenerator,
           benchmarks,
           resolveBenchmark(endpoint, benchmarks),
-          prefix
-        ))
+          prefix,
+        )),
       );
     } else {
       debug(`Running endpoint ${endpoint.method} ${endpoint.path}`);
@@ -287,9 +259,7 @@ async function runEndpointSetForRequestGenerator(
     name,
     description: `Aggregate of ${name}`,
     runs: 1,
-    results: new Stats({ sampling: true }).push(
-      results.map((result) => result.results.sum)
-    ),
+    results: new Stats({ sampling: true }).push(results.map((result) => result.results.sum)),
   };
 
   return [overallResult, ...results];
@@ -300,11 +270,9 @@ async function runBenchmarkForRequestGenerator(
   requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
   benchmarks: Record<string, AnyBenchmark>,
   benchmark: AnyBenchmark,
-  prefix = ""
+  prefix = "",
 ): Promise<BenchmarkResult[]> {
-  const debug = debugFactory(
-    `${debugPrefix}:${prefix}${benchmark.id}[${urlName}]`
-  );
+  const debug = debugFactory(`${debugPrefix}:${prefix}${benchmark.id}[${urlName}]`);
 
   const result: BenchmarkResult[] = [];
 
@@ -320,8 +288,8 @@ async function runBenchmarkForRequestGenerator(
         requestGenerator,
         benchmark.init,
         benchmarks,
-        `${prefix}${benchmark.id}-init-`
-      ))
+        `${prefix}${benchmark.id}-init-`,
+      )),
     );
   }
 
@@ -335,8 +303,8 @@ async function runBenchmarkForRequestGenerator(
         requestGenerator,
         urlName,
         benchmark,
-        prefix
-      ))
+        prefix,
+      )),
     );
   }
 
@@ -350,8 +318,8 @@ async function runBenchmarkForRequestGenerator(
         requestGenerator,
         benchmark.teardown,
         benchmarks,
-        `${prefix}${benchmark.id}-teardown-`
-      ))
+        `${prefix}${benchmark.id}-teardown-`,
+      )),
     );
   }
 
@@ -366,7 +334,7 @@ async function runMainEndpointSetForRequestGenerator(
   requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
   urlName: string,
   benchmark: BenchmarkPrimary,
-  prefix: string
+  prefix: string,
 ) {
   const mainResults: BenchmarkResult[] = [];
 
@@ -400,12 +368,10 @@ async function runMainEndpointSetForRequestGenerator(
           requestGenerator,
           benchmarks,
           resolveBenchmark(endpoint, benchmarks),
-          `${prefix}${benchmark.id}-`
+          `${prefix}${benchmark.id}-`,
         );
         mainResults[resultIndex].results.push(
-          results
-            .map((result) => result.results.amean())
-            .reduce((p, c) => p + c, 0)
+          results.map((result) => result.results.amean()).reduce((p, c) => p + c, 0),
         );
         resultIndex++;
         if (run === 1) {
@@ -416,7 +382,7 @@ async function runMainEndpointSetForRequestGenerator(
             mainResults[resultIndex].runs++;
             mainResults[resultIndex].results.push(
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              ...(result.results as any).data
+              ...(result.results as any).data,
             );
             resultIndex++;
           });
@@ -456,7 +422,7 @@ function aggregate2DStats(mainResults: BenchmarkResult[]) {
       return copy.reduce((prev: number[], curr: BenchmarkResult) => {
         return prev.map((a, j) => a + (curr.results as any).data[j]);
       }, first);
-    })()
+    })(),
     /* eslint-enable @typescript-eslint/no-explicit-any */
   );
 }
@@ -465,7 +431,7 @@ async function runRequestGenerator(
   requestGenerator: (endpoint: Endpoint) => Promise<TimedResponse>,
   urlName: string,
   benchmarks: Record<string, AnyBenchmark>,
-  benchmarksToRun: string[]
+  benchmarksToRun: string[],
 ): Promise<BenchmarkResult[]> {
   const debug = debugFactory(`${debugPrefix}:${urlName}`);
 
@@ -480,18 +446,15 @@ async function runRequestGenerator(
         requestGenerator,
         benchmarks,
         resolveBenchmark(benchmarkId, benchmarks),
-        ""
-      ))
+        "",
+      )),
     );
   }
 
   return results;
 }
 
-async function writeResults(
-  results: BenchmarkResult[][],
-  config: Settings
-): Promise<void> {
+async function writeResults(results: BenchmarkResult[][], config: Settings): Promise<void> {
   const debug = debugFactory(`${debugPrefix}:writer`);
 
   const header1 = ["", "", "", ""];
@@ -508,7 +471,7 @@ async function writeResults(
       "Max (ms)",
       "Standard Deviation (ms)",
       "95% CI Lower (ms)",
-      "95% CI Upper (ms)"
+      "95% CI Upper (ms)",
     );
   });
 
@@ -544,7 +507,7 @@ async function writeResults(
         stats.max.toFixed(1),
         stats.stddev().toFixed(1),
         (stats.amean() - stats.moe()).toFixed(1),
-        (stats.amean() + stats.moe()).toFixed(1)
+        (stats.amean() + stats.moe()).toFixed(1),
       );
     });
 
@@ -573,8 +536,8 @@ async function run(): Promise<void> {
         requestGenerators[i],
         config.configuration.urls[i].name,
         benchmarks,
-        benchmarksToRun
-      )
+        benchmarksToRun,
+      ),
     );
   }
 

@@ -71,8 +71,7 @@ async function run(): Promise<void> {
 
       log(chalk.bold.whiteBright(`Starting test ${currentTest}`));
     } else {
-      const fullPath =
-        call.path + (call.query === null ? "" : `?${call.query}`);
+      const fullPath = call.path + (call.query === null ? "" : `?${call.query}`);
 
       const headers: Record<string, string> = {};
       headers["Accept"] = "*/*";
@@ -90,12 +89,11 @@ async function run(): Promise<void> {
             "x-okapi-url": CORRECT_PATH,
             "x-okapi-tenant": CORRECT_TENANT,
           },
-          headers
+          headers,
         ),
       });
 
-      let correctData: string | Record<string, any> =
-        await correctResponse.text();
+      let correctData: string | Record<string, any> = await correctResponse.text();
       try {
         correctData = JSON.parse(correctData);
       } catch (e) {}
@@ -111,7 +109,7 @@ async function run(): Promise<void> {
             "x-okapi-url": TEST_PATH,
             "x-okapi-tenant": TEST_TENANT,
           },
-          headers
+          headers,
         ),
       });
 
@@ -132,10 +130,7 @@ async function run(): Promise<void> {
           diff.correctLegacy = correctData;
           diff.testNew = testData;
         }
-      } else if (
-        typeof correctData !== "string" &&
-        typeof testData !== "string"
-      ) {
+      } else if (typeof correctData !== "string" && typeof testData !== "string") {
         equalResponse = deepEqual(correctData, testData);
         if (!equalResponse) {
           diff = detailedDiff(correctData, testData);
@@ -155,11 +150,7 @@ async function run(): Promise<void> {
           log(chalk.red(JSON.stringify(diff, null, 2)));
         }
         if (!equalCode) {
-          log(
-            chalk.bold.red(
-              `Expected (legacy) response code: ${correctResponseCode}`
-            )
-          );
+          log(chalk.bold.red(`Expected (legacy) response code: ${correctResponseCode}`));
           log(chalk.bold.red(`Actual response code: ${testResponseCode}`));
         }
         const answer = "fail";

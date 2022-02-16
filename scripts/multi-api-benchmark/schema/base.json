@@ -10,10 +10,7 @@
     "benchmarks": {
       "type": "array",
       "items": {
-        "oneOf": [
-          { "$ref": "benchmark.json" },
-          { "$ref": "benchmark-internal.json" }
-        ]
+        "oneOf": [{ "$ref": "benchmark.json" }, { "$ref": "benchmark-internal.json" }]
       },
       "uniqueItems": true
     }

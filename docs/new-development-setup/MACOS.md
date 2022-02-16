@@ -6,8 +6,8 @@ Please note, you will likely need at least 20 GB of ram to run the full FOLIO en
 
 ### Command Line Tools
 
-To use compilers and other development features, you need to install the macOS
-command line tools (if they have not already been installed):
+To use compilers and other development features, you need to install the macOS command line tools
+(if they have not already been installed):
 
 ```sh
 xcode-select --install
@@ -17,9 +17,9 @@ This will open a new window and may take a few minutes to complete.
 
 ### Homebrew
 
-[Homebrew](https://brew.sh/) is a package manager for macOS, making it easy to
-install and update software, particularly software used for development. It also
-includes "casks" for desktop applications.
+[Homebrew](https://brew.sh/) is a package manager for macOS, making it easy to install and update
+software, particularly software used for development. It also includes "casks" for desktop
+applications.
 
 Install it with:
 
@@ -53,15 +53,15 @@ brew install --cask dbeaver-community
 
 ### Code Editor
 
-For development, Visual Studio Code is recommended -- it is a good blend of a
-fully-featured IDE and a lightweight text editor. Install it with:
+For development, Visual Studio Code is recommended -- it is a good blend of a fully-featured IDE and
+a lightweight text editor. Install it with:
 
 ```
 brew install --cask visual-studio-code
 ```
 
-Then, open Visual Studio Code, press ⌘+Shift+P. In here, search for "Install
-'code' command in PATH":
+Then, open Visual Studio Code, press ⌘+Shift+P. In here, search for "Install 'code' command in
+PATH":
 
 ![image](https://code.visualstudio.com/assets/docs/setup/mac/shell-command.png)
 
@@ -69,9 +69,8 @@ After you do this, you will need to restart your terminal.
 
 ### VS Code Extensions
 
-Many extensions are available to add features to Visual Studio Code. I recommend
-the following, each of which can be installed by copying the line into your
-Terminal:
+Many extensions are available to add features to Visual Studio Code. I recommend the following, each
+of which can be installed by copying the line into your Terminal:
 
 ```sh
 code --install-extension aaron-bond.better-comments # Highlight TODO commends with a different color
@@ -114,8 +113,8 @@ code --install-extension ZainChen.json # JSON tree view
 
 ### Java
 
-For Java support, you will need to install Eclipse (provides some code
-intellisense features, even though we do not use it directly):
+For Java support, you will need to install Eclipse (provides some code intellisense features, even
+though we do not use it directly):
 
 ```sh
 brew install --cask eclipse-java
@@ -129,9 +128,8 @@ brew install openjdk@11
 
 ### Git Client
 
-Git, used for version control, is very powerful and, unfortunately, the tools in
-VS Code are not comprehensive. To make up this gap, I like
-[Sublime Merge](https://sublimemerge.com/):
+Git, used for version control, is very powerful and, unfortunately, the tools in VS Code are not
+comprehensive. To make up this gap, I like [Sublime Merge](https://sublimemerge.com/):
 
 ```sh
 brew install --cask sublime-merge
@@ -143,8 +141,8 @@ This is a paid product, however, the free trial is unlimited.
 
 #### REST Client
 
-For sending REST requests and analyzing an API, the client
-[Insomnia](https://insomnia.rest) is very nice:
+For sending REST requests and analyzing an API, the client [Insomnia](https://insomnia.rest) is very
+nice:
 
 ```sh
 brew install --cask insomnia
@@ -152,12 +150,10 @@ brew install --cask insomnia
 
 #### Proxy
 
-Sometimes, requests need to be intercepted and debugged in real time. This can
-be done with a proxy.
+Sometimes, requests need to be intercepted and debugged in real time. This can be done with a proxy.
 
-Personally, I like [Charles](https://charlesproxy.com/), however, this is an
-expensive paid product. I have heard good things about https://www.inproxy.io/,
-however, have not used it myself.
+Personally, I like [Charles](https://charlesproxy.com/), however, this is an expensive paid product.
+I have heard good things about https://www.inproxy.io/, however, have not used it myself.
 
 #### cURL
 
@@ -169,16 +165,15 @@ brew install curl
 
 ### Node
 
-Node (and NPM) is used for most all JavaScript/TypeScript development. Install
-them with:
+Node (and NPM) is used for most all JavaScript/TypeScript development. Install them with:
 
 ```sh
 brew install node
 ```
 
-With this, you can now install the following tools (used to enforce code style
-and validate openapi):
+With this, you can now install the following tools (used to enforce code style and validate
+openapi):
 
 ```sh
-npm install -g --save-dev prettier prettier-plugin-java @prettier/plugin-xml prettier-plugin-sql
+npm install -g prettier prettier-plugin-java @prettier/plugin-xml prettier-plugin-sql  @apidevtools/swagger-cli
 ```

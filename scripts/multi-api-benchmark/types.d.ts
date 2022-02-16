@@ -56,17 +56,7 @@ export interface Endpoint {
   /**
    * The allowed response code range, rounded to the nearest hundred
    */
-  requiredResponseCode?:
-    | "100"
-    | "200"
-    | "300"
-    | "400"
-    | "500"
-    | 100
-    | 200
-    | 300
-    | 400
-    | 500;
+  requiredResponseCode?: "100" | "200" | "300" | "400" | "500" | 100 | 200 | 300 | 400 | 500;
 }
 /**
  * Configuration for a benchmark to be used only (not itself ran)
