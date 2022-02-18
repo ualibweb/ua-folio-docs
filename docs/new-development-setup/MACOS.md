@@ -157,14 +157,6 @@ Sometimes, requests need to be intercepted and debugged in real time. This can b
 Personally, I like [Charles](https://charlesproxy.com/), however, this is an expensive paid product.
 I have heard good things about https://www.inproxy.io/, however, have not used it myself.
 
-#### cURL
-
-cURL is a widely-used tool for sending HTTP requests. You can install it with:
-
-```sh
-brew install curl
-```
-
 ### Node
 
 Node (and NPM) is used for most all JavaScript/TypeScript development. Install them with:
