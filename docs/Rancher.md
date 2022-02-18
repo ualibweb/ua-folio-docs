@@ -4,8 +4,9 @@ Our Rancher environment can be accessed at [this link](https://rancher.dev.folio
 wiki for interacting with Rancher is
 [here](https://dev.folio.org/faqs/how-to-get-started-with-rancher/).
 
-Please note, the instructions for "Building Backend" and "Building Frontend" are outdated/invalid.
-Please use the following:
+Please note, the instructions for "Building Backend" and "Building Frontend" are outdated/invalid
+(although most of the other information, such as building from a branch, is similar to what is here
+and/or currently accurate).
 
 ## Installing/Updating a Module
 
