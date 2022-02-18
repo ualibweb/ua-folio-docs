@@ -124,6 +124,7 @@ To install Java 11 itself (the version we use), use:
 
 ```sh
 brew install openjdk@11
+brew link openjdk@11
 ```
 
 ### Git Client
