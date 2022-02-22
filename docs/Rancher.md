@@ -43,19 +43,20 @@ https://docker.dev.folio.org/v2/platform-complete/tags/list with the specific bu
 
 For Okapi-related changes, such as updating the module description, use  something like:
 
-```
+```sh
 docker run --rm -e TENANT_ID=diku -e OKAPI_URL=https://bama-okapi.ci.folio.org \
   -e MODULE_NAME='mod-calendar' -e MODULE_VERSION='2.0.0-SNAPSHOT' \
   docker.dev.folio.org/folio-okapi-registration
 ```
 
-I believe that this pulls the ModuleDescriptor from the current docker tag, as specified, or uses
-the one from the from the current folder.  I'm not certain -- needs further testing.
-
 If permissions are changed, you can fix them:
 
-```
+```sh
 docker run --rm -e TENANT_ID=diku -e ADMIN_USER=diku_admin -e ADMIN_PASSWORD=admin \
   -e OKAPI_URL=https://bama-okapi.ci.folio.org \
   folioci/bootstrap-superuser
+```
+
+Details of these scripts are in their source code:
+https://github.com/folio-org/folio-helm/blob/master/docker/folio-okapi-registration/create-deploy.sh
 
