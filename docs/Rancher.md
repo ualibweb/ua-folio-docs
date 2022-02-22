@@ -51,3 +51,11 @@ docker run --rm -e TENANT_ID=diku -e OKAPI_URL=https://bama-okapi.ci.folio.org \
 
 I believe that this pulls the ModuleDescriptor from the current docker tag, as specified, or uses
 the one from the from the current folder.  I'm not certain -- needs further testing.
+
+If permissions are changed, you can fix them:
+
+```
+docker run --rm -e TENANT_ID=diku -e ADMIN_USER=diku_admin -e ADMIN_PASSWORD=admin \
+  -e OKAPI_URL=https://bama-okapi.ci.folio.org \
+  folioci/bootstrap-superuser
+
