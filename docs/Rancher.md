@@ -14,9 +14,6 @@ Specific versions can be used by going to our "bama" rancher project, choosing "
 selecting "Upgrade" on the applicable module. From there, you can specify repository, tag, and other
 options as needed.
 
-For Okapi-related changes, such as updating the module description, use instructions such as
-https://github.com/ualibweb/mod-calendar/blob/ualibweb/spring/docs/first-install.md.
-
 ## Docker Images
 
 ### Main Docker Release Process
@@ -41,3 +38,9 @@ these in Rancher with a repo like `docker.dev.folio.org/mod-calendar`.
 For this, you can branch `platform-complete` and edit `stripes-install.json` with applicable tags.
 This will produce something you can use in Rancher at
 https://docker.dev.folio.org/v2/platform-complete/tags/list with the specific build number included.
+
+## Making Okapi Aware
+
+For Okapi-related changes, such as updating the module description, use instructions such as
+https://github.com/ualibweb/mod-calendar/blob/ualibweb/spring/docs/first-install.md against
+our main `bama-okapi.ci.folio.org` host.
