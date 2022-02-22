@@ -41,6 +41,13 @@ https://docker.dev.folio.org/v2/platform-complete/tags/list with the specific bu
 
 ## Making Okapi Aware
 
-For Okapi-related changes, such as updating the module description, use instructions such as
-https://github.com/ualibweb/mod-calendar/blob/ualibweb/spring/docs/first-install.md against
-our main `bama-okapi.ci.folio.org` host.
+For Okapi-related changes, such as updating the module description, use  something like:
+
+```
+docker run --rm -e TENANT_ID=diku -e OKAPI_URL=https://bama-okapi.ci.folio.org \
+  -e MODULE_NAME='mod-calendar' -e MODULE_VERSION='2.0.0-SNAPSHOT' \
+  docker.dev.folio.org/folio-okapi-registration
+```
+
+I believe that this pulls the ModuleDescriptor from the current docker tag, as specified, or uses
+the one from the from the current folder.  I'm not certain -- needs further testing.
