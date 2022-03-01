@@ -34,3 +34,8 @@ commands:
 git config --global user.name "Your Name"
 git config --global user.email your_email@ua.edu
 ```
+
+## Setup VS Code
+
+If you are using Visual Studio Code as your text editor, there is quite a bit to do to make it work
+optimally. For my opinionated configuration guide, see [config/VSCode](../../config/VSCode).
