@@ -17,9 +17,11 @@ Additionally, a command is used to install all the requirements for the `api-doc
 box.
 
 An important note about Vagrant is that the VM will be able to access the folder that the
-Vagrantfile is in. Therefore, it is optimal to ensure that whatever code you may want to use in
-Vagrant will be available in the same folder -- an easy (although unsafe) solution is to use your
-home directory.
+Vagrantfile is in (mounted as `/vagrant`). Therefore, it is optimal to ensure that whatever code
+you may want to use in Vagrant will be available in the same folder -- an nice solution is to
+create a folder for use with all FOLIO-based things and place the Vagrantfile in there, therefore
+Vagrant will automatically be able to access them (preventing weird issues with setting them up
+manually).
 
 There are a few other Vagrant boxes that may be of interest:
 
