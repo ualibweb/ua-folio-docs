@@ -67,3 +67,6 @@ Since this has multiple boxes, each command you use will need to specify the box
 `vagrant ssh` becomes `vagrant ssh stock`
 
 `vagrant destroy --force` becomes `vagrant destroy --force stock`
+
+To see an overall status report of all boxes and their state (keep in mind, you cannot have two 'up'
+at the same time, since their ports conflict), you can run `vagrant status`.
