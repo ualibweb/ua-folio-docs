@@ -12,8 +12,6 @@ code --install-extension GabrielBB.vscode-lombok
 code --install-extension mermade.openapi-lint
 # Spring/Spring Boot support
 code --install-extension Pivotal.vscode-boot-dev-pack
-# Spring/Spring Boot support
-code --install-extension Pivotal.vscode-spring-boot
 
 ###################### FRONTEND JS/TS #######################
 
@@ -74,8 +72,6 @@ code --install-extension adammaras.overtype
 code --install-extension gurumukhi.selected-lines-count
 # Get a word count, very useful for things like documentation
 code --install-extension ms-vscode.wordcount
-# Improved method/variable suggestions for some languages
-code --install-extension VisualStudioExptTeam.vscodeintellicode
 # Insert sequential numbers easily
 code --install-extension volkerdobler.insertnums
 # Easily convert between UPPER CASE, snake_case, camelCase, etc
