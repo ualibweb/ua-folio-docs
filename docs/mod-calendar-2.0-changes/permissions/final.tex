@@ -17,41 +17,92 @@
     node distance=1cm and 4cm,
     every text node part/.style={align=center}
   ]
-  \node[rectangle, draw, fill=green!30] (ui-calendar-view) {\texttt{ui-calendar.view} \\ Can view calendar configuration};
+  % Original mod-calendar permissions
+  \node[rectangle, draw, fill=blue!30] (calendar-opening-hours-collection-get) {\texttt{calendar.opening-hours.collection.get} \\ List calendar opening hours};
+  \node[rectangle, draw, fill=blue!30, below=of calendar-opening-hours-collection-get] (calendar-periods-collection-get) {\texttt{calendar.periods.collection.get} \\ List calendar periods descriptions};
+  \node[rectangle, draw, fill=blue!30, below=of calendar-periods-collection-get] (calendar-periods-item-get) {\texttt{calendar.periods.item.get} \\ Get period description};
+  \node[rectangle, draw, fill=blue!30, below=of calendar-periods-item-get] (calendar-periods-item-post) {\texttt{calendar.periods.item.post} \\ Add new calendar period description};
+  \node[rectangle, draw, fill=blue!30, below=of calendar-periods-item-post] (calendar-periods-item-put) {\texttt{calendar.periods.item.put} \\ Update existing calendar period description};
+  \node[rectangle, draw, fill=blue!30, below=of calendar-periods-item-put] (calendar-periods-item-delete) {\texttt{calendar.periods.item.delete} \\ Remove calendar period description};
+
+  % New mod-calendar permissions
+  \node[rectangle, draw, double=green, double distance=1mm, left=4cm of calendar-periods-collection-get] (calendar-view) {\texttt{calendar.view} \\ Access and query calendar information};
+  \node[rectangle, draw, double=green, double distance=1mm, below left=1.5cm and 1.5cm of calendar-view] (calendar-create) {\texttt{calendar.create} \\ Create new calendars};
+  \node[rectangle, draw, double=green, double distance=1mm, below=of calendar-create] (calendar-update) {\texttt{calendar.update} \\ Edit existing calendars};
+  \node[rectangle, draw, double=green, double distance=1mm, below=of calendar-update] (calendar-delete) {\texttt{calendar.delete} \\ Delete calendars};
+
+  % New ui-calendar permissions
+  \node[rectangle, draw, left=6cm of calendar-view, fill=green!30] (ui-calendar-view) {\texttt{ui-calendar.view} \\ Can view calendar configuration};
   \node[rectangle, draw, below left=0.5cm and 2cm of ui-calendar-view, fill=green!30] (ui-calendar-create) {\texttt{ui-calendar.create} \\ Can create new calendars};
-  \node[rectangle, draw, below=0.5cm of ui-calendar-create, fill=green!30] (ui-calendar-update) {\texttt{ui-calendar.update} \\ Can edit existing calendars};
-  \node[rectangle, draw, below=0.5cm of ui-calendar-update, fill=green!30] (ui-calendar-delete) {\texttt{ui-calendar.delete} \\ Can delete calendars};
+  \node[rectangle, draw, double=green, double distance=1mm, below=0.5cm of ui-calendar-create, fill=green!30] (ui-calendar-update) {\texttt{ui-calendar.update} \\ Can edit existing calendars};
+  \node[rectangle, draw, double=green, double distance=1mm, below=0.5cm of ui-calendar-update, fill=green!30] (ui-calendar-delete) {\texttt{ui-calendar.delete} \\ Can delete calendars};
 
-  \draw[red,very thick,dotted] ($(ui-calendar-delete.south west)+(-0.6,-0.2)$) rectangle ($(ui-calendar-view.north east)+(0.2,0.2)$);
+  % Old ui-calendar permissions
+  \node[rectangle, draw, left=1cm of ui-calendar-update, fill=green!30] (ui-calendar-edit) {\texttt{ui-calendar.edit} \\ Can edit calendar events (no removal)};
+  \node[rectangle, draw, below left=0.5cm and 1cm of ui-calendar-edit, fill=green!30] (ui-calendar-all) {\texttt{ui-calendar.all} \\ Can create, view, edit, and remove calendar events};
+  % Removed
+  \draw[-][red, very thick, line cap=round] ($(ui-calendar-edit.north west)+(.02,-.02)$) -- ($(ui-calendar-edit.south east)+(-.02,.02)$);
+  % Removed
+  \draw[-][red, very thick, line cap=round] ($(ui-calendar-all.north west)+(.02,-.02)$) -- ($(ui-calendar-all.south east)+(-.02,.02)$);
 
-  \node[rectangle, draw, fill=blue!30, right=8cm of ui-calendar-view] (modperms-view) {\texttt{modperms.calendar.view} \\ Access and query calendar information};
-  \node[rectangle, draw, fill=blue!30, below left=0.5cm and 1.5cm of modperms-view] (modperms-create) {\texttt{modperms.calendar.create} \\ Create new calendars};
-  \node[rectangle, draw, fill=blue!30, below=0.5cm of modperms-create] (modperms-update) {\texttt{modperms.calendar.update} \\ Edit existing calendars};
-  \node[rectangle, draw, fill=blue!30, below=0.5cm of modperms-update] (modperms-delete) {\texttt{modperms.calendar.delete} \\ Delete calendars};
+  % UI Border
+  \draw[red,very thick,dotted] ($(ui-calendar-all.south west)+(-0.6,-0.2)$)  rectangle ($(ui-calendar-view.north east)+(0.2,0.2)$);
 
-  \draw [->] (ui-calendar-view) to [out=0, in=180] (modperms-view);
-  \draw [->] (ui-calendar-create) to [out=0, in=180] (modperms-create);
-  \draw [->] (ui-calendar-update) to [out=0, in=180] (modperms-update);
-  \draw [->] (ui-calendar-delete) to [out=0, in=180] (modperms-delete);
+  % Original calendar.all
+  \node[rectangle, draw, below=of ui-calendar-delete, node distance=4cm] (calendar-all) {\texttt{calendar.all} \\ All permission for mod-calendar module};
+  % Removed
+  \draw[-][red, very thick, line cap=round] ($(calendar-all.north west)+(.02,-.02)$) -- ($(calendar-all.south east)+(-.02,.02)$);
+
+  % New mod-calendar to old mod-calendar
+  \draw [->] (calendar-view) to [out=0, in=180] (calendar-opening-hours-collection-get);
+  \draw [->] (calendar-view) to [out=0, in=180] (calendar-periods-collection-get);
+  \draw [->] (calendar-view) to [out=0, in=180] (calendar-periods-item-get);
+  \draw [->] (calendar-create) to [out=0, in=180] (calendar-periods-item-post);
+  \draw [->] (calendar-update) to [out=0, in=180] (calendar-periods-item-put);
+  \draw [->] (calendar-delete) to [out=0, in=180] (calendar-periods-item-delete);
+  \draw [->] (calendar-create) to [out=0, in=180] (calendar-view);
+  \draw [->] (calendar-update) to [out=0, in=180] (calendar-view);
+  \draw [->] (calendar-delete) to [out=0, in=180] (calendar-view);
+  % New ui-calendar to new mod-calendar
+  \draw [->] (ui-calendar-view) to [out=0, in=180] (calendar-view);
+  \draw [->] (ui-calendar-create) to [out=0, in=180] (calendar-create);
+  \draw [->] (ui-calendar-update) to [out=0, in=180] (calendar-update);
+  \draw [->] (ui-calendar-delete) to [out=0, in=180] (calendar-delete);
+  % New UI to new UI
   \draw [->] (ui-calendar-create) to [out=0, in=180] (ui-calendar-view);
   \draw [->] (ui-calendar-update) to [out=0, in=180] (ui-calendar-view);
   \draw [->] (ui-calendar-delete) to [out=0, in=180] (ui-calendar-view);
+  % Old UI to new UI
+  \draw [->, red] (ui-calendar-all) to [out=0, in=180] (ui-calendar-edit);
+  \draw [->, red] (ui-calendar-all) to [out=0, in=180] (ui-calendar-delete);
+  \draw [->, red] (ui-calendar-edit) to [out=0, in=180] (ui-calendar-update);
+  \draw [->, red] (ui-calendar-edit) to [out=0, in=180] (ui-calendar-create);
 
-  \draw [->] (modperms-create) to [out=0, in=180] (modperms-view);
-  \draw [->] (modperms-update) to [out=0, in=180] (modperms-view);
-  \draw [->] (modperms-delete) to [out=0, in=180] (modperms-view);
+  % Old calendar.all arrows to old permissions
+  \coordinate[left=1.8cm of calendar-periods-item-delete] (routing) {};
+  \draw [->, red] (calendar-all) |- (routing) |- (calendar-opening-hours-collection-get);
+  \draw [->, red] (calendar-all) |- (routing) |- (calendar-periods-collection-get);
+  \draw [->, red] (calendar-all) |- (routing) |- (calendar-periods-item-get);
+  \draw [->, red] (calendar-all) |- (routing) |- (calendar-periods-item-post);
+  \draw [->, red] (calendar-all) |- (routing) |- (calendar-periods-item-put);
+  \draw [->, red] (calendar-all) |- (routing) |- (calendar-periods-item-delete);
 
-
-
-
+  % Legend
   \matrix [draw,fill=white,left=-4cm of current bounding box.north west] {
     \node [shape=rectangle, draw=black,    fill=white, line width=1, label=right:Permission] {}; \\
     \node [shape=rectangle, draw=black, fill=green!30, line width=1, label=right:Assignable Permission] {}; \\
     \node [shape=rectangle, draw=black,  fill=blue!30, line width=1, label=right:Checked Permission] {}; \\
+    \node [shape=rectangle, draw=black, double=green, double distance=0.6mm,  fill=white, line width=1, label=right:New Permission] {}; \\
     \node [shape=rectangle,   draw=red,        dotted,   very thick, label=right:UI Permissions] {}; \\
     \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:Sub Permission] (subperm) {}; \\
+    \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:Removed Sub Permission] (subpermremoved) {}; \\
+    \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:New Sub Permission] (subpermcreated) {}; \\
+    \node [shape=rectangle, draw=black,    fill=white, line width=1, label=right:Removed Permissions] (removed) {}; \\
   };
   \draw[->] ($(subperm.north west)+(.02,-.02)$) -- ($(subperm.south east)+(-.02,.02)$);
+  \draw[->, red] ($(subpermremoved.north west)+(.02,-.02)$) -- ($(subpermremoved.south east)+(-.02,.02)$);
+  \draw[->, very thick] ($(subpermcreated.north west)+(.02,-.02)$) -- ($(subpermcreated.south east)+(-.02,.02)$);
+  \draw[-][red, very thick, line cap=round] ($(removed.north west)+(.02,-.02)$) -- ($(removed.south east)+(-.02,.02)$);
 \end{tikzpicture}
 
 \end{document}
