@@ -39,3 +39,10 @@ git config --global user.email your_email@ua.edu
 
 If you are using Visual Studio Code as your text editor, there is quite a bit to do to make it work
 optimally. For my opinionated configuration guide, see [config/VSCode](../../config/VSCode).
+
+## Finish
+
+With this, you should be good to go and get started with FOLIO dev! Feel free to clone and play
+around with something like our [`mod-calendar`](https://github.com/folio-org/mod-calendar) or, if
+you want to try your hand at Vagrant and the full FOLIO environment, you can try out the
+[`hello-spring` sample module](https://github.com/folio-org/folio-sample-modules/tree/master/hello-spring)!
