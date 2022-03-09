@@ -220,6 +220,23 @@ It is surprisingly easy to make typos when writing code, due to autocompletion's
 typos and the monospace font. This extension acts as a spell checker to ensure all your writing
 makes sense!
 
+#### [Cucumber (Gherkin) Full Support](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete)
+
+```sh
+code --install-extension alexkrechik.cucumberautocomplete
+```
+
+This adds syntax highlighting and some other rich language feature support to VS Code for the
+Cucumber testing framework.
+
+#### [Karate Runner](https://marketplace.visualstudio.com/items?itemName=kirkslota.karate-runner)
+
+```sh
+code --install-extension kirkslota.karate-runner
+```
+
+This allows running Karate (a framework used for integration/smoke tests) directly from VS Code.
+
 ### Misc. Languages
 
 There are a good few languages used other than the ones mentioned above, even if only in a minor

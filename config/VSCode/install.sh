@@ -50,6 +50,10 @@ code --install-extension ryanluker.vscode-coverage-gutters
 code --install-extension SonarSource.sonarlint-vscode
 # Check for spelling mistakes
 code --install-extension streetsidesoftware.code-spell-checker
+# Cucumber testing support
+code --install-extension alexkrechik.cucumberautocomplete
+# Run Karate tests within VS Code
+code --install-extension kirkslota.karate-runner
 
 ###################### MISC LANGUAGES #######################
 
