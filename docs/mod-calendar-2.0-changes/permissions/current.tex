@@ -53,7 +53,10 @@
     \node [shape=rectangle, draw=black, fill=green!30, line width=1, label=right:Assignable Permission] {}; \\
     \node [shape=rectangle, draw=black,  fill=blue!30, line width=1, label=right:Checked Permission] {}; \\
     \node [shape=rectangle, draw=red,          dotted,   very thick, label=right:UI Permissions] {}; \\
+    \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:Sub Permission] (subperm) {}; \\
   };
+  \draw[->] ($(subperm.north west)+(.02,-.02)$) -- ($(subperm.south east)+(-.02,.02)$);
+
 \end{tikzpicture}
 
 \end{document}
