@@ -134,14 +134,16 @@ https://github.com/ualibweb/mod-calendar/issues/19.
 
 ### Incorrect Legacy Behavior Trimming at Boundaries
 
-With the new API, data is returned for every day in the calendar, regardless of if it is open.
-Previously, only dates from the first opening through the last opening were returned.
+With the new API, when explicit start and end dates are not provided, data is returned for every day
+in available calendars, regardless of if it is open. Previously, the returned range would only cover
+the span of _open_ days within the calendar -- this new way is more consistent with the expectations
+of this endpoint.
 
 For example, if a calendar went from `2021-05-01` to `2021-05-07` but only had openings on
 `2021-05-02` and `2021-05-06`, the legacy API would only return information for dates `2021-05-02`
 through `2021-05-06`. The new API covers the entire range. In reality, this is not a significant
 change as most, if not all, calls to this endpoint use `startDate` and/or `endDate` parameters which
-override this behavior.
+provide this behavior by default.
 
 ### Legacy not Deduplicating Times Opened by Multiple Calendars
 
