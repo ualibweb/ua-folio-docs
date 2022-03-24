@@ -96,12 +96,10 @@
     \node [shape=rectangle,   draw=red,        dotted,   very thick, label=right:UI Permissions] {}; \\
     \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:Sub Permission] (subperm) {}; \\
     \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:Removed Sub Permission] (subpermremoved) {}; \\
-    \node [shape=rectangle, draw=white,    fill=white, line width=1, label=right:New Sub Permission] (subpermcreated) {}; \\
     \node [shape=rectangle, draw=black,    fill=white, line width=1, label=right:Removed Permissions] (removed) {}; \\
   };
   \draw[->] ($(subperm.north west)+(.02,-.02)$) -- ($(subperm.south east)+(-.02,.02)$);
   \draw[->, red] ($(subpermremoved.north west)+(.02,-.02)$) -- ($(subpermremoved.south east)+(-.02,.02)$);
-  \draw[->, very thick] ($(subpermcreated.north west)+(.02,-.02)$) -- ($(subpermcreated.south east)+(-.02,.02)$);
   \draw[-][red, very thick, line cap=round] ($(removed.north west)+(.02,-.02)$) -- ($(removed.south east)+(-.02,.02)$);
 \end{tikzpicture}
 
