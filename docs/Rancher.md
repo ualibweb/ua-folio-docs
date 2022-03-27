@@ -45,7 +45,8 @@ https://docker.dev.folio.org/v2/platform-complete/tags/list with the specific bu
 
 ## Making Okapi Aware
 
-For Okapi-related changes, such as updating the module description, use  something like:
+For Okapi-related changes, such as updating the module description, use something like this in your
+local terminal:
 
 ```sh
 docker run --rm -e TENANT_ID=diku -e OKAPI_URL=https://bama-okapi.ci.folio.org \
