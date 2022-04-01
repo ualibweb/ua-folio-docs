@@ -14,6 +14,10 @@ Specific versions can be used by going to our "bama" rancher project, choosing "
 selecting "Upgrade" on the applicable module. From there, you can specify repository, tag, and other
 options as needed.
 
+If something else needs to be changed from the current setup (e.g. port number), you can override
+the key found in the "Preview" at the bottom of the form.  For example, port can be changed with
+`service.containerPort`.
+
 ## Docker Images
 
 ### Main Docker Release Process
@@ -41,7 +45,8 @@ https://docker.dev.folio.org/v2/platform-complete/tags/list with the specific bu
 
 ## Making Okapi Aware
 
-For Okapi-related changes, such as updating the module description, use  something like:
+For Okapi-related changes, such as updating the module description, use something like this in your
+local terminal:
 
 ```sh
 docker run --rm -e TENANT_ID=diku -e OKAPI_URL=https://bama-okapi.ci.folio.org \

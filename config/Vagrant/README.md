@@ -9,9 +9,10 @@ The main changes to this from the default is in port forwarding. Typically, FOLI
 for the backend (Okapi) and 3000 for the frontend (Stripes). However, if you want to run Stripes
 locally for development, this will _also_ use 3000, leading to a conflict. This Vagrantfile uses
 port 3001 instead; as a result, you must use http://localhost:3001/ to access the running FOLIO
-instance. Postgres, the database server used by FOLIO, is also directly exposed on port 5432. You
-can access databases `okapi_modules` and `okapi` with username `okapi` and password `okapi25`
-(FOLIO's default).
+instance. Personally, I prefer this to using the dedicated `testing-backend` box which will serve
+Okapi _only_, with no frontend at all -- I like being able to access both, as needed.  Postgres,
+the database server used by FOLIO, is also directly exposed on port 5432. You can access databases
+`okapi_modules` and `okapi` with username `okapi` and password `okapi25` (FOLIO's default).
 
 Additionally, a command is used to install all the requirements for the `api-doc` tool within the
 box.

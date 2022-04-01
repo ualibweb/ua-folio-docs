@@ -1,6 +1,6 @@
 # Permission Changes
 
-This folder contains a series of stages to move from the current permission system to one that is
+This folder contains the proposed changes to move from the current permission system to one that is
 more intuitive and follows current FOLIO permission guidelines.
 
 The
@@ -13,12 +13,11 @@ can (and should) be used to make this process much more straightforward.
 - `ui-calendar`
 - ~~`mod-circulation`~~
 
-I've boiled what I want to change into a series of steps. Please note that "Assignable Permission"
-refers to permissions which are user-facing/visible and can be assigned through the interface
-whereas "Checked Permissions" refers to permissions that are verified by Okapi before a request is
-forwarded to an endpoint (via `modulePermissions`).
-
 ## Explanation
+
+Please note that "Assignable Permission" refers to permissions which are user-facing/visible and can
+be assigned through the interface whereas "Checked Permissions" refers to permissions that are
+verified by Okapi before a request is forwarded to an endpoint (via `modulePermissions`).
 
 ### Current
 
