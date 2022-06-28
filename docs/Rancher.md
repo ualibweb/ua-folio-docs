@@ -1,6 +1,6 @@
 # Rancher
 
-Our Rancher environment can be accessed at [this link](https://rancher.dev.folio.org/). The main
+Our Rancher environment can be controlled at [this link](https://rancher.dev.folio.org/). The main
 wiki for interacting with Rancher is
 [here](https://dev.folio.org/faqs/how-to-get-started-with-rancher/).
 
