@@ -52,6 +52,9 @@ produce a tag you can use in Rancher (listed at
 https://docker.dev.folio.org/v2/platform-complete/tags/list) with the specific build number
 included.  Once this is done, upgrade `platform-complete` like any other Rancher app.
 
+I am not certain that the `platform-complete` step is necessary -- it may be possible to simply
+start with the `BUILD-UI` step.
+
 ## Making Okapi Aware
 
 For Okapi-related changes, such as updating the module description, use something like this in your
