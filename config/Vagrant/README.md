@@ -26,7 +26,7 @@ manually).
 
 There are a few other Vagrant boxes that may be of interest:
 
-- `folio/testing`, the latest of all modules (used for the `Vagrantfile`)
+- `folio/snapshot`, the latest of all modules (used for the `Vagrantfile`)
 - `folio/release`, the latest full "flower" quarterly release
 - `folio/release-core`, a slimmed down version (only 12 gb) of `folio/release` (used for
   `Vagrantfile-lite`)
@@ -48,7 +48,8 @@ Upgrading the box will, however, destroy all of your data inside of it, so be su
 this.
 
 First, you must delete the current box with `vagrant destroy -f`. Then, you can run
-`vagrant box update` and finally `vagrant up`.
+`vagrant box update` and finally `vagrant up`.  After updating, a download of the old version will
+be left on your system -- use `vagrant box prune` to delete old/unused ones.
 
 ## Advanced
 

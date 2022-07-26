@@ -1,6 +1,6 @@
 # Rancher
 
-Our Rancher environment can be accessed at [this link](https://rancher.dev.folio.org/). The main
+Our Rancher environment can be controlled at [this link](https://rancher.dev.folio.org/). The main
 wiki for interacting with Rancher is
 [here](https://dev.folio.org/faqs/how-to-get-started-with-rancher/).
 
@@ -39,9 +39,21 @@ these in Rancher with a repo like `docker.dev.folio.org/mod-calendar`.
 
 ### Frontend Testing
 
-For this, you can branch `platform-complete` and edit `stripes-install.json` with applicable tags.
-This will produce something you can use in Rancher at
-https://docker.dev.folio.org/v2/platform-complete/tags/list with the specific build number included.
+For this, you can branch `platform-complete` and edit `stripes-install.json` and other install files
+with applicable tags.  We have a dedicated branch `bama-rancher` for this purpose.  The first step
+is to get the branch built with
+[Jenkins](https://jenkins-aws.indexdata.com/job/folio-org/job/platform-complete/job/bama-rancher/)
+(note: Jenkins will automatically rebuild on push, however, if you did not update the platform but
+only modules which it uses, then you must manually trigger a build from Jenkins).  Once the branch
+is built, the
+[`BUILD-UI` Jenkins job](https://jenkins-aws.indexdata.com/job/scratch_environment/job/BUILD-UI/)
+should be manually built with parameters for our rancher and `platform-complete` branch.  This will
+produce a tag you can use in Rancher (listed at
+https://docker.dev.folio.org/v2/platform-complete/tags/list) with the specific build number
+included.  Once this is done, upgrade `platform-complete` like any other Rancher app.
+
+I am not certain that the `platform-complete` step is necessary -- it may be possible to simply
+start with the `BUILD-UI` step.
 
 ## Making Okapi Aware
 
