@@ -40,3 +40,6 @@ may only be enabled through `ui-calendar.all`.
 With this structure, both frontend and backend have permissions structures that follow a standard
 CRUD format with inheritance that is straightforward and non-confusing, with the added benefit of an
 extra layer of abstraction. Additionally, problematic `.all` permissions were removed.
+
+Note that the specific endpoints in the image above have been replaced with new endpoints. However,
+the permissions still apply as indicated following the CRUD pattern.
