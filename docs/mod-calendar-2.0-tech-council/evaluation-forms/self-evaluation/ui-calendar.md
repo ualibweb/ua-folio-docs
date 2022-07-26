@@ -7,9 +7,7 @@
 - [ ] UNACCEPTABLE
   - comments on what was evaluated/not evaluated, why a criterion failed
 
-## Criteria [new](https://github.com/folio-org/tech-council/blob/4dc5ac6d632fb880131cd214d212f973683b9ebe/MODULE_ACCEPTANCE_CRITERIA.MD)
-
-- [ ] TODO: ensure new criteria as linked above are included in this (semi-outdated) list.
+## Criteria
 
 - [ ] Upon acceptance, code author(s) agree to have source code canonically in folio-org github
 - [ ] Copyright assigned to OLF
@@ -18,8 +16,7 @@
 - [ ] Module’s repository includes a compliant Module Descriptor
 - [ ] Modules must declare all consumed interfaces in the Module Descriptor “requires” and
       “optional” sections
-- [ ] Environment vars are documented in the ModuleDescriptor - _note: read more at
-      [https://wiki.folio.org/pages/viewpage.action?pageId=65110683](https://wiki.folio.org/pages/viewpage.action?pageId=65110683)_
+- [ ] Environment vars are documented in the ModuleDescriptor
 - [ ] Back-end modules must define endpoints consumable by other modules in the Module Descriptor
       “provides” section
 - [ ] All API endpoints are documented in RAML or OpenAPI
@@ -28,7 +25,7 @@
 - [ ] Code of Conduct statement in repository
 - [ ] Installation documentation included
 - [ ] Contribution guide is included in repo
-- [ ] Module provides reference data (if applicable)
+- [ ] Module provides reference and/or sample data (if applicable)
 - [ ] Personal data form is completed, accurate, and provided as PERSONAL_DATA_DISCLOSURE.md file
 - [ ] Sensitive information is not checked into git repository
 - [ ] Module is written in a language and framework that FOLIO development teams are familiar with
@@ -53,8 +50,7 @@
       absence of configuration / presence of the system gracefully.
 - [ ] Front-end modules: builds are Node 16/Yarn 1
 - [ ] Front-end unit tests written in Jest/RTL at 80% coverage
-- [ ] Front-end End-to-end tests written in Cypress, if applicable -_note: these tests aren’t
-      defined as part of the module_
+- [ ] Front-end End-to-end tests written in Cypress, if applicable
 - [ ] Front-end modules have i18n support via react-intl and an en.json file with English texts
 - [ ] Front-end modules have WCAG 2.1 AA compliance as measured by a current major version of axe
       DevTools Chrome Extension
@@ -64,4 +60,4 @@
       [https://ux.folio.org/docs/all-guidelines/](https://ux.folio.org/docs/all-guidelines/)_
 - [ ] Front-end modules must work in the latest version of Chrome (the supported runtime
       environment)
-- [ ] sonarqube hasn't identified any security issues
+- [ ] sonarqube hasn't identified any issues
