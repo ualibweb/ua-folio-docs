@@ -1,28 +1,19 @@
-# Module acceptance criteria template
+# mod-calendar self evaluation criteria
 
-## How to use this form
-
-- [x] ACCEPTABLE
-- [x] ~~INAPPLICABLE~~
-- [ ] UNACCEPTABLE
-  - comments on what was evaluated/not evaluated, why a criterion failed
-
-## Criteria
-
-- [ ] Upon acceptance, code author(s) agree to have source code canonically in folio-org github
-- [ ] Copyright assigned to OLF
-- [ ] Uses Apache 2.0 license
-- [ ] Third party dependencies use an Apache 2.0 compatible license
-- [ ] Module’s repository includes a compliant Module Descriptor
-- [ ] Modules must declare all consumed interfaces in the Module Descriptor “requires” and
+- [x] Upon acceptance, code author(s) agree to have source code canonically in folio-org github
+- [x] Copyright assigned to OLF
+- [x] Uses Apache 2.0 license
+- [x] Third party dependencies use an Apache 2.0 compatible license
+- [x] Module’s repository includes a compliant Module Descriptor
+- [x] Modules must declare all consumed interfaces in the Module Descriptor “requires” and
       “optional” sections
-- [ ] Environment vars are documented in the ModuleDescriptor
-- [ ] Back-end modules must define endpoints consumable by other modules in the Module Descriptor
+- [x] Environment vars are documented in the ModuleDescriptor
+- [x] Back-end modules must define endpoints consumable by other modules in the Module Descriptor
       “provides” section
-- [ ] All API endpoints are documented in RAML or OpenAPI
-- [ ] All API endpoints protected with appropriate permissions
-- [ ] No excessive permissions granted to the module
-- [ ] Code of Conduct statement in repository
+- [x] All API endpoints are documented in RAML or **OpenAPI**
+- [x] All API endpoints protected with appropriate permissions
+- [x] No excessive permissions granted to the module
+- [x] Code of Conduct statement in repository
 - [ ] Installation documentation included
 - [ ] Contribution guide is included in repo
 - [ ] Module provides reference and/or sample data (if applicable)
