@@ -1,23 +1,25 @@
-**Module name:** TBD
+**Module name:** mod-calendar
 
-**Description of module:** TBD
+**Description of module:** Provides back-end functionality for opening-hour calendars within the
+FOLIO system.
 
-**Link to source:** TBD
+**Link to source:**
+https://github.com/folio-org/mod-calendar/tree/21e31fba56155150fc906da5a99d11b90a92faab
 
-_NOTE: Must be a link to a tag/commit in a publicly accessible git (preferably GitHub) repository.
-The TC will not review a moving target such as HEAD of a branch._
+**List of related modules:**
 
-**List of related modules:** TBD
+- `ui-calendar`, frontend interface for the calendar
+- `mod-circulation`, uses opening information for loan policies
 
-_(e.g. is this a Frontend/backend pair? Business logic/storage pair? etc.)_
+**Points of contact:**
 
-**Points of contact:** TBD
+- Steven Turner, product owner
+- Noah Overcash, lead developer
 
-_NOTE: Each point of contact's role should be clearly identified (Subject Matter / Domain /
-Technical)._
+**Notes/Clarification/Background/Supporting Links:** Team Bama has rewritten the calendar modules to
+better reflect the needs of FOLIO users, including a number of features such as new calendar
+formats, improved exception handling, and multi-service point assignments. Due to the size of this
+rewrite, we felt it was most appropriate to submit this to the TC as a new module.
 
-_NOTE: A single, main point of contact must have an account in issues.folio.org JIRA._
-
-**Notes/Clarification/Background/Supporting Links:** TBD
-
-**Link to self evaluation results:** TBD
+**Link to self evaluation results:**
+https://github.com/ualibweb/ua-folio-docs/blob/main/docs/mod-calendar-2.0-tech-council/evaluation-forms/self-evaluation/mod-calendar.md
