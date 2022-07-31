@@ -10,19 +10,18 @@ for the backend (Okapi) and 3000 for the frontend (Stripes). However, if you wan
 locally for development, this will _also_ use 3000, leading to a conflict. This Vagrantfile uses
 port 3001 instead; as a result, you must use http://localhost:3001/ to access the running FOLIO
 instance. Personally, I prefer this to using the dedicated `testing-backend` box which will serve
-Okapi _only_, with no frontend at all -- I like being able to access both, as needed.  Postgres,
-the database server used by FOLIO, is also directly exposed on port 5432. You can access databases
+Okapi _only_, with no frontend at all -- I like being able to access both, as needed. Postgres, the
+database server used by FOLIO, is also directly exposed on port 5432. You can access databases
 `okapi_modules` and `okapi` with username `okapi` and password `okapi25` (FOLIO's default).
 
 Additionally, a command is used to install all the requirements for the `api-doc` tool within the
 box.
 
 An important note about Vagrant is that the VM will be able to access the folder that the
-Vagrantfile is in (mounted as `/vagrant`). Therefore, it is optimal to ensure that whatever code
-you may want to use in Vagrant will be available in the same folder -- an nice solution is to
-create a folder for use with all FOLIO-based things and place the Vagrantfile in there, therefore
-Vagrant will automatically be able to access them (preventing weird issues with setting them up
-manually).
+Vagrantfile is in (mounted as `/vagrant`). Therefore, it is optimal to ensure that whatever code you
+may want to use in Vagrant will be available in the same folder -- an nice solution is to create a
+folder for use with all FOLIO-based things and place the Vagrantfile in there, therefore Vagrant
+will automatically be able to access them (preventing weird issues with setting them up manually).
 
 There are a few other Vagrant boxes that may be of interest:
 
@@ -48,8 +47,8 @@ Upgrading the box will, however, destroy all of your data inside of it, so be su
 this.
 
 First, you must delete the current box with `vagrant destroy -f`. Then, you can run
-`vagrant box update` and finally `vagrant up`.  After updating, a download of the old version will
-be left on your system -- use `vagrant box prune` to delete old/unused ones.
+`vagrant box update` and finally `vagrant up`. After updating, a download of the old version will be
+left on your system -- use `vagrant box prune` to delete old/unused ones.
 
 ## Advanced
 
@@ -72,3 +71,16 @@ Since this has multiple boxes, each command you use will need to specify the box
 
 To see an overall status report of all boxes and their state (keep in mind, you cannot have two 'up'
 at the same time, since their ports conflict), you can run `vagrant status`.
+
+## Notes for Java 17
+
+To get Java 17 support (the provided install of Maven only supports JDK 11):
+
+```sh
+sudo apt update
+sudo apt install openjdk-17-jdk
+```
+
+Then, there's a bug that prevents Maven from working correctly. Follow
+[these instructions](https://github.com/m-thirumal/installation_guide/blob/39187a6e9acff22b6800c7a407370478f1df5a77/maven/upgrade_maven.md)
+to fix that, then you should be good to go.
