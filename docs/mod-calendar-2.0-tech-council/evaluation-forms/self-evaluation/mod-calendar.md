@@ -24,8 +24,8 @@
 - [x] Back-end modules are based on Maven/JDK ~~11~~ **17, per
       [recent discussions](https://folio-project.slack.com/archives/C58TABALV/p1658913892197899?thread_ts=1658334995.769609&cid=C58TABALV)**
       and provide a Dockerfile
-- [ ] Integration (API) tests written in Karate if applicable -_note: these tests are defined in
-      https://github.com/folio-org/folio-integration-tests_
+- [x] Integration (API) tests written in Karate if applicable
+  - Ready, in PR folio-org/folio-integration-tests#660
 - [x] Back-end unit tests at 80% coverage
 - [x] Data is segregated by tenant at the storage layer
 - [x] Back-end modules don’t access data in DB schemas other than their own and public
