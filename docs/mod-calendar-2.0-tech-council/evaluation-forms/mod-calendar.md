@@ -4,7 +4,7 @@
 FOLIO system.
 
 **Link to source:**
-https://github.com/folio-org/mod-calendar/tree/2e051c4c5aae4e9f8315bfd1bcab598ed30f3eb5
+https://github.com/folio-org/mod-calendar/tree/3cf40fda111aa13a1850bbbd240c97895ab68417
 
 **List of related modules:**
 

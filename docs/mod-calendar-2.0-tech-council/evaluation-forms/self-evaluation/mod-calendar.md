@@ -37,6 +37,9 @@
 - [x] Module only uses FOLIO interfaces already provided by previously accepted modules _e.g. a UI
       module cannot be accepted that relies on an interface only provided by a back end module that
       hasn’t been accepted yet_
+  - For the converse, mod-circulation relied upon the previous `calendar 4.0` interface. This has
+    been upgraded to `5.0` in this module, so PR folio-org/mod-circulation#1167 has been created to
+    adapt the current `mod-circulation` to work with the new `mod-calendar`.
 - [x] Module only uses existing infrastructure / platform technologies (PostgreSQL)
 - [x] ~~Integration with any third party system (outside of the FOLIO environment) tolerates the
       absence of configuration / presence of the system gracefully.~~ N/A

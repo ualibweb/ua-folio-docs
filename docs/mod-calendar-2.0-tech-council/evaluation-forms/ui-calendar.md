@@ -4,8 +4,7 @@
 FOLIO system. This interface facilitates the viewing, editing, creation of, and deletion of these
 calendars.
 
-**Link to source:**
-https://github.com/folio-org/ui-calendar/tree/0fd3fcdeec805cd414c11621efd6cc364bac8a90
+**Link to source:** **_TBD_**
 
 **List of related modules:**
 
