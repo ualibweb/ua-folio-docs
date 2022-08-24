@@ -7,10 +7,8 @@
         "src/main/resources/api/errors/calendarNotFound.yaml",
         "src/main/resources/api/errors/internalServerError.yaml",
         "src/main/resources/api/errors/invalidRequest.yaml",
-        "src/main/resources/api/parameters/calendarList.yaml",
         "src/main/resources/api/paths/calendar/calendars.yaml",
-        "src/main/resources/api/paths/calendar/calendars/calendarIdMultiple.yaml",
-        "src/main/resources/api/paths/calendar/calendars/calendarIdSingle.yaml",
+        "src/main/resources/api/paths/calendar/calendars/calendarId.yaml",
         "src/main/resources/api/paths/calendar/dates/all-openings.yaml",
         "src/main/resources/api/paths/calendar/dates/surrounding-openings.yaml"
       ]
@@ -23,7 +21,7 @@
     "apiTypes": [
       "OAS"
     ],
-    "generatedDate": "2022-07-30T21:39:57.184740+00:00",
+    "generatedDate": "2022-08-24T02:58:02.668180+00:00",
     "repository": "mod-calendar"
   }
 }
