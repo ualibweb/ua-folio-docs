@@ -23,6 +23,8 @@ code --install-extension ecmel.vscode-html-css
 code --install-extension mgmcdermott.vscode-language-babel
 # Show size of NPM imports
 code --install-extension wix.vscode-import-cost
+# Intellisense for PropTypes
+code --install-extension OfHumanBondage.react-proptypes-intellisense
 
 ########################### TOOLS ###########################
 
@@ -30,6 +32,8 @@ code --install-extension wix.vscode-import-cost
 code --install-extension bbenoist.vagrant
 # Prettier Code Formatter
 code --install-extension esbenp.prettier-vscode
+# Prettier Code Formatter, but it formats JS correctly
+code --install-extension rvest.vs-code-prettier-eslint
 # Prettier Code Formatter, but it works with Java
 code --install-extension mwpb.java-prettier-formatter
 # Interact with and control Docker from VS Code
