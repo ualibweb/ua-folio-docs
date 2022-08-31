@@ -155,7 +155,7 @@ code --install-extension esbenp.prettier-vscode
 
 This allows using the [Prettier](https://prettier.io/) code formatter from within VS Code.
 
-#### [Prettier ESLint]((https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+#### [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
 
 ```sh
 code --install-extensions rvest.vs-code-prettier-eslint
@@ -253,6 +253,14 @@ code --install-extension kirkslota.karate-runner
 ```
 
 This allows running Karate (a framework used for integration/smoke tests) directly from VS Code.
+
+#### [Jest](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest)
+
+```sh
+code --install-extension Orta.vscode-jest
+```
+
+This allows running Jest tests directly from VS Code.
 
 ### Misc. Languages
 
