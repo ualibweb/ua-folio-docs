@@ -58,6 +58,8 @@ code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension alexkrechik.cucumberautocomplete
 # Run Karate tests within VS Code
 code --install-extension kirkslota.karate-runner
+# Run Jest tests
+code --install-extension Orta.vscode-jest
 
 ###################### MISC LANGUAGES #######################
 
