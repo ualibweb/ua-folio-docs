@@ -29,6 +29,11 @@
   "terminal.integrated.sendKeybindingsToShell": true,
   "workbench.editor.untitled.hint": "hidden",
   "[java]": { "editor.defaultFormatter": "mwpb.java-prettier-formatter" },
-  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
   "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
 }
