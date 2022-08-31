@@ -369,7 +369,7 @@ Setup our formatter:
 - Default Formatter (`editor.defaultFormatter`): Use the Prettier formatter
   `"esbenp.prettier-vscode"`,
 - Prettier Path (`prettier.prettierPath`): By default, Prettier is installed at
-  `"/usr/local/lib/node_modules/prettier"`,
+  `"/usr/local/lib/node_modules/prettier"` so this should not be changed,
 - Prettier Prose Wrap (`prettier.proseWrap`): Always wrap lines to the appropriate length
   `"always"`, and
 - Resolve Global Modules (`prettier.resolveGlobalModules`): Allow the usage of non-default Prettier
@@ -388,7 +388,8 @@ Enforce the use of Prettier where needed (note that this _must_ be put into the 
 
 ```json
 "[java]": { "editor.defaultFormatter": "mwpb.java-prettier-formatter" },
-"[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+"[javascript]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" },
+"[typescript]": { "editor.defaultFormatter": "rvest.vs-code-prettier-eslint" },
 "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 ```
 
