@@ -126,6 +126,14 @@ code --install-extension wix.vscode-import-cost
 
 This will show the sizes of each import added to code, to encourage slimmer builds.
 
+#### [React PropTypes Intellisense](https://marketplace.visualstudio.com/items?itemName=OfHumanBondage.react-proptypes-intellisense)
+
+```sh
+code --install-extension OfHumanBondage.react-proptypes-intellisense
+```
+
+This allows Intellisense of PropTypes in React (as well as applicable docblocks)
+
 ### Tools
 
 These are tools to make it easier to interact with other, external tools.
@@ -146,6 +154,15 @@ code --install-extension esbenp.prettier-vscode
 ```
 
 This allows using the [Prettier](https://prettier.io/) code formatter from within VS Code.
+
+#### [Prettier ESLint]((https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+
+```sh
+code --install-extensions rvest.vs-code-prettier-eslint
+```
+
+This is similar to the above Prettier extension, but after formatting it runs ESLint (to ensure
+single/double quotes and other standards are respected).
 
 #### [Java Prettier Formatter](https://marketplace.visualstudio.com/items?itemName=mwpb.java-prettier-formatter)
 
