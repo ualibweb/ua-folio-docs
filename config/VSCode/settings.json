@@ -28,6 +28,7 @@
   "terminal.integrated.allowChords": false,
   "terminal.integrated.sendKeybindingsToShell": true,
   "workbench.editor.untitled.hint": "hidden",
+  "jest.autoRun": {"watch": false, "onSave": "test-src-file"},
   "[java]": { "editor.defaultFormatter": "mwpb.java-prettier-formatter" },
   "[javascript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
