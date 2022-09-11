@@ -468,7 +468,7 @@ By default, Jest uses an extremely over-eager method for deciding when to when t
 most workspaces to become nearly unusable, especially at launch, due to the frequency and volume of
 tests.
 
-- Jest: Auto Run (`jest.autoRun`) should be set to `{ "watch": false, "onSave": "test-src-file" }` in the settings JSON
+- Jest: Auto Run (`jest.autoRun`) should be set to `{ "watch": false, "onSave": "test-file" }` in the settings JSON
 
 ## Other Customization
 
