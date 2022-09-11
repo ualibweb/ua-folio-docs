@@ -462,6 +462,14 @@ Most Git functionality is outside of VS Code, however, I like these options to k
 SonarLint rules need to be added (`sonarlint.rules`) -- see the
 [style guide](../../docs/style/README.md) for the full list of rules to enable.
 
+### Jest
+
+By default, Jest uses an extremely over-eager method for deciding when to when tests.  This causes
+most workspaces to become nearly unusable, especially at launch, due to the frequency and volume of
+tests.
+
+- Jest: Auto Run (`jest.autoRun`) should be set to `{ "watch": false, "onSave": "test-src-file" }` in the settings JSON
+
 ## Other Customization
 
 Of course, this is only an opinionated list of extensions for development -- there are many, many
