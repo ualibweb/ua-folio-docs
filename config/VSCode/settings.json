@@ -35,6 +35,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  }
+  },
   "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
 }
