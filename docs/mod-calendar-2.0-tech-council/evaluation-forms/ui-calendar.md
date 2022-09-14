@@ -4,12 +4,11 @@
 FOLIO system. This interface facilitates the viewing, editing, creation of, and deletion of these
 calendars.
 
-**Link to source:** **_TBD_**
+**Link to source:** https://github.com/folio-org/ui-calendar/tree/ualibweb/new-ui-calendar (will point to a single commit after more work is completed)
 
 **List of related modules:**
 
 - `mod-calendar`, backend interface for the calendar
-- `mod-circulation`, uses opening information for loan policies
 
 **Points of contact:**
 
