@@ -385,7 +385,7 @@ Setup our formatter:
 
 Ensure our formatting specifications are always met:
 
-- Format on Paste (`editor.formatOnPaste`): `true`,
+- Format on Paste (`editor.formatOnPaste`): `false`,
 - Format on Save (`editor.formatOnSave`): `true`,
 - Tab Size (`editor.tabSize`): 2 (FOLIO standard),
 - Insert a newline at the end of every file (`editor.insertFinalNewline`): `true`,
