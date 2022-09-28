@@ -41,7 +41,7 @@
 - [x] ~~Integration with any third party system (outside of the FOLIO environment) tolerates the
       absence of configuration / presence of the system gracefully.~~ N/A
 - [x] Front-end modules: builds are Node 16/Yarn 1
-- [ ] Front-end unit tests written in Jest/RTL at 80% coverage
+- [x] Front-end unit tests written in Jest/RTL at 80% coverage
 - [ ] Front-end End-to-end tests written in Cypress, if applicable
 - [x] Front-end modules have i18n support via react-intl and an en.json file with English texts
 - [x] Front-end modules have WCAG 2.1 AA compliance as measured by a current major version of axe
@@ -52,4 +52,4 @@
       [https://ux.folio.org/docs/all-guidelines/](https://ux.folio.org/docs/all-guidelines/)_
 - [x] Front-end modules must work in the latest version of Chrome (the supported runtime
       environment)
-- [ ] sonarqube hasn't identified any issues
+- [x] sonarqube hasn't identified any issues
