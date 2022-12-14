@@ -7,7 +7,7 @@ code --install-extension blzjns.vscode-raml
 # Mustache (OpenAPI template) syntax highlighting
 code --install-extension dawhite.mustache
 # Lombok annotation support
-code --install-extension GabrielBB.vscode-lombok
+code --install-extension vscjava.vscode-lombok
 # Lint OpenAPI specification documents
 code --install-extension mermade.openapi-lint
 # Spring/Spring Boot support
