@@ -62,10 +62,10 @@ code --install-extension dawhite.mustache
 This package provides syntax highlighting for the Mustache language, which is what
 `openapi-generator` templates are written in.
 
-#### [Lombok Annotations Support](https://marketplace.visualstudio.com/items?itemName=GabrielBB.vscode-lombok)
+#### [Lombok Annotations Support](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-lombok)
 
 ```sh
-code --install-extension GabrielBB.vscode-lombok
+code --install-extension vscjava.vscode-lombok
 ```
 
 This adds support for the widely used [Lombok library](https://projectlombok.org/) directly from VS
