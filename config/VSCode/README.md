@@ -79,14 +79,15 @@ code --install-extension mermade.openapi-lint
 
 This allows the linting of OpenAPI documents, preventing simple and time-consuming errors.
 
-#### [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
+<!-- This causes problems and gets in the way -->
+<!-- #### [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
 
 ```sh
 code --install-extension Pivotal.vscode-boot-dev-pack
 ```
 
 This package adds intelligent Spring Boot support to VS Code, allowing better autocompletion,
-documentation, and intelligent syntax highlighting on Spring Boot-specific files.
+documentation, and intelligent syntax highlighting on Spring Boot-specific files. -->
 
 ### Frontend JS/TS
 

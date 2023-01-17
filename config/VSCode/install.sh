@@ -10,8 +10,10 @@ code --install-extension dawhite.mustache
 code --install-extension vscjava.vscode-lombok
 # Lint OpenAPI specification documents
 code --install-extension mermade.openapi-lint
-# Spring/Spring Boot support
-code --install-extension Pivotal.vscode-boot-dev-pack
+
+# I don't like this one anymore, it just gets in the way
+# # Spring/Spring Boot support
+# code --install-extension Pivotal.vscode-boot-dev-pack
 
 ###################### FRONTEND JS/TS #######################
 
