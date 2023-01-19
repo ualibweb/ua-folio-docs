@@ -38,7 +38,7 @@ Now, for the actual coding portion of this lesson:
 1. First, let's make a branch to keep these changes separate:
 
 ```sh
-git checkout -b your-name-or-username-openapi
+git checkout -b your-name-or-username-01-openapi
 git push origin
 ```
 
@@ -83,6 +83,9 @@ git push origin
      zero integers are provided, the sum should just be zero; do not worry about handling incorrect
      input.
 
+   - Both the response and JSON request entity schemas should be placed in separate YAML files with
+     descriptive names (for example, `SumRequest` and `SumResponse`).
+
 1. At this point, create a commit, push it, and create a pull request from your openapi branch to
    your master branch. **Be sure you are creating a pull request against
    `ualibweb/folio-sample-modules` branch `your-name-master`, and not against anything in the
@@ -93,5 +96,5 @@ git push origin
 1. Test that everything works in Insomnia
 1. Once everything is to your satisfaction, commit and push your changes. Mark your pull request as
    ready for review (if applicable), and request someone review it.
-1. While you're waiting on the review, move onto the next section:
-   [02-unit-testing](02-unit-testing.md).
+1. After a successful review and PR merge, move onto the next section:
+   [02-integration-testing](02-integration-testing.md).
