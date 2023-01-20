@@ -4,6 +4,7 @@ First, be sure you have accounts created/access to the necessary repositories as
 [onboarding document](../00-onboarding.md).
 
 1. Download and install:
+
    - [OpenJDK](https://adoptium.net/temurin/releases/?version=17). Be sure to get version 17 or
      higher (and choose the `.pkg` or `.msi`, if multiple options are available for your OS)
    - [Git](https://git-scm.com/download/win)
@@ -18,6 +19,38 @@ First, be sure you have accounts created/access to the necessary repositories as
      slightly more usable than PowerShell directly. For macOS/Linux, the builtin terminal is
      sufficient.
    - A REST client, such as [Insomnia](https://insomnia.rest/)
+   - Apache Maven. You can [install this manually](https://maven.apache.org/install.html), however,
+     it requires a lot of path manipulation and configuration -- it is not for the faint of heart.
+     There are easier ways:
+
+     - Windows:
+
+       For this we can use Chocolatey, a package manager for Windows. Open PowerShell as an
+       administrator (right-click the Start menu) and paste the following:
+
+       ```powershell
+       Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+       ```
+
+       Once this succeeds, you can now easily install Maven with `choco install maven`.
+
+       If everything succeeds, you should be able to run `mvn -v` (be sure the Java version is at
+       least 17)! Please note, you may need to restart your shell for this to work.
+
+     - Mac:
+
+       For this, we will use Homebrew, a package manager for macOS. Open Terminal and run the
+       following:
+
+       ```sh
+       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+       ```
+
+       Follow the prompts here; once everything succeeds, run `brew install maven`.
+
+       If everything succeeds, you should be able to run `mvn -v` (be sure the Java version is at
+       least 17)! Please note, you may need to restart your shell for this to work.
+
 1. Download, install, and setup [Visual Studio Code](https://code.visualstudio.com/) according to
    [our configuration](../../config/VSCode/README.md)
 1. It may be a good idea to reboot after this point, to ensure everything is fully installed
