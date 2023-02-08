@@ -1,0 +1,109 @@
+{
+  "config": {
+    "oas": {
+      "files": [
+        "src/main/resources/swagger.api/authority-control.yaml",
+        "src/main/resources/swagger.api/bulk-edit.yaml",
+        "src/main/resources/swagger.api/bursar-export.yaml",
+        "src/main/resources/swagger.api/circulation-log.yaml",
+        "src/main/resources/swagger.api/e-holdings.yaml",
+        "src/main/resources/swagger.api/order-export.yaml",
+        "src/main/resources/swagger.api/refresh-presigned-url.yaml"
+      ]
+    },
+    "raml": {
+      "files": []
+    }
+  },
+  "endpoints": [
+    {
+      "apiDescription": "src/main/resources/swagger.api/order-export.yaml",
+      "methods": "get:null",
+      "path": "/order-stub"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/refresh-presigned-url.yaml",
+      "interface": "bulk-edit 3.0",
+      "methods": "get:operation/getRefreshedPresignedUrl",
+      "path": "/refresh-presigned-url"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/e-holdings.yaml",
+      "methods": "get:null",
+      "path": "/stub"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/getErrorsPreviewByJobId",
+      "path": "/{jobId}/errors"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "post:operation/postHoldingsContentUpdates",
+      "path": "/{jobId}/holdings-content-update/upload"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "post:operation/postItemContentUpdates",
+      "path": "/{jobId}/item-content-update/upload"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/getPreviewHoldingsByJobId",
+      "path": "/{jobId}/preview/holdings"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/getPreviewItemsByJobId",
+      "path": "/{jobId}/preview/items"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/downloadHoldingsPreviewByJobId",
+      "path": "/{jobId}/preview/updated-holdings/download"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/downloadItemsPreviewByJobId",
+      "path": "/{jobId}/preview/updated-items/download"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/downloadUsersPreviewByJobId",
+      "path": "/{jobId}/preview/updated-users/download"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "get:operation/getPreviewUsersByJobId",
+      "path": "/{jobId}/preview/users"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "post:operation/rollBackCsvFile",
+      "path": "/{jobId}/roll-back"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "post:operation/startJob",
+      "path": "/{jobId}/start"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "post:operation/uploadCsvFile",
+      "path": "/{jobId}/upload"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bulk-edit.yaml",
+      "methods": "post:operation/postUserContentUpdates",
+      "path": "/{jobId}/user-content-update/upload"
+    }
+  ],
+  "metadata": {
+    "apiTypes": [
+      "OAS"
+    ],
+    "generatedDate": "2023-02-08T22:08:25.797932+00:00",
+    "generator": "api_doc.py 1.4.2",
+    "repository": "mod-data-export-worker"
+  }
+}

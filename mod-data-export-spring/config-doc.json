@@ -1,0 +1,22 @@
+{
+  "config": {
+    "oas": {
+      "files": [
+        "src/main/resources/swagger.api/export-configs.yaml",
+        "src/main/resources/swagger.api/jobs.yaml"
+      ]
+    },
+    "raml": {
+      "files": []
+    }
+  },
+  "endpoints": [],
+  "metadata": {
+    "apiTypes": [
+      "OAS"
+    ],
+    "generatedDate": "2023-02-08T22:12:50.664932+00:00",
+    "generator": "api_doc.py 1.4.2",
+    "repository": "mod-data-export-spring"
+  }
+}

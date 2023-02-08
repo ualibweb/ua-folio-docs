@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>Fees and fines for bursar export schemas</title>
+  <!-- needed for adaptive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://unpkg.com/redoc@latest/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="5.3.6">.kzDJPW{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width:75rem){.kzDJPW{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g4[id="sc-hLBbgP"]{content:"kzDJPW,"}/*!sc*/
+.ejgidu{padding:40px 0;}/*!sc*/
+.ejgidu:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.sc-eDvSVe > .sc-eDvSVe:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width:75rem){.ejgidu{padding:0;}}/*!sc*/
+.iIOsWt{padding:40px 0;position:relative;}/*!sc*/
+.iIOsWt:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.sc-eDvSVe > .sc-eDvSVe:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width:75rem){.iIOsWt{padding:0;}}/*!sc*/
+.iIOsWt:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0,0,0,0.2);}/*!sc*/
+data-styled.g5[id="sc-eDvSVe"]{content:"ejgidu,iIOsWt,"}/*!sc*/
+.faCWDf{width:40%;color:#ffffff;background-color:#263238;padding:0 40px;}/*!sc*/
+@media print,screen and (max-width:75rem){.faCWDf{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g6[id="sc-jSUZER"]{content:"faCWDf,"}/*!sc*/
+.iCCKfq{background-color:#263238;}/*!sc*/
+data-styled.g7[id="sc-gKPRtg"]{content:"iCCKfq,"}/*!sc*/
+.bTXFHG{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width:75rem){.bTXFHG{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-iBYQkv"]{content:"bTXFHG,"}/*!sc*/
+.eElxvP{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g9[id="sc-ftTHYK"]{content:"eElxvP,"}/*!sc*/
+.eFTcNW{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-pyfCe"]{content:"eFTcNW,"}/*!sc*/
+.eEiixI{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.eEiixI:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover > .sc-csuSiG::before,h2:hover > .eEiixI::before,.eEiixI:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-csuSiG"]{content:"eEiixI,"}/*!sc*/
+.kAkGBK{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;-webkit-transition:-webkit-transform 0.2s ease-out;-webkit-transition:transform 0.2s ease-out;transition:transform 0.2s ease-out;-webkit-transform:rotateZ(0);-ms-transform:rotateZ(0);transform:rotateZ(0);}/*!sc*/
+.kAkGBK polygon{fill:white;}/*!sc*/
+data-styled.g15[id="sc-eDWCr"]{content:"kAkGBK,"}/*!sc*/
+.iyXcMX code[class*='language-'],.iyXcMX pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.iyXcMX code[class*='language-'],.iyXcMX pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.iyXcMX pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.iyXcMX .token.comment,.iyXcMX .token.prolog,.iyXcMX .token.doctype,.iyXcMX .token.cdata{color:hsl(30,20%,50%);}/*!sc*/
+.iyXcMX .token.punctuation{opacity:0.7;}/*!sc*/
+.iyXcMX .namespace{opacity:0.7;}/*!sc*/
+.iyXcMX .token.property,.iyXcMX .token.tag,.iyXcMX .token.number,.iyXcMX .token.constant,.iyXcMX .token.symbol{color:#4a8bb3;}/*!sc*/
+.iyXcMX .token.boolean{color:#e64441;}/*!sc*/
+.iyXcMX .token.selector,.iyXcMX .token.attr-name,.iyXcMX .token.string,.iyXcMX .token.char,.iyXcMX .token.builtin,.iyXcMX .token.inserted{color:#a0fbaa;}/*!sc*/
+.iyXcMX .token.selector + a,.iyXcMX .token.attr-name + a,.iyXcMX .token.string + a,.iyXcMX .token.char + a,.iyXcMX .token.builtin + a,.iyXcMX .token.inserted + a,.iyXcMX .token.selector + a:visited,.iyXcMX .token.attr-name + a:visited,.iyXcMX .token.string + a:visited,.iyXcMX .token.char + a:visited,.iyXcMX .token.builtin + a:visited,.iyXcMX .token.inserted + a:visited{color:#4ed2ba;-webkit-text-decoration:underline;text-decoration:underline;}/*!sc*/
+.iyXcMX .token.property.string{color:white;}/*!sc*/
+.iyXcMX .token.operator,.iyXcMX .token.entity,.iyXcMX .token.url,.iyXcMX .token.variable{color:hsl(40,90%,60%);}/*!sc*/
+.iyXcMX .token.atrule,.iyXcMX .token.attr-value,.iyXcMX .token.keyword{color:hsl(350,40%,70%);}/*!sc*/
+.iyXcMX .token.regex,.iyXcMX .token.important{color:#e90;}/*!sc*/
+.iyXcMX .token.important,.iyXcMX .token.bold{font-weight:bold;}/*!sc*/
+.iyXcMX .token.italic{font-style:italic;}/*!sc*/
+.iyXcMX .token.entity{cursor:help;}/*!sc*/
+.iyXcMX .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-iJnaPW"]{content:"iyXcMX,"}/*!sc*/
+.eWNLet{position:relative;}/*!sc*/
+data-styled.g38[id="sc-ilhmMj"]{content:"eWNLet,"}/*!sc*/
+.cSfrsr{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.cSfrsr p:last-child{margin-bottom:0;}/*!sc*/
+.cSfrsr h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.cSfrsr h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.cSfrsr code{color:#e53935;background-color:rgba(38,50,56,0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38,50,56,0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.cSfrsr pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0px;border:1px solid rgba(38,50,56,0.1);}/*!sc*/
+.cSfrsr pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.cSfrsr pre code:before,.cSfrsr pre code:after{content:none;}/*!sc*/
+.cSfrsr blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.cSfrsr img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.cSfrsr ul,.cSfrsr ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.cSfrsr ul ul,.cSfrsr ol ul,.cSfrsr ul ol,.cSfrsr ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.cSfrsr table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.cSfrsr table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.cSfrsr table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.cSfrsr table th,.cSfrsr table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.cSfrsr table th{text-align:left;font-weight:bold;}/*!sc*/
+.cSfrsr .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.cSfrsr .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.cSfrsr h1:hover > .share-link::before,.cSfrsr h2:hover > .share-link::before,.cSfrsr .share-link:hover::before{visibility:visible;}/*!sc*/
+.cSfrsr a{-webkit-text-decoration:auto;text-decoration:auto;color:#32329f;}/*!sc*/
+.cSfrsr a:visited{color:#32329f;}/*!sc*/
+.cSfrsr a:hover{color:#6868cf;-webkit-text-decoration:auto;text-decoration:auto;}/*!sc*/
+.qzlLd{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.qzlLd p:last-child{margin-bottom:0;}/*!sc*/
+.qzlLd p:first-child{margin-top:0;}/*!sc*/
+.qzlLd p:last-child{margin-bottom:0;}/*!sc*/
+.qzlLd h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.qzlLd h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.qzlLd code{color:#e53935;background-color:rgba(38,50,56,0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38,50,56,0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.qzlLd pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0px;border:1px solid rgba(38,50,56,0.1);}/*!sc*/
+.qzlLd pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.qzlLd pre code:before,.qzlLd pre code:after{content:none;}/*!sc*/
+.qzlLd blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.qzlLd img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.qzlLd ul,.qzlLd ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.qzlLd ul ul,.qzlLd ol ul,.qzlLd ul ol,.qzlLd ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.qzlLd table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.qzlLd table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.qzlLd table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.qzlLd table th,.qzlLd table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.qzlLd table th{text-align:left;font-weight:bold;}/*!sc*/
+.qzlLd .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.qzlLd .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.qzlLd h1:hover > .share-link::before,.qzlLd h2:hover > .share-link::before,.qzlLd .share-link:hover::before{visibility:visible;}/*!sc*/
+.qzlLd a{-webkit-text-decoration:auto;text-decoration:auto;color:#32329f;}/*!sc*/
+.qzlLd a:visited{color:#32329f;}/*!sc*/
+.qzlLd a:hover{color:#6868cf;-webkit-text-decoration:auto;text-decoration:auto;}/*!sc*/
+data-styled.g43[id="sc-cjibBx"]{content:"cSfrsr,qzlLd,"}/*!sc*/
+.bnQdkF{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.bnQdkF p:last-child{margin-bottom:0;}/*!sc*/
+.bnQdkF p:first-child{margin-top:0;}/*!sc*/
+.bnQdkF p:last-child{margin-bottom:0;}/*!sc*/
+.bnQdkF p{display:inline-block;}/*!sc*/
+.bnQdkF h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.bnQdkF h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.bnQdkF code{color:#e53935;background-color:rgba(38,50,56,0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38,50,56,0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.bnQdkF pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0px;border:1px solid rgba(38,50,56,0.1);}/*!sc*/
+.bnQdkF pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.bnQdkF pre code:before,.bnQdkF pre code:after{content:none;}/*!sc*/
+.bnQdkF blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.bnQdkF img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.bnQdkF ul,.bnQdkF ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.bnQdkF ul ul,.bnQdkF ol ul,.bnQdkF ul ol,.bnQdkF ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.bnQdkF table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.bnQdkF table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.bnQdkF table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.bnQdkF table th,.bnQdkF table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.bnQdkF table th{text-align:left;font-weight:bold;}/*!sc*/
+.bnQdkF .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.bnQdkF .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.bnQdkF h1:hover > .share-link::before,.bnQdkF h2:hover > .share-link::before,.bnQdkF .share-link:hover::before{visibility:visible;}/*!sc*/
+.bnQdkF a{-webkit-text-decoration:auto;text-decoration:auto;color:#32329f;}/*!sc*/
+.bnQdkF a:visited{color:#32329f;}/*!sc*/
+.bnQdkF a:hover{color:#6868cf;-webkit-text-decoration:auto;text-decoration:auto;}/*!sc*/
+data-styled.g44[id="sc-jcMfQk"]{content:"bnQdkF,"}/*!sc*/
+.hslJUt{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g93[id="sc-dEVLtI"]{content:"hslJUt,"}/*!sc*/
+.eUseeW{width:9ex;display:inline-block;height:13px;line-height:13px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.eUseeW.get{background-color:#2F8132;}/*!sc*/
+.eUseeW.post{background-color:#186FAF;}/*!sc*/
+.eUseeW.put{background-color:#95507c;}/*!sc*/
+.eUseeW.options{background-color:#947014;}/*!sc*/
+.eUseeW.patch{background-color:#bf581d;}/*!sc*/
+.eUseeW.delete{background-color:#cc3333;}/*!sc*/
+.eUseeW.basic{background-color:#707070;}/*!sc*/
+.eUseeW.link{background-color:#07818F;}/*!sc*/
+.eUseeW.head{background-color:#A23DAD;}/*!sc*/
+.eUseeW.hook{background-color:#32329f;}/*!sc*/
+data-styled.g101[id="sc-ikHGee"]{content:"eUseeW,"}/*!sc*/
+.eVtGbO{margin:0;padding:0;}/*!sc*/
+.eVtGbO:first-child{padding-bottom:32px;}/*!sc*/
+.sc-uhnfH .sc-uhnfH{font-size:0.929em;}/*!sc*/
+data-styled.g102[id="sc-uhnfH"]{content:"eVtGbO,"}/*!sc*/
+.dUabJC{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g103[id="sc-bhNKFk"]{content:"dUabJC,"}/*!sc*/
+.jCkSPq{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;font-family:Montserrat,sans-serif;background-color:#fafafa;}/*!sc*/
+.jCkSPq:hover{color:#32329f;background-color:#ededed;}/*!sc*/
+.jCkSPq .sc-eDWCr{height:1.5em;width:1.5em;}/*!sc*/
+.jCkSPq .sc-eDWCr polygon{fill:#333333;}/*!sc*/
+data-styled.g104[id="sc-eGJbfJ"]{content:"jCkSPq,"}/*!sc*/
+.htwBmB{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g105[id="sc-hAQmFe"]{content:"htwBmB,"}/*!sc*/
+.fburAk{font-size:0.8em;margin-top:10px;text-align:center;position:fixed;width:260px;bottom:0;background:#fafafa;}/*!sc*/
+.fburAk a,.fburAk a:visited,.fburAk a:hover{color:#333333 !important;padding:5px 0;border-top:1px solid #e1e1e1;-webkit-text-decoration:none;text-decoration:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}/*!sc*/
+.fburAk img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width:50rem){.fburAk{width:100%;}}/*!sc*/
+data-styled.g106[id="sc-kZLDfD"]{content:"fburAk,"}/*!sc*/
+.gdwEwj{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g112[id="sc-EJAja"]{content:"gdwEwj,"}/*!sc*/
+.dQCByP{font-family:Courier,monospace;margin-left:10px;-webkit-flex:1;-ms-flex:1;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g113[id="sc-jWgTtR"]{content:"dQCByP,"}/*!sc*/
+.glxEld{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;white-space:nowrap;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;border:1px solid transparent;border-bottom:0;-webkit-transition:border-color 0.25s ease;transition:border-color 0.25s ease;}/*!sc*/
+.glxEld ..sc-jWgTtR{color:#ffffff;}/*!sc*/
+.glxEld:focus{box-shadow:inset 0 2px 2px rgba(0,0,0,0.45),0 2px 0 rgba(128,128,128,0.25);}/*!sc*/
+data-styled.g114[id="sc-eDZJfc"]{content:"glxEld,"}/*!sc*/
+.dTKNOC{font-size:0.929em;line-height:20px;background-color:#2F8132;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+data-styled.g115[id="sc-fmZqYP"]{content:"dTKNOC,"}/*!sc*/
+.bXDwLd{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0px 0px 6px rgba(0,0,0,0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;-webkit-transition:all 0.25s ease;transition:all 0.25s ease;visibility:hidden;-webkit-transform:translateY(-50%) scaleY(0);-ms-transform:translateY(-50%) scaleY(0);transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g116[id="sc-lknQiW"]{content:"bXDwLd,"}/*!sc*/
+.ghMMIJ{padding:10px;}/*!sc*/
+data-styled.g117[id="sc-jmpzUR"]{content:"ghMMIJ,"}/*!sc*/
+.fENGqs{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
+.fENGqs > span{color:#333333;}/*!sc*/
+data-styled.g118[id="sc-dUipGc"]{content:"fENGqs,"}/*!sc*/
+.kujKln{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);cursor:default;}/*!sc*/
+.kujKln:focus{outline:auto #1d8127;}/*!sc*/
+.kujKln::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
+.kujKln:focus{outline:0;}/*!sc*/
+data-styled.g119[id="sc-hsWlPz"]{content:"kujKln,"}/*!sc*/
+.bErzOu{vertical-align:top;}/*!sc*/
+data-styled.g123[id="sc-fWHiwC"]{content:"bErzOu,"}/*!sc*/
+.enCpRE{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g124[id="sc-fIhvWL"]{content:"enCpRE,"}/*!sc*/
+.jwEBSv{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:20px;height:20px;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g130[id="sc-iqPaeV"]{content:"jwEBSv,"}/*!sc*/
+.jHsYiX{width:260px;background-color:#fafafa;overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-backface-visibility:hidden;backface-visibility:hidden;height:100vh;position:-webkit-sticky;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width:50rem){.jHsYiX{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.jHsYiX{display:none;}}/*!sc*/
+data-styled.g131[id="sc-eVspGN"]{content:"jHsYiX,"}/*!sc*/
+.iZTWQJ{outline:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0,0,0,0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width:50rem){.iZTWQJ{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}}/*!sc*/
+.iZTWQJ svg{color:#0065FB;}/*!sc*/
+@media print{.iZTWQJ{display:none;}}/*!sc*/
+data-styled.g132[id="sc-kSGOQU"]{content:"iZTWQJ,"}/*!sc*/
+.jOFhcJ{font-family:Roboto,sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333333;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed !important;tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:100%;text-size-adjust:100%;}/*!sc*/
+.jOFhcJ *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255,255,255,0);}/*!sc*/
+data-styled.g133[id="sc-dvEHMn"]{content:"jOFhcJ,"}/*!sc*/
+.ciSZlR{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width:50rem){.ciSZlR{width:100%;}}/*!sc*/
+data-styled.g134[id="sc-jsTgWu"]{content:"ciSZlR,"}/*!sc*/
+.bqwgzE{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width:75rem){.bqwgzE{display:none;}}/*!sc*/
+data-styled.g135[id="sc-elAWhN"]{content:"bqwgzE,"}/*!sc*/
+.jyNwoU{padding:5px 0;}/*!sc*/
+data-styled.g136[id="sc-kiPvrU"]{content:"jyNwoU,"}/*!sc*/
+.hroqdq{width:calc(100% - 40px);box-sizing:border-box;margin:0 20px;padding:5px 10px 5px 20px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g137[id="sc-cLNonn"]{content:"hroqdq,"}/*!sc*/
+.cGviEC{position:absolute;left:20px;height:1.8em;width:0.9em;}/*!sc*/
+.cGviEC path{fill:#333333;}/*!sc*/
+data-styled.g138[id="sc-iJbNxu"]{content:"cGviEC,"}/*!sc*/
+</style>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+  
+    <div id="redoc"><div class="sc-dvEHMn jOFhcJ redoc-wrap"><div class="sc-eVspGN jHsYiX menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-kiPvrU jyNwoU"><svg class="sc-iJbNxu cGviEC search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input type="text" value="" placeholder="Search..." aria-label="Search" class="sc-cLNonn hroqdq search-input"/></div><div class="sc-ilhmMj eWNLet scrollbar-container undefined"><ul class="sc-uhnfH eVtGbO" role="menu"><li data-item-id="/paths/~1stub/get" class="sc-bhNKFk dUabJC"><label role="menuitem" class="sc-eGJbfJ jCkSPq -depth2"><span type="get" class="sc-ikHGee eUseeW operation-type get">get</span><span width="calc(100% - 38px)" class="sc-hAQmFe htwBmB">/stub</span></label></li></ul><div class="sc-kZLDfD fburAk"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-kSGOQU iZTWQJ"><div class="sc-iqPaeV jwEBSv"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-jsTgWu ciSZlR api-content"><div class="sc-eDvSVe ejgidu"><div class="sc-iBYQkv bTXFHG"><div class="sc-hLBbgP kzDJPW api-info"><h1 class="sc-ftTHYK sc-dEVLtI eElxvP hslJUt">Fees and fines for bursar export schemas<!-- --> <span>(<!-- -->v1<!-- -->)</span></h1><div class="sc-iJnaPW sc-cjibBx iyXcMX cSfrsr"></div><div class="sc-iJnaPW sc-cjibBx iyXcMX cSfrsr" data-role="redoc-summary"></div><div class="sc-iJnaPW sc-cjibBx iyXcMX cSfrsr" data-role="redoc-description"></div></div></div></div><div id="/paths/~1stub/get" data-section-id="/paths/~1stub/get" class="sc-eDvSVe iIOsWt"><div class="sc-iBYQkv bTXFHG"><div class="sc-hLBbgP kzDJPW"><h2 class="sc-pyfCe eFTcNW"><a class="sc-csuSiG eEiixI" href="#/paths/~1stub/get" aria-label="/paths/~1stub/get"></a>/stub<!-- --> </h2><div><h3 class="sc-fIhvWL enCpRE">Responses</h3><div><button class="sc-hsWlPz kujKln" disabled=""><strong class="sc-fWHiwC bErzOu">200<!-- --> </strong><span class="sc-jcMfQk bnQdkF"><p>stub</p>
+</span></button></div></div></div><div class="sc-jSUZER sc-gKPRtg faCWDf iCCKfq"><div class="sc-EJAja gdwEwj"><button class="sc-eDZJfc glxEld"><span type="get" class="sc-fmZqYP dTKNOC http-verb get">get</span><span class="sc-jWgTtR dQCByP">/stub</span><svg class="sc-eDWCr kAkGBK" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-lknQiW bXDwLd"><div class="sc-jmpzUR ghMMIJ"><div class="sc-iJnaPW sc-cjibBx iyXcMX qzlLd"></div><div tabindex="0" role="button"><div class="sc-dUipGc fENGqs"><span>https://stub.com</span>/stub</div></div></div></div></div></div></div></div></div><div class="sc-elAWhN bqwgzE"></div></div></div>
+    <script>
+    const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.0.0","info":{"title":"Fees and fines for bursar export schemas","version":"v1"},"servers":[{"url":"https://stub.com/"}],"paths":{"/stub":{"get":{"responses":{"200":{"description":"stub"}}}}},"components":{"schemas":{"userdataCollection":{"$ref":"#/components/schemas/UserCollection"},"accountdataCollection":{"$ref":"#/components/schemas/AccountdataCollection"},"feefineactionCollection":{"$ref":"#/components/schemas/FeefineactionCollection"},"transferdataCollection":{"$ref":"#/components/schemas/TransferdataCollection"},"servicepoints":{"$ref":"#/components/schemas/ServicePoints"},"bursarFeeFines":{"$ref":"../../../../folio-export-common/schemas/bursarFeeFines.json#/BursarFeeFines"},"bursarFeeFinesTypeMapping":{"$ref":"../../../../folio-export-common/schemas/bursarFeeFinesTypeMapping.json#/BursarFeeFinesTypeMapping"},"ediConfig":{"$ref":"#/components/schemas/EdiConfig"},"ediEmail":{"$ref":"#/components/schemas/EdiEmail"},"ediFtp":{"$ref":"#/components/schemas/EdiFtp"},"ediSchedule":{"$ref":"#/components/schemas/EdiSchedule"},"scheduleParameters":{"$ref":"#/components/schemas/ScheduleParameters"},"vendorEdiOrdersExportConfig":{"$ref":"#/components/schemas/VendorEdiOrdersExportConfig"},"eHoldingsExportConfig":{"$ref":"#/components/schemas/EHoldingsExportConfig"},"authorityControlExportConfig":{"$ref":"../../../../folio-export-common/schemas/authority-control/authorityControlExportConfig.json#/AuthorityControlExportConfig"},"Address":{"type":"object","properties":{"id":{"description":"A unique id for this address","type":"string"},"countryId":{"description":"The country code for this address","type":"string"},"addressLine1":{"description":"Address, Line 1","type":"string"},"addressLine2":{"description":"Address, Line 2","type":"string"},"city":{"description":"City name","type":"string"},"region":{"description":"Region","type":"string"},"postalCode":{"description":"Postal Code","type":"string"},"addressTypeId":{"description":"A UUID that corresponds with an address type object","type":"string"},"primaryAddress":{"description":"Is this the user's primary address?","type":"boolean"}},"additionalProperties":false},"Personal":{"type":"object","properties":{"lastName":{"description":"The user's surname","type":"string"},"firstName":{"description":"The user's given name","type":"string"},"middleName":{"description":"The user's middle name (if any)","type":"string"},"preferredFirstName":{"description":"The user's preferred name","type":"string"},"email":{"description":"The user's email address","type":"string"},"phone":{"description":"The user's primary phone number","type":"string"},"mobilePhone":{"description":"The user's mobile phone number","type":"string"},"dateOfBirth":{"type":"string","description":"The user's birth date","format":"date-time"},"addresses":{"description":"Physical addresses associated with the user","type":"array","minItems":0,"items":{"$ref":"#/components/schemas/Address"}},"preferredContactTypeId":{"description":"Id of user's preferred contact type","type":"string"}},"additionalProperties":false,"required":["lastName"]},"Metadata":{"type":"object","title":"Metadata Schema","properties":{"createdDate":{"description":"Date and time when the record was created","type":"string","format":"date-time"},"createdByUserId":{"description":"ID of the user who created the record (when available)","type":"string","format":"uuid"},"createdByUsername":{"description":"Username of the user who created the record (when available)","type":"string","maxLength":50},"updatedDate":{"description":"Date and time when the record was last updated","type":"string","format":"date-time"},"updatedByUserId":{"description":"ID of the user who last updated the record (when available)","type":"string","format":"uuid"},"updatedByUsername":{"description":"Username of the user who last updated the record (when available)","type":"string","maxLength":50}},"additionalProperties":false},"Tags":{"type":"object","title":"tags","properties":{"tagList":{"description":"List of tags","type":"array","items":{"type":"string"}}},"additionalProperties":false},"User":{"type":"object","title":"User Schema","properties":{"username":{"description":"A unique name belonging to a user. Typically used for login","type":"string"},"id":{"description":"A globally unique (UUID) identifier for the user","type":"string"},"externalSystemId":{"description":"An ID that corresponds to an external authority","type":"string"},"barcode":{"description":"The library barcode for this user","type":"string"},"active":{"description":"A flag to determine if a user can log in, take out loans, etc.","type":"boolean"},"type":{"description":"The class of user","type":"string"},"patronGroup":{"description":"A UUID corresponding to the group the user belongs to","type":"string"},"departments":{"description":"A UUIDs corresponding to the departments the user belongs to","type":"array","uniqueItems":true,"items":{"type":"string","format":"uuid"}},"meta":{"description":"Deprecated","type":"object"},"proxyFor":{"description":"Deprecated","type":"array","items":{"type":"string"}},"personal":{"$ref":"#/components/schemas/Personal"},"enrollmentDate":{"description":"The date in which the user joined the organization","type":"string","format":"date-time"},"expirationDate":{"description":"The date for when the user becomes inactive","type":"string","format":"date-time"},"createdDate":{"description":"Deprecated","type":"string","format":"date-time"},"updatedDate":{"description":"Deprecated","type":"string","format":"date-time"},"metadata":{"$ref":"#/components/schemas/Metadata"},"tags":{"$ref":"#/components/schemas/Tags"},"customFields":{"description":"Object that contains custom field","type":"object","additionalProperties":true}},"additionalProperties":false},"FacetValue":{"type":"object","properties":{"count":{"type":"integer","description":"Count of facet values"},"value":{"type":"object","description":"Value Object"}}},"Facet":{"type":"object","properties":{"facetValues":{"type":"array","description":"Array of facet values","items":{"$ref":"#/components/schemas/FacetValue"},"additionalProperties":false},"type":{"type":"string","description":"Type of facet"}},"additionalProperties":false},"Diagnostic":{"type":"object","properties":{"source":{"type":"string","description":"Source reporting the diagnostic information"},"code":{"type":"string","description":"Diagnostic Code"},"message":{"type":"string","description":"Diagnostic Message"},"module":{"type":"string","description":"Module reporting diagnostic information"},"recordCount":{"type":"integer","description":"Record Count for diagnostics"},"query":{"type":"string","description":"CQL Query associated with results"}}},"ResultInfo":{"type":"object","properties":{"totalRecords":{"type":"integer","description":"Total number of records"},"responseTime":{"type":"number","description":"Response time"},"facets":{"type":"array","description":"Array of facets","items":{"$ref":"#/components/schemas/Facet"}},"diagnostics":{"type":"array","description":"Array of diagnostic information","items":{"$ref":"#/components/schemas/Diagnostic"}}},"additionalProperties":false},"UserCollection":{"type":"object","properties":{"users":{"description":"List of userdata items","type":"array","items":{"$ref":"#/components/schemas/User"}},"totalRecords":{"type":"integer"},"resultInfo":{"$ref":"#/components/schemas/ResultInfo","readonly":true}},"required":["users","totalRecords"]},"Status":{"type":"object","properties":{"name":{"description":"Name of the status (values used are Open and Closed)","type":"string"}},"required":["name"]},"PaymentStatus":{"type":"object","properties":{"name":{"description":"Name of the status (values used are Outstanding, Paid partially, Paid fully, Waived partially, Waived fully, Transferred partially, Transferred fully, Refunded partially, Refunded fully, Cancelled as error)","type":"string"}},"required":["name"]},"ItemStatus":{"type":"object","properties":{"name":{"description":"Name of the item state","type":"string"}},"required":["name"]},"Account":{"type":"object","title":"Account schema","properties":{"amount":{"description":"Amount of the fine/fee","type":"number"},"remaining":{"description":"Remaining of the fine/fee","type":"number"},"dateCreated":{"description":"Date and time the account of the fine/fee was created","type":"string","format":"date-time"},"dateUpdated":{"description":"Date and time the account of the fine/fee was updated","type":"string","format":"date-time"},"status":{"description":"Overall status of the fee/fine","type":"object","$ref":"#/components/schemas/Status"},"paymentStatus":{"description":"Overall status of the payment/waive/transfer/refund/cancel","type":"object","$ref":"#/components/schemas/PaymentStatus"},"feeFineType":{"description":"Fee/fine that is up to the desecration of the user","type":"string"},"feeFineOwner":{"description":"Owner of the fee/fine defined by the library and is associated with specific fees/fines","type":"string"},"title":{"description":"The title associated with the item","type":"string"},"callNumber":{"description":"Identifier (Call number) assigned to an item","type":"string"},"barcode":{"description":"Text, with input likely validated by the barcode scanner","type":"string"},"materialType":{"description":"Material type what define what type of thing the item is","type":"string"},"itemStatus":{"description":"The status of the item","type":"object","$ref":"#/components/schemas/ItemStatus"},"location":{"description":"Effective location is used to know the current home location for the item","type":"string"},"metadata":{"description":"Metadata about creation to user fine/fee account, provided by the server","type":"object","$ref":"#/components/schemas/Metadata"},"dueDate":{"description":"Date time when the item is due to be returned","type":"string","format":"date-time"},"returnedDate":{"description":"Date time when the item is returned and the loan ends, if the user does not have a loan associated, hyphen (-) is added as default","type":"string","format":"date-time"},"loanId":{"description":"ID of the loan","type":"string"},"userId":{"description":"ID of the user","type":"string"},"itemId":{"description":"ID of the item","type":"string"},"materialTypeId":{"description":"ID of the materialType","type":"string"},"feeFineId":{"description":"ID of the fee/fine","type":"string"},"ownerId":{"description":"ID of the owner","type":"string"},"id":{"description":"User fine/fee account id, UUID","type":"string"},"holdingsRecordId":{"description":"Item field: item.holdingsRecordId","type":"string","readOnly":true},"instanceId":{"description":"Holdings record field: holdingsRecord.instanceId","type":"string","readOnly":true}},"additionalProperties":false,"required":["amount","remaining","userId","feeFineId","ownerId","id"]},"AccountdataCollection":{"type":"object","properties":{"accounts":{"description":"List of account items","type":"array","items":{"$ref":"#/components/schemas/Account"}},"totalRecords":{"type":"integer"},"resultInfo":{"$ref":"#/components/schemas/ResultInfo","readonly":true}},"required":["accounts","totalRecords"]},"Feefineaction":{"type":"object","title":"Fee/fine actions schema","properties":{"dateAction":{"description":"Date and time the transaction of the fine/fee was created","type":"string","format":"date-time"},"typeAction":{"description":"Type of activity including the type of transaction","type":"string"},"comments":{"description":"Additional information entered as part of the activity or on this screen as a 'Staff info only' activity","type":"string"},"notify":{"description":"A flag to determine if a patron should be notified or not","type":"boolean"},"amountAction":{"description":"Amount of activity","type":"number"},"balance":{"description":"Calculated amount of remaining balance based on original fee/fine and what has been paid/waived/tranferred/refunded","type":"number"},"transactionInformation":{"description":"Number or other transaction id related to payment","type":"string"},"createdAt":{"description":"Location where activity took place (from login information)","type":"string"},"source":{"description":"Person who processed activity (from login information)","type":"string"},"paymentMethod":{"description":"Overall status of the action-setting","type":"string"},"accountId":{"description":"ID of the accounts","type":"string"},"userId":{"description":"ID of the user","type":"string"},"id":{"description":"Fine/fee action id, UUID","type":"string"}},"additionalProperties":false,"required":["accountId","userId"]},"FeefineactionCollection":{"type":"object","properties":{"feefineactions":{"description":"List of feefineaction items","type":"array","items":{"$ref":"#/components/schemas/Feefineaction"}},"totalRecords":{"type":"integer"}},"required":["feefineactions","totalRecords"]},"Transfer":{"type":"object","title":"CRUD Fee/Fine Transfer Accounts Settings schema","properties":{"accountName":{"description":"Transfer account name","type":"string"},"desc":{"description":"Transfer account description","type":"string"},"metadata":{"description":"Metadata about creation to transfer account, provided by the server","type":"object","$ref":"#/components/schemas/Metadata"},"ownerId":{"description":"ID of the owner","type":"string"},"id":{"description":"Transfer account id, UUID","type":"string"}},"additionalProperties":false,"required":["accountName"]},"TransferdataCollection":{"type":"object","properties":{"transfers":{"description":"List of transfer items","type":"array","items":{"type":"object","$ref":"#/components/schemas/Transfer"}},"totalRecords":{"type":"integer"},"resultInfo":{"type":"object","$ref":"#/components/schemas/ResultInfo","readonly":true}},"required":["transfers","totalRecords"]},"TimePeriod":{"type":"object","properties":{"duration":{"type":"integer","description":"Duration interval"},"intervalId":{"type":"string","description":"Unit of time for the duration","enum":["Minutes","Hours","Days","Weeks","Months"],"default":"Days"}},"required":["duration","intervalId"],"additionalProperties":false},"StaffSlip":{"type":"object","properties":{"id":{"type":"string","description":"The ID of the staff slip"},"printByDefault":{"type":"boolean","description":"Whether or not to print the staff slip by default"}},"additionalProperties":false,"required":["id","printByDefault"]},"ServicePoint":{"type":"object","properties":{"id":{"type":"string","description":"Id of service-point object"},"name":{"type":"string","description":"service-point name, a required field"},"code":{"type":"string","description":"service-point code, a required field"},"discoveryDisplayName":{"type":"string","description":"display name, a required field"},"description":{"type":"string","description":"description of the service-point"},"shelvingLagTime":{"type":"integer","description":"shelving lag time"},"pickupLocation":{"type":"boolean","description":"indicates whether or not the service point is a pickup location"},"holdShelfExpiryPeriod":{"type":"object","$ref":"#/components/schemas/TimePeriod","description":"expiration period for items on the hold shelf at the service point"},"staffSlips":{"type":"array","description":"List of staff slips for this service point","items":{"type":"object","$ref":"#/components/schemas/StaffSlip"}},"metadata":{"type":"object","$ref":"#/components/schemas/Metadata","readonly":true}},"additionalProperties":false,"required":["name","code","discoveryDisplayName"]},"ServicePoints":{"type":"object","properties":{"servicepoints":{"description":"List of service points","type":"array","items":{"type":"object","$ref":"#/components/schemas/ServicePoint"}},"totalRecords":{"type":"integer"}},"required":["servicepoints","totalRecords"]},"EdiConfig":{"type":"object","properties":{"accountNoList":{"description":"The list of account numbers of the vendor","type":"array","items":{"type":"string"}},"defaultAcquisitionMethods":{"description":"Default acquisition methods for the accounts","type":"array","items":{"description":"UUID of the acquisition method","type":"string","format":"uuid"}},"ediNamingConvention":{"description":"The naming convention for this EDI","type":"string"},"libEdiCode":{"description":"The library code for this EDI","type":"string"},"libEdiType":{"description":"The library type for this EDI","type":"string","enum":["014/EAN","31B/US-SAN","091/Vendor-assigned","092/Customer-assigned"]},"vendorEdiCode":{"description":"The library code for this EDI","type":"string"},"vendorEdiType":{"description":"The library type for this EDI","type":"string","enum":["014/EAN","31B/US-SAN","091/Vendor-assigned","092/Customer-assigned"]},"notes":{"description":"The notes for this EDI","type":"string"},"sendAccountNumber":{"description":"If true then send account number","type":"boolean","default":false},"supportOrder":{"description":"If true then order support","type":"boolean","default":false},"supportInvoice":{"description":"If true then invoice support","type":"boolean","default":false}}},"EdiEmail":{"type":"object","properties":{"emailFrom":{"description":"Send email from address","type":"string"},"emailTo":{"description":"Send email to address","type":"string"},"isPrimaryTransmissionMethod":{"description":"Primary transmission method","type":"boolean"}}},"EdiFtp":{"type":"object","properties":{"ftpConnMode":{"description":"The FTP connection mode for this EDI","type":"string","enum":["Active","Passive"]},"ftpFormat":{"description":"The FTP format for this EDI","type":"string","enum":["SFTP","FTP"]},"ftpMode":{"description":"The FTP mode for this EDI","type":"string","enum":["ASCII","Binary"]},"ftpPort":{"description":"The port for this EDI","type":"integer"},"invoiceDirectory":{"description":"The invoice directory for this EDI","type":"string"},"isPrimaryTransmissionMethod":{"description":"Primary transmission method","type":"boolean"},"notes":{"description":"The notes for this EDI","type":"string"},"orderDirectory":{"description":"The order directory for this EDI","type":"string"},"password":{"description":"The login password for this EDI","type":"string"},"serverAddress":{"description":"The server address for this EDI","type":"string"},"username":{"description":"The login username for this EDI","type":"string"}}},"ScheduleParameters":{"type":"object","properties":{"id":{"description":"Schedule unique identifier","type":"string","format":"uuid"},"scheduleFrequency":{"type":"integer","description":"Number of time periods"},"schedulePeriod":{"type":"string","description":"Time period for repeating job","enum":["MONTH","WEEK","DAY","HOUR","EXACT_DATE","NONE"]},"schedulingDate":{"description":"The date (MM/DD/YYYY) for this job to start running","format":"date-time","type":"string"},"scheduleTime":{"type":"string","description":"Time to run the job"},"weekDays":{"type":"array","description":"Day of week to run the job","items":{"type":"string","description":"Day of week","enum":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]}},"timeZone":{"type":"string","description":"Schedule time zone","default":"UTC"}}},"EdiSchedule":{"type":"object","properties":{"enableScheduledExport":{"description":"Whether or not to enable scheduled for exports","type":"boolean","default":false},"scheduleParameters":{"$ref":"#/components/schemas/ScheduleParameters"},"schedulingNotes":{"description":"The schedule notes for this EDI job","type":"string"}}},"VendorEdiOrdersExportConfig":{"type":"object","properties":{"exportConfigId":{"description":"UUID of the export configuration. Needed to find Jobs by export config UUID","type":"string","format":"uuid"},"vendorId":{"description":"UUID of the acquisition method","type":"string","format":"uuid"},"configName":{"description":"Configuration name","type":"string"},"configDescription":{"description":"Configuration description","type":"string"},"ediConfig":{"description":"EDI config for this vendor","$ref":"#/components/schemas/EdiConfig"},"ediFtp":{"$ref":"#/components/schemas/EdiFtp"},"ediSchedule":{"$ref":"#/components/schemas/EdiSchedule"},"isDefaultConfig":{"description":"If true then config is default","type":"boolean","default":false}}},"EHoldingsExportConfig":{"type":"object","properties":{"recordId":{"description":"Unique identifier of package - combination of providerId-packageId","example":"91525-1152699-659590","type":"string"},"recordType":{"type":"string","description":"The record type","enum":["PACKAGE","RESOURCE"]},"titleSearchFilters":{"description":"The filters needed to filter package titles","example":"filter[name]=title&sort=name","type":"string"},"packageFields":{"description":"The list of package fields for export","type":"array","items":{"type":"string"}},"titleFields":{"description":"The list of title fields for export","type":"array","items":{"type":"string"}}},"required":["recordId","recordType"]}}}}},"searchIndex":{"store":["/paths/~1stub/get"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,0.182]],["description/0",[0,0.182]]],"invertedIndex":[["stub",{"_index":0,"title":{"0":{}},"description":{"0":{}}}]],"pipeline":[]}},"options":{"hideDownloadButton":true,"schemaExpansionLevel":1}};
+
+    var container = document.getElementById('redoc');
+    Redoc.hydrate(__redoc_state, container);
+
+    </script>
+</body>
+
+</html>
