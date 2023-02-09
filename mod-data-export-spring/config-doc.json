@@ -10,12 +10,43 @@
       "files": []
     }
   },
-  "endpoints": [],
+  "endpoints": [
+    {
+      "apiDescription": "src/main/resources/swagger.api/export-configs.yaml",
+      "methods": "get:operation/getExportConfigs post:operation/postExportConfig",
+      "path": "/configs"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/export-configs.yaml",
+      "methods": "delete:operation/deleteExportConfigById get:operation/getConfigById put:operation/putExportConfig",
+      "path": "/configs/{id}"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/jobs.yaml",
+      "methods": "get:operation/getJobs post:operation/upsertJob",
+      "path": "/jobs"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/jobs.yaml",
+      "methods": "get:operation/getJobById",
+      "path": "/jobs/{id}"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/jobs.yaml",
+      "methods": "get:operation/downloadExportedFileByJobId",
+      "path": "/jobs/{id}/download"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/jobs.yaml",
+      "methods": "post:operation/resendExportedFile",
+      "path": "/jobs/{id}/resend"
+    }
+  ],
   "metadata": {
     "apiTypes": [
       "OAS"
     ],
-    "generatedDate": "2023-02-08T22:12:50.664932+00:00",
+    "generatedDate": "2023-02-09T01:33:27.619694+00:00",
     "generator": "api_doc.py 1.4.2",
     "repository": "mod-data-export-spring"
   }
