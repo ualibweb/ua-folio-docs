@@ -28,6 +28,16 @@
       "path": "/refresh-presigned-url"
     },
     {
+      "apiDescription": "src/main/resources/swagger.api/authority-control.yaml",
+      "methods": "get:null",
+      "path": "/stub"
+    },
+    {
+      "apiDescription": "src/main/resources/swagger.api/bursar-export.yaml",
+      "methods": "get:null",
+      "path": "/stub"
+    },
+    {
       "apiDescription": "src/main/resources/swagger.api/circulation-log.yaml",
       "methods": "get:null",
       "path": "/stub"
@@ -107,8 +117,8 @@
     "apiTypes": [
       "OAS"
     ],
-    "generatedDate": "2023-02-09T01:32:54.373722+00:00",
+    "generatedDate": "2023-03-01T18:06:07.476584+00:00",
     "generator": "api_doc.py 1.4.2",
-    "repository": "mod-data-export-worker"
+    "repository": "ignore"
   }
 }
