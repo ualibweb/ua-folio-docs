@@ -31,11 +31,11 @@ There are a few other Vagrant boxes that may be of interest:
 
 ## Ports
 
-- frontend Stripes is forwarded to **nonstandard** localhost:3001 (to prevent conflicts with local
+- frontend Stripes is forwarded to **nonstandard** `localhost:3001` (to prevent conflicts with local
   Stripes instances on :3000)
-- backend Okapi is forwarded to localhost:9130
-- Vagrant's Postgres is forwarded to **nonstandard** localhost:5433 (to prevent conflicts with local)
-- Vagrant's Kafka is forwarded to **nonstandard-ish** localhost:29092
+- backend Okapi is forwarded to `localhost:9130`
+- Vagrant's Postgres is forwarded to **nonstandard** `localhost:5433` (to prevent conflicts with local)
+- Vagrant's Kafka is forwarded to **nonstandard-ish** `localhost:29092`
 
 ## Basic Commands
 
