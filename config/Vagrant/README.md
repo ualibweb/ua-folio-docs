@@ -27,9 +27,15 @@ There are a few other Vagrant boxes that may be of interest:
 
 - `folio/snapshot`, the latest of all modules (used for the `Vagrantfile`)
 - `folio/release`, the latest full "flower" quarterly release
-- `folio/release-core`, a slimmed down version (only 12 gb) of `folio/release` (used for
-  `Vagrantfile-lite`)
 - Many more, as listed [here](https://app.vagrantup.com/folio)
+
+## Ports
+
+- frontend Stripes is forwarded to **nonstandard** localhost:3001 (to prevent conflicts with local
+  Stripes instances on :3000)
+- backend Okapi is forwarded to localhost:9130
+- Vagrant's Postgres is forwarded to **nonstandard** localhost:5433 (to prevent conflicts with local)
+- Vagrant's Kafka is forwarded to **nonstandard-ish** localhost:29092
 
 ## Basic Commands
 
@@ -84,3 +90,5 @@ sudo apt install openjdk-17-jdk
 Then, there's a bug that prevents Maven from working correctly. Follow
 [these instructions](https://github.com/m-thirumal/installation_guide/blob/39187a6e9acff22b6800c7a407370478f1df5a77/maven/upgrade_maven.md)
 to fix that, then you should be good to go.
+
+There's a ticket, [FOLIO-3714](https://issues.folio.org/browse/FOLIO-3714?filter=-2), to get this fixed.
