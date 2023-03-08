@@ -2,7 +2,7 @@
 
 Our Rancher environment can be controlled at [this link](https://rancher.ci.folio.org/). The main
 wiki for interacting with Rancher is [here](https://wiki.folio.org/display/FOLIJET/How-To) (outdated,
-but still good reference, [here](https://dev.folio.org/faqs/how-to-get-started-with-rancher/)).
+but still good reference, [here](https://dev.folio.org/faqs/how-to-get-started-with-rancher/)).  The actual deployed Rancher environment is at https://folio-dev-bama-diku.ci.folio.org/
 
 Please note, the instructions for "Building Backend" and "Building Frontend" are outdated/invalid
 (although most of the other information, such as building from a branch, is similar to what is here
