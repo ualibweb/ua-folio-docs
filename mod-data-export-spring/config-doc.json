@@ -46,8 +46,8 @@
     "apiTypes": [
       "OAS"
     ],
-    "generatedDate": "2023-03-29T20:01:47.073965+00:00",
-    "generator": "api_doc.py 1.4.2",
-    "repository": "ignore"
+    "generatedDate": "2023-05-22T05:41:37.161439+00:00",
+    "generator": "api_doc.py 1.5.2",
+    "repository": "mod-data-export-spring"
   }
 }
