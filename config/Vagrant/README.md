@@ -1,5 +1,22 @@
 # Vagrantfile
 
+## Before you get started
+
+***Vagrant boxes can not run on ARM Macs (M1/M2 chips)***
+
+These Vagrant boxes are large virtual machines which can run an entire instance of FOLIO.  It can
+be convenient for certain large-scale FOLIO development to have this large setup of modules
+available to you, however, these virtual machines are _very_ demanding (recommended at least 32 GB
+of RAM and 1-2 CPU cores decidated to it), so they're generally best on a very limited basis.
+
+For most circumstances, it is easier and recommended to use our Rancher environment.  This
+environment is available in the cloud and contains a large number of tools to make deployment much
+easier than if it was on your local machine.  This, however, comes at the tradeoff that restarts
+and installations may take longer, and some debugging features are not available.  For more on
+Rancher, please check out [our docs](/docs/Rancher.md)
+
+## Introduction
+
 Enclosed in this folder is a simple `Vagrantfile` that creates a box for use with FOLIO's test
 environment, `folio/testing`. With this, you can run a Vagrant environment locally and access all of
 FOLIO's modules on your own machine. For the alternative `Vagrantfile` options, be sure to rename it
