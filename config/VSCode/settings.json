@@ -19,11 +19,10 @@
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.decorations.enabled": false,
-  "prettier.prettierPath": "/usr/local/lib/node_modules/prettier",
   "prettier.proseWrap": "always",
   "prettier.resolveGlobalModules": true,
   "sonarlint.rules": {
-    // FILL THIS IN FROM STYLE GUIDE
+    // follow readme.md to load in UA's sonarcloud rules
   },
   "terminal.integrated.allowChords": false,
   "terminal.integrated.sendKeybindingsToShell": true,
