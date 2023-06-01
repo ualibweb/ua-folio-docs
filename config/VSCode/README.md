@@ -2,7 +2,9 @@
 
 Visual Studio Code (VS Code) is an extremely powerful text editor and, with the right extensions,
 can offer functionality similar to a full-blown IDE (such as Eclipse or IntelliJ) in a much leaner
-and customizable manner.
+and customizable manner.  **These are all opinionated configuration options, so if you have
+different preferences, would prefer to not use some extensions, or anything else, feel free to do
+so.  If you find something you think everyone on the team should have, feel free to add it here.**
 
 [Here](https://code.visualstudio.com/docs/introvideos/basics) is a quick guide to getting started
 with VS Code -- it is similar to most other text editors and is designed to be heavily
@@ -385,8 +387,6 @@ Setup our formatter:
 
 - Default Formatter (`editor.defaultFormatter`): Use the Prettier formatter
   `"esbenp.prettier-vscode"`,
-- Prettier Path (`prettier.prettierPath`): By default, Prettier is installed at
-  `"/usr/local/lib/node_modules/prettier"` so this should not be changed,
 - Prettier Prose Wrap (`prettier.proseWrap`): Always wrap lines to the appropriate length
   `"always"`, and
 - Resolve Global Modules (`prettier.resolveGlobalModules`): Allow the usage of non-default Prettier
@@ -468,8 +468,7 @@ Most Git functionality is outside of VS Code, however, I like these options to k
 
 ### SonarLint
 
-SonarLint rules need to be added (`sonarlint.rules`) -- see the
-[style guide](../../docs/style/README.md) for the full list of rules to enable.
+SonarLint rules need to be added; see above for instructions on how to pair with UA's SonarCloud.
 
 ### Jest
 
