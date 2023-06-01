@@ -226,7 +226,15 @@ code --install-extension SonarSource.sonarlint-vscode
 ```
 
 SonarLint maintains a large list of special rules to ensure code is bug-free and easily
-maintainable. For our current list of rules, see [the style guide](../../docs/style/README.md).
+maintainable. 
+
+You can connect it to UA's sonar ruleset by going to the command palette (`cmd/ctrl`-`shift`-`P`),
+searching for "connect to sonarcloud"; once you've connected, you can "update all project bindings"
+which will load in UA's sonar rulesets.  For more information, you can view the full
+[Java](https://sonarcloud.io/organizations/ualibweb/rules?activation=true&qprofile=AYgnZwN72OQqzs1gKQbL)
+and
+[TypeScript](https://sonarcloud.io/organizations/ualibweb/rules?activation=true&qprofile=AYgnb4h4mOVlLpmQaCd8)
+rulesets.
 
 #### [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 
