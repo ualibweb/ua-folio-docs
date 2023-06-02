@@ -2,7 +2,7 @@
 
 FOLIO runs a suite of Karate tests every night, written in the Gherkin language (based on
 Cucumber...yeah). These tests combine all modules together with zero mocking (see
-[testing](../../../docs/Testing.md) for more information) and are stored in
+[testing](Testing.md) for more information) and are stored in
 [folio-integration-tests](https://github.com/folio-org/folio-integration-tests).
 
 At its core, these tests are just API calls, but they are written in a way that is easy to read

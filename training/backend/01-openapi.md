@@ -144,6 +144,6 @@ Now, for the actual coding portion of this lesson:
 1. Test that everything works in Insomnia, curl, or your preferred rest client.
 1. Once everything is to your satisfaction, commit and push your changes. Create a pull request from
    this branch to your main branch and request someone review it.
-1. Optionally, complete [supplemental/api-doc](supplemental/api-doc.md) to see how we create
-   documentation for the API.
+1. Optionally, complete [docs/api-doc](../../docs/api-doc.md) to see how we create documentation for
+   the API.
 1. After a successful review and PR merge, move onto the next section: [02-testing](02-testing.md).

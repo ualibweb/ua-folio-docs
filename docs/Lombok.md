@@ -6,7 +6,7 @@ now as simple as `@Getter` or `@Data`.
 
 ## Features we use a lot
 
-- `@Log4j2` on a class adds a `log` object (see [Logging with Log4j2](log4j.md))
+- `@Log4j2` on a class adds a `log` object (see [Logging with Log4j2](Log4j.md))
 - `@Getter`/`@Setter` on a field adds a getter/setter
 - `@Getter`/`@Setter` on a class adds getters/setters for all fields
 - `@With` adds a "wither", which is like a setter but it creates a new instance (does not change the
@@ -23,7 +23,7 @@ now as simple as `@Getter` or `@Data`.
 ## What does it do behind the scenes?
 
 It sits before the compiler, generating code based on `@Annotations`. To see an example of what it
-does, run:
+does, clone [folio-training-backend](https://github.com/ualibweb/folio-training-backend) and run:
 
 ```sh
 mvn prepare-package -DskipTests

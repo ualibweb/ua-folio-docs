@@ -1,5 +1,9 @@
 # Using `api-doc`
 
+_This content is based on
+[folio-training-backend](https://github.com/ualibweb/folio-training-backend). Look at
+[training/backend/00-prereqs.md](../training/backend/00-prereqs.md) for more information._
+
 ## Objective
 
 After completing this section, you should be able to use

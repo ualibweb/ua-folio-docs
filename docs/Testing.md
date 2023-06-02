@@ -14,13 +14,13 @@
 
 ## Summary/TL;DR
 
-| Type        | Frameworks/Languages                                                        | Purpose/Scope                                                    | Written by         | Evaluated at        | Tutorial/more info                                               |
-| ----------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- | ---------------------------------------------------------------- |
-| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript         | Single function, no external resources                           | Developers         | Commit/pull request | [backend 2](../training/backend/02-testing.md)                   |
-| Integration | Backend: {JUnit/RestAssured/Mockito} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request | [backend 2](../training/backend/02-testing.md)                   |
-| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS         | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             | [backend supplement](../training/backend/supplemental/karate.md) |
-| Smoke       | Same as above                                                               | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             | [backend supplement](../training/backend/supplemental/karate.md) |
-| Acceptance  | TestRails                                                                   | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |                                                                  |
+| Type        | Frameworks/Languages                                                        | Purpose/Scope                                                    | Written by         | Evaluated at        | Tutorial/more info                             |
+| ----------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- | ---------------------------------------------- |
+| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript         | Single function, no external resources                           | Developers         | Commit/pull request | [backend 2](../training/backend/02-testing.md) |
+| Integration | Backend: {JUnit/RestAssured/Mockito} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request | [backend 2](../training/backend/02-testing.md) |
+| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS         | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             | [backend supplement](./Karate.md)              |
+| Smoke       | Same as above                                                               | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             | [backend supplement](./Karate.md)              |
+| Acceptance  | TestRails                                                                   | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |                                                |
 
 ## Introduction
 

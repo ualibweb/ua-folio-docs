@@ -4,7 +4,7 @@ To log information in Java, we use Log4j2 (as compared to something like `System
 log something in a class, simply add `@Log4j2` to the top of a class
 (`import lombok.extern.log4j.Log4j2;`) then you can use `log.info("something");` anywhere within the
 class. To see an example, take a look at
-`src/main/java/org/folio/sample/controller/BookController.java`.
+[folio-training-backend's `BookController`](https://github.com/ualibweb/folio-training-backend/blob/main/src/main/java/org/folio/sample/controller/BookController.java).
 
 ## Log levels
 
