@@ -4,7 +4,9 @@ Stripes, like what an [okapi has](Okapi.md), is the frontend for FOLIO. It's a f
 together all of the FOLIO UI modules into a single interface, combined with a number of tools and
 component libraries. This document will describe some of the main parts of Stripes that you will
 come across, what they do, and why we care about them. It is in no ways comprehensive; Stripes
-itself has [much more detailed docs](https://github.com/folio-org/stripes/tree/master/doc).
+itself has [much more detailed docs](https://github.com/folio-org/stripes/tree/master/doc) (in
+particular
+["How Stripes fits together"](https://github.com/folio-org/stripes/blob/master/doc/dev-guide.md#how-stripes-fits-together)).
 
 ## [stripes](https://github.com/folio-org/stripes)
 
@@ -55,3 +57,10 @@ This is a CLI package that is used for creating workspaces and running a local d
 ## [eslint-config-stripes](https://github.com/folio-org/eslint-config-stripes)
 
 This contains a centralized eslint configuration for all of Stripes modules.
+
+## [stripes-connect](https://github.com/folio-org/stripes-connect)
+
+This is the old way of making "smart" components that interact with Okapi/backend module APIs. Note
+that this library is _not_ for use in new modules; instead, `react-query` should be used. See
+[training/frontend/03-query](../training/frontend/03-query.md) and
+[training/frontend/04-mutations](../training/frontend/04-mutations.md) for more information.
