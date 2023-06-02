@@ -80,6 +80,11 @@ starting for important context.
      year scenario; we can just assume that `isPublishedInLeapYear` works as expected and only test
      the controller/service code.
 
+1. To run only one test at a time, you can run `mvn test jacoco:report -Dtest=YourTestClassHere`. If
+   you want to debug tests, or just run them easier, there is a "Testing" pane on the left side of
+   VS Code (you may need to right click the sidebar to enable the view). Please note, although the
+   IDE method allows interactive debugging, it can not compute coverage.
+
 1. Once you've reached 100% coverage, create a pull request and request a review on it.
 
 1. After a successful review and PR merge, move onto the next section:
