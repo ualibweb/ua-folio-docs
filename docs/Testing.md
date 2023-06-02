@@ -1,5 +1,28 @@
 # Software Testing
 
+- [Summary/TL;DR](#summarytldr)
+- [Introduction](#introduction)
+- [Why do we test?](#why-do-we-test)
+- [What kind of tests are there?](#what-kind-of-tests-are-there)
+  - [Unit testing](#unit-testing)
+  - [Integration testing](#integration-testing)
+  - [End-to-end testing](#end-to-end-testing)
+    - [Smoke testing](#smoke-testing)
+  - [Acceptance testing](#acceptance-testing)
+- [How does this look in FOLIO?](#how-does-this-look-in-folio)
+
+## Summary/TL;DR
+
+| Type        | Frameworks/Languages                                                | Purpose/Scope                                                    | Written by         | Evaluated at        |
+| ----------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- |
+| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript | Single function, no external resources                           | Developers         | Commit/pull request |
+| Integration | Backend: {JUnit/RestAssured} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request |
+| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             |
+| Smoke       | Same as above                                                       | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             |
+| Acceptance  | TestRails                                                           | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |
+
+## Introduction
+
 Software testing is as much of a philosophical exercise as a practical one, so it's really important
 that we try to approach testing with the right mindset, taking it from what many see as a boring and
 repetitive task to something that is valuable and rewarding.
@@ -84,13 +107,3 @@ nature and the fact that they are often written by the end user/consumer.
 Unit and integration tests are run very often, every time a module has a commit/pull request.
 End-to-end testing and smoke tests typically run every night, and acceptance testing is run as part
 of "Bug Fest," an event that happens as part of every major release (typically three per year).
-
-## Summary
-
-| Type        | Frameworks/Languages                                                | Purpose/Scope                                                    | Written by         | Evaluated at        |
-| ----------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- |
-| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript | Single function, no external resources                           | Developers         | Commit/pull request |
-| Integration | Backend: {JUnit/RestAssured} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request |
-| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             |
-| Smoke       | Same as above                                                       | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             |
-| Acceptance  | TestRails                                                           | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |
