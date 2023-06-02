@@ -13,13 +13,13 @@
 
 ## Summary/TL;DR
 
-| Type        | Frameworks/Languages                                                | Purpose/Scope                                                    | Written by         | Evaluated at        |
-| ----------- | ------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- |
-| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript | Single function, no external resources                           | Developers         | Commit/pull request |
-| Integration | Backend: {JUnit/RestAssured} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request |
-| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             |
-| Smoke       | Same as above                                                       | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             |
-| Acceptance  | TestRails                                                           | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |
+| Type        | Frameworks/Languages                                                        | Purpose/Scope                                                    | Written by         | Evaluated at        |
+| ----------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- |
+| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript         | Single function, no external resources                           | Developers         | Commit/pull request |
+| Integration | Backend: {JUnit/RestAssured/Mockito} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request |
+| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS         | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             |
+| Smoke       | Same as above                                                               | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             |
+| Acceptance  | TestRails                                                                   | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |
 
 ## Introduction
 
