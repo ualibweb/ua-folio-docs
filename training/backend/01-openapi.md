@@ -5,6 +5,10 @@
 After completing this section, you should be comfortable creating API endpoints in the OpenAPI
 specification and using them in the resulting Java Spring controller.
 
+## Goal
+
+Add a PUT endpoint to the application to allow overwriting a book's current data.
+
 ## Deliverables
 
 - A pull request containing an implementation of a PUT endpoint which accepts a book's data and

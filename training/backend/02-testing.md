@@ -13,6 +13,10 @@ After completing this section, you should:
 - be able to write integration tests in JUnit with RestAssured/Hamcrest
 - be able to achieve good coverage (80%+) in integration tests
 
+## Goal
+
+Write quality tests for our application.
+
 ## Deliverables
 
 - A pull request containing unit and integration tests for all code thus far. Minimum 80% coverage,
