@@ -76,10 +76,10 @@ Now, for the actual coding portion of this lesson:
 
 1. First, let's make a branch to keep these changes separate:
 
-```sh
-git checkout -b your-name-or-username-01-openapi
-git push origin
-```
+   ```sh
+   git checkout -b your-name-or-username-01-openapi
+   git push origin
+   ```
 
 1. Now, run `mvn generate-sources`. This will run the generator on the API schema.
 1. Open up `src/main/resources/api/api.yaml` and look at the contents. This is the OpenAPI
@@ -105,12 +105,12 @@ git push origin
    overwrite the book specified by `bookId` with the provided contents. The response should be the
    updated book with a 200. If no book exists with the given ID, respond with a 404.
 
-   1. <details>
+   <details>
       <summary>Hint 1</summary>
 
-      You will need a `requestBody` and `parameters` for the path.
+   You will need a `requestBody` and `parameters` for the path.
 
-      </details>
+   </details>
 
 1. Now, run `mvn clean generate-sources` to regenerate the code. You should see a new method in
    `BookApi`: `ResponseEntity<BookDTO> updateBook(UUID bookId, BookForCreationDTO bookForCreation)`
