@@ -1,6 +1,7 @@
 # Style Guides
 
 - [Prettier Configuration](#prettier-configuration)
+- [Quotes](#quotes)
 - [React](#react)
 - [SonarLint](#sonarlint)
 - [Pre-Commit Hooks](#pre-commit-hooks)
@@ -16,8 +17,19 @@ To use prettier on the codebase, you must have the following NPM modules globall
 your PATH:
 
 ```sh
-npm install -g prettier prettier-plugin-java @prettier/plugin-xml prettier-plugin-sql @apidevtools/swagger-cli
+npm install -g prettier prettier-plugin-java
 ```
+
+For frontend/Stripes work, you can drop this `.prettierrc` in your Stripes workspace folder as a
+whole and it will take effect across all projects inside.
+
+## Quotes
+
+Note that, for the frontend, we use single quotes; add this to the `.prettierrc` file with
+`"singleQuote": true`. This does not apply to JSX attributes (where double quotes should be) and for
+strings involving concatenation (where template literals should be used instead).
+
+For the backend, we use double quotes (as is Java standard).
 
 ## React
 

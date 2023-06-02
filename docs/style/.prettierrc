@@ -6,7 +6,5 @@
   "proseWrap": "always",
   "trailingComma": "all",
   "quoteProps": "consistent",
-  "bracketSameLine": false,
-  "xmlWhitespaceSensitivity": "ignore",
-  "language": "postgresql"
+  "bracketSameLine": false
 }
