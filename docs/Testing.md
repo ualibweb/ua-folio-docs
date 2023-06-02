@@ -10,6 +10,7 @@
     - [Smoke testing](#smoke-testing)
   - [Acceptance testing](#acceptance-testing)
 - [How does this look in FOLIO?](#how-does-this-look-in-folio)
+- [How do we evaluate tests?](#how-do-we-evaluate-tests)
 
 ## Summary/TL;DR
 
@@ -107,3 +108,26 @@ nature and the fact that they are often written by the end user/consumer.
 Unit and integration tests are run very often, every time a module has a commit/pull request.
 End-to-end testing and smoke tests typically run every night, and acceptance testing is run as part
 of "Bug Fest," an event that happens as part of every major release (typically three per year).
+
+## How do we evaluate tests?
+
+This is always a hard question, since by definition, we cannot test everything. We want to ensure
+that the code is sufficiently evaluated, but we also want to minimize development time and the
+number of tests. There are many ways to ensure we have the needed tests, and even entire fields of
+study dedicated to this, but here are a few general goals:
+
+- Touch every line (each line should be executed in a test)
+- Touch every branch (each branch should be executed in a test)
+- Handle any kind of edge/boundary cases
+  - For this, we usually divide the input up into groups based on its qualities and the context. For
+    example, for a number, it may be negative, zero, and positive.
+- Ensure invalid values are treated appropriately
+
+On a practical basis though, we can not measure much more than the line and branch coverage. As
+such, we look at those as the primary "grade" of a set of tests, assigning it a "coverage percent."
+FOLIO standards say this should be 80% or higher, however, we always want to strive for as high as
+is practical.
+
+Although this may seem like a high number, it is quite achievable. If you have trouble achieving it,
+it generally means that the code under test has quality issues and should be split into smaller
+pieces/refactored/etc.

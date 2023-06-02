@@ -142,5 +142,4 @@ Now, for the actual coding portion of this lesson:
    this branch to your main branch and request someone review it.
 1. Optionally, complete [supplemental/api-doc](supplemental/api-doc.md) to see how we create
    documentation for the API.
-1. After a successful review and PR merge, move onto the next section:
-   [02-integration-testing](02-integration-testing.md).
+1. After a successful review and PR merge, move onto the next section: [02-testing](02-testing.md).

@@ -44,10 +44,6 @@ First, be sure you have accounts created/access to the necessary repositories as
      authentication (not recommended), use `https://github.com/ualibweb/folio-training-backend.git`
      instead.
 
-   - `git checkout 00-prereqs`
-
-     This will checkout the starting code for this module.
-
    - `mvn test`
 
      This will ensure that everything is working on your local machine. If this fails, ensure you
