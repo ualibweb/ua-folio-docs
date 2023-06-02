@@ -14,13 +14,13 @@
 
 ## Summary/TL;DR
 
-| Type        | Frameworks/Languages                                                        | Purpose/Scope                                                    | Written by         | Evaluated at        |
-| ----------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- |
-| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript         | Single function, no external resources                           | Developers         | Commit/pull request |
-| Integration | Backend: {JUnit/RestAssured/Mockito} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request |
-| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS         | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             |
-| Smoke       | Same as above                                                               | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             |
-| Acceptance  | TestRails                                                                   | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |
+| Type        | Frameworks/Languages                                                        | Purpose/Scope                                                    | Written by         | Evaluated at        | Tutorial/more info                                               |
+| ----------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------ | ------------------- | ---------------------------------------------------------------- |
+| Unit        | Backend: {JUnit} in Java, Frontend: {Jest} in JavaScript/TypeScript         | Single function, no external resources                           | Developers         | Commit/pull request | [backend 2](../training/backend/02-testing.md)                   |
+| Integration | Backend: {JUnit/RestAssured/Mockito} in Java, Frontend: {Jest/RTL} in JS/TS | Multiple functions/higher level logic, external resources, React | Developers         | Commit/pull request | [backend 2](../training/backend/02-testing.md)                   |
+| End-to-end  | Backend: {Karate} in Cucumber/Gherkin, Frontend: {Cypress} in JS/TS         | Multiple modules interactions, runs a full FOLIO install         | Developers/QA team | Nightly             | [backend supplement](../training/backend/supplemental/karate.md) |
+| Smoke       | Same as above                                                               | Critical paths, runs a full FOLIO install                        | Developers/QA team | Nightly             | [backend supplement](../training/backend/supplemental/karate.md) |
+| Acceptance  | TestRails                                                                   | Ensure the final product meets the user's requirements           | QA team/end users  | Bug Fest            |                                                                  |
 
 ## Introduction
 
@@ -56,9 +56,10 @@ such as if a dependency changed, also known as regression testing).
 
 ## What kind of tests are there?
 
-There are many types of testing, each with a different goal. Everyone has a different view on what
-to call these, but here is my perspective from a bottom-up view (particularly as it applies to
-FOLIO):
+There are many types of testing, each with a different goal. As these progress, tests get larger,
+more complex, and more expensive/time-consuming to run, so the goals broaden each time. Everyone has
+a different view on what to call these, but here is my perspective from a bottom-up view
+(particularly as it applies to FOLIO):
 
 ### Unit testing
 
