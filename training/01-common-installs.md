@@ -1,5 +1,17 @@
 # Installs
 
+- [macOS Only](#macos-only)
+  - [Command Line Tools](#command-line-tools)
+  - [Homebrew](#homebrew)
+- [Windows Only](#windows-only)
+  - [Chocolatey](#chocolatey)
+  - [Install Git](#install-git)
+  - [Install Windows Terminal](#install-windows-terminal)
+- [For all platforms](#for-all-platforms)
+  - [Visual Studio Code](#visual-studio-code)
+  - [Setup Git](#setup-git)
+  - [REST client](#rest-client)
+
 ## macOS Only
 
 ### Command Line Tools

@@ -1,81 +1,69 @@
 # Rancher
 
-Our Rancher environment can be controlled at [this link](https://rancher.ci.folio.org/). The main
-wiki for interacting with Rancher is [here](https://wiki.folio.org/display/FOLIJET/How-To) (outdated,
-but still good reference, [here](https://dev.folio.org/faqs/how-to-get-started-with-rancher/)).  The actual deployed Rancher environment is at https://folio-dev-bama-diku.ci.folio.org/
+**Important note:
+[As of May 9, 2023](https://folio-project.slack.com/archives/C017RFAGBK2/p1683623956748919), Rancher
+environments are shut down for the weekends (from Friday at 5p CT until Sunday at 5:30p CT). The
+page will display a 502 error while it is down, however, all data/installations/configuration will
+be retained and available when it comes back up.**
 
-# THE BELOW INFORMATION IS OUTDATED DUE TO AN ENTIRELY REDESIGNED RANCHER INTERFACE AS OF 2022 USE [THIS WIKI](https://wiki.folio.org/display/FOLIJET/How-To) AS THE PRIMARY SOURCE OF INFORMATION
+Our Rancher environment allows cloud-based testing of FOLIO. Since this is in the cloud, it does not
+require the resources and hassles of a local Vagrant box.
 
-Please note, the instructions for "Building Backend" and "Building Frontend" are outdated/invalid
-(although most of the other information, such as building from a branch, is similar to what is here
-and/or currently accurate).
+Our rancher environment (with tenant `diku`) is deployed at
+https://folio-dev-bama-diku.ci.folio.org/; Okapi is available at
+https://folio-dev-bama-okapi.ci.folio.org/.
 
-## Installing/Updating a Module
+To configure the environment, please refer to
+[this wiki](https://wiki.folio.org/display/FOLIJET/How-To). A series of Jenkins jobs have been
+created to make deployment a breeze; common use cases are described below. Our cluster is
+`folio-dev`, project is `bama`. **For pipelines that request the admin password, ensure that you
+manually type `admin` in — the prefilled `••••••••` will not work.**
 
-Specific versions can be used by going to our "bama" rancher project, choosing "Apps", then
-selecting "Upgrade" on the applicable module. From there, you can specify repository, tag, and other
-options as needed.
+To view logs and see the status of pods/containers, use [this link](https://rancher.ci.folio.org/).
+Administration, however, should be done from the Jenkins jobs listed above.
 
-If something else needs to be changed from the current setup (e.g. port number), you can override
-the key found in the "Preview" at the bottom of the form.  For example, port can be changed with
-`service.containerPort`.
+## Common use cases
 
-## Docker Images
+These are all adapted from [the main wiki](https://wiki.folio.org/display/FOLIJET/How-To).
 
-### Main Docker Release Process
+### I want to deploy my Stripes/platform/UI work
 
-For Docker, whenever something is pushed to `master`, the `folioci` repository is updated (via
-Jenkins), resulting in something like `folioci/mod-calendar` and version numbers that contain
-SNAPSHOT/build numbers.
+1. Locally clone [platform-complete](https://github.com/folio-org/platform-complete)
+1. Checkout branch `bama-rancher` (or, if you want to do something else that should not interfere
+   with our main `diku` rancher, create a new branch based off of `bama-rancher`)
+1. Make your changes in the `package.json`, `stripes.config.js`, and anything else you need. If you
+   want to include work from a `ualibweb` fork, you can include Git URLs inside the `package.json`.
+1. **Delete `yarn.lock`**
+1. Run `yarn install`
+1. If needed, verify everything installed correctly with `yarn why`
+1. Push your changes
+1. Run the
+   [ui-bundle-deploy](https://jenkins-aws.indexdata.com/job/Rancher/job/Update/job/ui-bundle-deploy/build?delay=0sec)
+   job; ensure that you have `ui_bundle_build` checked.
 
-Whenever the release process is followed, `folioorg/mod-calendar` (or equivalent) will be updated
-with the new release. You can view tags of each on Docker Hub.
+### I want to deploy my backend module work
 
-### Branch Testing
+1. Ensure your changes are in a branch on the `folio-org` module (you may need to ask in #devops for
+   permission to push, if needed).
+1. Run the
+   [feature-backend-module-deploy](https://jenkins-aws.indexdata.com/job/Rancher/job/Update/job/feature-backend-module-deploy/build?delay=0sec)
+   job. Be sure to select the java 17 agent.
+   - If it does not show your branch, check the `refreshParameters` box and run it (leaving the rest
+     unchanged); after that completes, you can create a new job with the desired branch
+   - If you are changing things with the module descriptor/etc, you will likely want to check the
+     `reinstall` box.
+   - If you are changing permissions, run the
+     [update-user-permissions](https://jenkins-aws.indexdata.com/job/Rancher/job/Update/job/update-user-permissions/build?delay=0sec)
+     job
 
-To test a branch, you can go to Jenkins' scratch image and choose "Build Backend" pipeline. Starting
-a build here will grab a branch, build it, and make it available in https://docker.dev.folio.org/.
+### I want to create a new tenant
 
-You can see generated tags at https://docker.dev.folio.org/v2/mod-calendar/tags/list and reference
-these in Rancher with a repo like `docker.dev.folio.org/mod-calendar`.
+This is useful if you want to create a separate Rancher environment for a certain set of versions,
+for example testing how old a bug is, giving someone a certain environment, etc., where you do not
+want to use the main `diku` tenant.
 
-### Frontend Testing
-
-For this, you can branch `platform-complete` and edit `stripes-install.json` and other install files
-with applicable tags.  We have a dedicated branch `bama-rancher` for this purpose.  The first step
-is to get the branch built with
-[Jenkins](https://jenkins-aws.indexdata.com/job/folio-org/job/platform-complete/job/bama-rancher/)
-(note: Jenkins will automatically rebuild on push, however, if you did not update the platform but
-only modules which it uses, then you must manually trigger a build from Jenkins).  Once the branch
-is built, the
-[`BUILD-UI` Jenkins job](https://jenkins-aws.indexdata.com/job/scratch_environment/job/BUILD-UI/)
-should be manually built with parameters for our rancher and `platform-complete` branch.  This will
-produce a tag you can use in Rancher (listed at
-https://docker.dev.folio.org/v2/platform-complete/tags/list) with the specific build number
-included.  Once this is done, upgrade `platform-complete` like any other Rancher app.
-
-I am not certain that the `platform-complete` step is necessary -- it may be possible to simply
-start with the `BUILD-UI` step.
-
-## Making Okapi Aware
-
-For Okapi-related changes, such as updating the module description, use something like this in your
-local terminal:
-
-```sh
-docker run --rm -e TENANT_ID=diku -e OKAPI_URL=https://bama-okapi.ci.folio.org \
-  -e MODULE_NAME='mod-calendar' -e MODULE_VERSION='2.0.0-SNAPSHOT' \
-  docker.dev.folio.org/folio-okapi-registration
-```
-
-If permissions are changed, you can fix them:
-
-```sh
-docker run --rm -e TENANT_ID=diku -e ADMIN_USER=diku_admin -e ADMIN_PASSWORD=admin \
-  -e OKAPI_URL=https://bama-okapi.ci.folio.org \
-  folioci/bootstrap-superuser
-```
-
-Details of these scripts are in their source code:
-https://github.com/folio-org/folio-helm/blob/master/docker/folio-okapi-registration/create-deploy.sh
-
+To do this, use the
+[create-tenant](https://jenkins-aws.indexdata.com/job/Rancher/job/Update/job/create-tenant/build?delay=0sec)
+job. Once you are done with the tenant, be sure to run the
+[delete-tenant](https://jenkins-aws.indexdata.com/job/Rancher/job/Update/job/delete-tenant/build?delay=0sec)
+job.
