@@ -8,11 +8,7 @@ First, you will need the following accounts:
   [this link](https://issues.folio.org/secure/Dashboard.jspa) using your `@ua.edu` email address
 - FOLIO slack -- sign up using your `@ua.edu` email address at
   [this link](https://slack-invitation.folio.org/)
-- GitHub account, if you do not have one
-  - It is recommended to setup SSH authentication with GitHub, if you have not done so already. This
-    can be done with
-    [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-    (particularly the "generating" and "adding" sections).
+- GitHub account, if you do not have one.
 
 Once you have these accounts, we'll need to grant you access to our repositories and workspaces:
 
@@ -24,7 +20,7 @@ Once you have these accounts, we'll need to grant you access to our repositories
 
 In the FOLIO Slack, the following channels may be of interest:
 
-- #bama -- our channel
+- **#bama -- our channel**
 - #development -- general development discussion
 - #devops -- discussion of anything DevOps, mainly configuration with GitHub and build systems
 - #folio-general -- general discussion of the FOLIO project

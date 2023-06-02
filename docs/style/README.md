@@ -1,5 +1,10 @@
 # Style Guides
 
+- [Prettier Configuration](#prettier-configuration)
+- [React](#react)
+- [SonarLint](#sonarlint)
+- [Pre-Commit Hooks](#pre-commit-hooks)
+
 FOLIO as a whole uses a two-space indentation style and the following style guide:
 https://dev.folio.org/guidelines/contributing/#coding-style.
 
@@ -36,7 +41,7 @@ CSS classes should be written in `camelCase`.
 
 You can connect it to UA's sonar ruleset by going to the command palette (`cmd/ctrl`-`shift`-`P`),
 searching for "connect to sonarcloud"; once you've connected, you can "update all project bindings"
-which will load in UA's sonar rulesets.  For more information, you can view the full
+which will load in UA's sonar rulesets. For more information, you can view the full
 [Java](https://sonarcloud.io/organizations/ualibweb/rules?activation=true&qprofile=AYgnZwN72OQqzs1gKQbL)
 and
 [TypeScript](https://sonarcloud.io/organizations/ualibweb/rules?activation=true&qprofile=AYgnb4h4mOVlLpmQaCd8)

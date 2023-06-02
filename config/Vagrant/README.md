@@ -2,18 +2,22 @@
 
 ## Before you get started
 
-***Vagrant boxes can not run on ARM Macs (M1/M2 chips)***
+**_Vagrant boxes can not run on ARM Macs (M1/M2 chips)_**
 
-These Vagrant boxes are large virtual machines which can run an entire instance of FOLIO.  It can
-be convenient for certain large-scale FOLIO development to have this large setup of modules
-available to you, however, these virtual machines are _very_ demanding (recommended at least 32 GB
-of RAM and 1-2 CPU cores decidated to it), so they're generally best on a very limited basis.
+These Vagrant boxes are large virtual machines which can run an entire instance of FOLIO. It can be
+convenient for certain large-scale FOLIO development to have this large setup of modules available
+to you, however, these virtual machines are _very_ demanding (recommended at least 32 GB of RAM and
+1-2 CPU cores decidated to it), so they're generally best on a very limited basis.
 
-For most circumstances, it is easier and recommended to use our Rancher environment.  This
+For most circumstances, it is easier and recommended to use our Rancher environment. This
 environment is available in the cloud and contains a large number of tools to make deployment much
-easier than if it was on your local machine.  This, however, comes at the tradeoff that restarts
-and installations may take longer, and some debugging features are not available.  For more on
-Rancher, please check out [our docs](/docs/Rancher.md)
+easier than if it was on your local machine. This, however, comes at the tradeoff that restarts and
+installations may take longer, and some debugging features are not available. For more on Rancher,
+please check out [our docs](/docs/Rancher.md)
+
+## Prerequisites
+
+You will need to [download and install VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
 ## Introduction
 
@@ -51,7 +55,8 @@ There are a few other Vagrant boxes that may be of interest:
 - frontend Stripes is forwarded to **nonstandard** `localhost:3001` (to prevent conflicts with local
   Stripes instances on :3000)
 - backend Okapi is forwarded to `localhost:9130`
-- Vagrant's Postgres is forwarded to **nonstandard** `localhost:5433` (to prevent conflicts with local)
+- Vagrant's Postgres is forwarded to **nonstandard** `localhost:5433` (to prevent conflicts with
+  local)
 - Vagrant's Kafka is forwarded to **nonstandard-ish** `localhost:29092`
 
 ## Basic Commands
@@ -108,4 +113,5 @@ Then, there's a bug that prevents Maven from working correctly. Follow
 [these instructions](https://github.com/m-thirumal/installation_guide/blob/39187a6e9acff22b6800c7a407370478f1df5a77/maven/upgrade_maven.md)
 to fix that, then you should be good to go.
 
-There's a ticket, [FOLIO-3714](https://issues.folio.org/browse/FOLIO-3714?filter=-2), to get this fixed.
+There's a ticket, [FOLIO-3714](https://issues.folio.org/browse/FOLIO-3714?filter=-2), to get this
+fixed.

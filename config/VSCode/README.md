@@ -1,10 +1,62 @@
 # Visual Studio Code Setup
 
+- [Extensions](#extensions)
+  - [Java Build/Intellisense](#java-buildintellisense)
+    - [Extension Pack for Java](#extension-pack-for-java)
+    - [RAML](#raml)
+    - [Mustache](#mustache)
+    - [Lombok Annotations Support](#lombok-annotations-support)
+    - [openapi-lint](#openapi-lint)
+  - [Frontend JS/TS](#frontend-jsts)
+    - [ESLint](#eslint)
+    - [HTML CSS Support](#html-css-support)
+    - [Babel JavaScript](#babel-javascript)
+    - [Import Cost](#import-cost)
+    - [React PropTypes Intellisense](#react-proptypes-intellisense)
+  - [Tools](#tools)
+    - [Vagrant](#vagrant)
+    - [Prettier](#prettier)
+    - [Prettier ESLint](#prettier-eslint)
+    - [Java Prettier Formatter](#java-prettier-formatter)
+    - [Docker](#docker)
+  - [Version Control](#version-control)
+    - [Git History](#git-history)
+    - [Git Graph](#git-graph)
+  - [Testing/Quality](#testingquality)
+    - [Coverage Gutters](#coverage-gutters)
+    - [SonarLint](#sonarlint)
+    - [Code Spell Checker](#code-spell-checker)
+    - [Cucumber (Gherkin) Full Support](#cucumber-gherkin-full-support)
+    - [Karate Runner](#karate-runner)
+    - [Jest](#jest)
+  - [Misc. Languages](#misc-languages)
+    - [Rainbow CSV](#rainbow-csv)
+    - [YAML plus JSON](#yaml-plus-json)
+    - [XML](#xml)
+    - [YAML](#yaml)
+  - [Other](#other)
+    - [Better Comments](#better-comments)
+    - [Overtype](#overtype)
+    - [Selected Lines Count](#selected-lines-count)
+    - [Word Count](#word-count)
+    - [Insert Nums](#insert-nums)
+    - [Change Case](#change-case)
+- [Configuration](#configuration)
+  - [Formatting Options](#formatting-options)
+  - [File Explorer Setup](#file-explorer-setup)
+  - [Java Setup](#java-setup)
+  - [Editor Configuration](#editor-configuration)
+  - [Terminal Configuration](#terminal-configuration)
+  - [Git Config](#git-config)
+  - [SonarLint](#sonarlint-1)
+  - [Jest](#jest-1)
+- [Other Customization](#other-customization)
+
 Visual Studio Code (VS Code) is an extremely powerful text editor and, with the right extensions,
 can offer functionality similar to a full-blown IDE (such as Eclipse or IntelliJ) in a much leaner
-and customizable manner.  **These are all opinionated configuration options, so if you have
-different preferences, would prefer to not use some extensions, or anything else, feel free to do
-so.  If you find something you think everyone on the team should have, feel free to add it here.**
+and customizable manner. **These are all opinionated configuration options, so if you have different
+preferences, would prefer to not use some extensions, or anything else, feel free to do so. If you
+find something you think everyone on the team should have, feel free to add it here.**
 
 [Here](https://code.visualstudio.com/docs/introvideos/basics) is a quick guide to getting started
 with VS Code -- it is similar to most other text editors and is designed to be heavily
@@ -228,11 +280,11 @@ code --install-extension SonarSource.sonarlint-vscode
 ```
 
 SonarLint maintains a large list of special rules to ensure code is bug-free and easily
-maintainable. 
+maintainable.
 
 You can connect it to UA's sonar ruleset by going to the command palette (`cmd/ctrl`-`shift`-`P`),
 searching for "connect to sonarcloud"; once you've connected, you can "update all project bindings"
-which will load in UA's sonar rulesets.  For more information, you can view the full
+which will load in UA's sonar rulesets. For more information, you can view the full
 [Java](https://sonarcloud.io/organizations/ualibweb/rules?activation=true&qprofile=AYgnZwN72OQqzs1gKQbL)
 and
 [TypeScript](https://sonarcloud.io/organizations/ualibweb/rules?activation=true&qprofile=AYgnb4h4mOVlLpmQaCd8)
@@ -472,11 +524,12 @@ SonarLint rules need to be added; see above for instructions on how to pair with
 
 ### Jest
 
-By default, Jest uses an extremely over-eager method for deciding when to when tests.  This causes
+By default, Jest uses an extremely over-eager method for deciding when to when tests. This causes
 most workspaces to become nearly unusable, especially at launch, due to the frequency and volume of
 tests.
 
-- Jest: Auto Run (`jest.autoRun`) should be set to `{ "watch": false, "onSave": "test-file" }` in the settings JSON
+- Jest: Auto Run (`jest.autoRun`) should be set to `{ "watch": false, "onSave": "test-file" }` in
+  the settings JSON
 
 ## Other Customization
 
