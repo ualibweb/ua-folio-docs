@@ -3,6 +3,8 @@
 **This tutorial does not require any setup if the online editor is used and can be completed
 separately/before any other training/accounts/etc.**
 
+If you already comfortable with basic React and TypeScript, skip this section.
+
 ## Objective
 
 After completing this section, you should be comfortable creating modern React components, managing
