@@ -21,6 +21,8 @@ Once you have these accounts, we'll need to grant you access to our repositories
 In the FOLIO Slack, the following channels may be of interest:
 
 - **#bama -- our channel**
+- **#bama-internal -- team-wide discussions, requires an invite**; be sure to turn notifications on
+  for all messages!
 - #development -- general development discussion
 - #devops -- discussion of anything DevOps, mainly configuration with GitHub and build systems
 - #folio-general -- general discussion of the FOLIO project
