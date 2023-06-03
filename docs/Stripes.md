@@ -62,5 +62,5 @@ This contains a centralized eslint configuration for all of Stripes modules.
 
 This is the old way of making "smart" components that interact with Okapi/backend module APIs. Note
 that this library is _not_ for use in new modules; instead, `react-query` should be used. See
-[training/frontend/03-query](../training/frontend/03-query.md) and
-[training/frontend/04-mutations](../training/frontend/04-mutations.md) for more information.
+[training/frontend/04-query](../training/frontend/04-query.md) and
+[training/frontend/05-mutations](../training/frontend/05-mutations.md) for more information.

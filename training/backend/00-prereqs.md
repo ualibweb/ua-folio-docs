@@ -44,6 +44,8 @@ First, be sure you have accounts created/access to the necessary repositories as
      authentication (not recommended), use `https://github.com/ualibweb/folio-training-backend.git`
      instead.
 
+     Now, `cd` into the folder and:
+
    - `mvn test`
 
      This will ensure that everything is working on your local machine. If this fails, ensure you
