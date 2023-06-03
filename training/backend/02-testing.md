@@ -85,7 +85,8 @@ starting for important context.
    VS Code (you may need to right click the sidebar to enable the view). Please note, although the
    IDE method allows interactive debugging, it can not compute coverage.
 
-1. Once you've reached 100% coverage, create a pull request and request a review on it.
+1. Once you've reached a sufficient amount of coverage, or you want to ask your trainer for
+   insights/reviews, create a pull request and request a review on it.
 
 1. After a successful review and PR merge, move onto the next section:
    [03-databases](03-databases.md).
