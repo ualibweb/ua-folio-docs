@@ -1,4 +1,4 @@
-# Backend Training — Prerequisites
+# Frontend Training — Prerequisites
 
 ## Objective
 
@@ -119,7 +119,7 @@ First, be sure you have accounts created/access to the necessary repositories as
 
 1. Now, you have two choices:
 
-- If you are not familiar with React (and functional components/hooks!) or TypeScript basics,
-  complete the steps in [01-basics](./01-basics).
-- If you are comfortable with React, functional components, and the basics of TypeScript, jump right
-  into [02-stripes-components](./02-stripes-components.md)!
+   - If you are not familiar with React (and functional components/hooks!) or TypeScript basics,
+     complete the steps in [01-basics](./01-basics.md).
+   - If you are comfortable with React, functional components, and the basics of TypeScript, jump
+     right into [02-stripes-components](./02-stripes-components.md)!
