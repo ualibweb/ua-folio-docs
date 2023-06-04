@@ -301,13 +301,16 @@ for `GET /location-units/institutions`, which is all we will be using:
     // at top of file, before the tests
     jest.mock("../hooks/useInstitutions");
 
-    // in the test
+    // in the test, as needed
     (useInstitutions as any).mockReturnValue({ isSuccess: false });
     (useInstitutions as any).mockReturnValue({ isSuccess: true, {data: ...} });
     ```
 
     The `as any` here is necessary since otherwise TypeScript thinks `useInstitutions` is the normal
     hook, so it won't know where `mockReturnValue` comes from and will think it is invalid.
+
+    There are many different ways to mock modules, see
+    [this article](https://www.emgoto.com/mocking-with-jest/) for more examples.
 
 1.  After you have gotten sufficient coverage, a successful review, and PR merge, move onto the next
     section: [05-mutations](05-mutations.md).
