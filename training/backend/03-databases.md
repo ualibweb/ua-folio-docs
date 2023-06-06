@@ -53,7 +53,7 @@ us to manage all this with ease.
    Suppose we now need to add a column for if the book is available or not. To do this, we can
    define a new changeset (such as `0010-add-available-column.yaml`) with an
    [addColumn change](https://docs.liquibase.com/change-types/add-column.html), type `boolean`, and
-   `defaultValue` `true` (for any books that may already be in the database).
+   `defaultValueBoolean` `true` (for any books that may already be in the database).
 
 1. To re-run liquibase, we will need to simulate the module's install (normally this would be
    handled by [Okapi](../../docs/Okapi.md)) with this request while the module is running:"
