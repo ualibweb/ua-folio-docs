@@ -18,6 +18,14 @@ Once you have these accounts, we'll need to grant you access to our repositories
 - In the same #devops channel, a request should also be made to give your Jira user permissions, too
 - Steven will need to invite you to the UA libraries Slack and the `ualibweb` GitHub organization
 
+Also, please add profile pictures to the following (they don't have to be yourself, but anything
+besides the default), so we can tell each other apart:
+
+- UA Slack
+- FOLIO Slack
+- FOLIO Jira/Confluence
+- GitHub
+
 In the FOLIO Slack, the following channels may be of interest:
 
 - **#bama -- our channel**
