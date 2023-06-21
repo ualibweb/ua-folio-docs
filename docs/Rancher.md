@@ -4,7 +4,8 @@
 [As of May 9, 2023](https://folio-project.slack.com/archives/C017RFAGBK2/p1683623956748919), Rancher
 environments are shut down for the weekends (from Friday at 5p CT until Sunday at 5:30p CT). The
 page will display a 502 error while it is down, however, all data/installations/configuration will
-be retained and available when it comes back up.**
+be retained and available when it comes back up.  If you need to use the environment during this
+time, see [this page](https://wiki.folio.org/display/FOLIJET/Manage+start-stop-project+Jenkins+job)**
 
 Our Rancher environment allows cloud-based testing of FOLIO. Since this is in the cloud, it does not
 require the resources and hassles of a local Vagrant box.
