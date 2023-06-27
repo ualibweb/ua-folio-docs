@@ -2,10 +2,10 @@
 
 **Important note:
 [As of May 9, 2023](https://folio-project.slack.com/archives/C017RFAGBK2/p1683623956748919), Rancher
-environments are shut down for the weekends (from Friday at 5p CT until Sunday at 5:30p CT). The
-page will display a 502 error while it is down, however, all data/installations/configuration will
-be retained and available when it comes back up.  If you need to use the environment during this
-time, see
+environments are shut down every night (7p CT until 12a CT) and for the weekends (from Friday at 5p
+CT until Sunday at 5:30p CT). The page will display a 502 error while it is down, however, all
+data/installations/configuration will be retained and available when it comes back up.  If you need
+to use the environment during this time, see
 [this page](https://wiki.folio.org/display/FOLIJET/Manage+start-stop-project+Jenkins+job);
 if you are working near the end of the window, you can use
 [this pipeline](https://jenkins-aws.indexdata.com/job/Rancher/job/manage-do-not-scale-label/) to
