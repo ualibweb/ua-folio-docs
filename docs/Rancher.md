@@ -9,8 +9,7 @@ to use the environment during this time, see
 [this page](https://wiki.folio.org/display/FOLIJET/Manage+start-stop-project+Jenkins+job);
 if you are working near the end of the window, you can use
 [this pipeline](https://jenkins-aws.indexdata.com/job/Rancher/job/manage-do-not-scale-label/) to
-prevent the environment from being shut off.  Please note, after either of these, be sure to shut
-the environment back off (and remove the label as applicable)!**
+prevent the environment from being shut off.**
 
 Our Rancher environment allows cloud-based testing of FOLIO. Since this is in the cloud, it does not
 require the resources and hassles of a local Vagrant box.
