@@ -1,0 +1,15 @@
+NOTE - I am putting these here because I do not want to work on the FOLIO central git until done. 
+
+Bursar Export User Docs
+
+1. The Bursar export function can be found under Settings - > Fees/Fines -> Transfer Criteria
+
+What is the Bursar Export? The Bursar Export BEf)function in FOLIO is intended for a library to create a custom export file for fees and fines, 
+to be used by their college/university’s financial offices. The BEf allows libraries to create a file that is extremely specific to their needs, 
+with custom creations dn manipulation of your export file format, allowing:
+
+* Custom headers
+* Custom spacing between columns
+* Custom columns composed of any number of data choices
+* Tool supports the customization of line spacing, when new lines occur, the addition of any number or kind of text or integers a column, or column spacer, or header, or even appeneded to the data itself.  
+* The BEf offers extreme customization options, because each institution’s financial offices require often very different, and very specific files to be ingested by their financial systems, and are usually intended as machine-readable only. Therefore, the BEf allow for every single character space to be manipulated until you have a format/template that works with your institution.
