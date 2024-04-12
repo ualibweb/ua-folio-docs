@@ -11,5 +11,7 @@ with custom creations dn manipulation of your export file format, allowing:
 * Custom headers
 * Custom spacing between columns
 * Custom columns composed of any number of data choices
-* Tool supports the customization of line spacing, when new lines occur, the addition of any number or kind of text or integers a column, or column spacer, or header, or even appeneded to the data itself.  
-* The BEf offers extreme customization options, because each institution’s financial offices require often very different, and very specific files to be ingested by their financial systems, and are usually intended as machine-readable only. Therefore, the BEf allow for every single character space to be manipulated until you have a format/template that works with your institution.
+* Tool supports the customization of line spacing, when new lines occur, the addition of any number or kind of text or integers a column, 
+  or column spacer, or header, or even appeneded to the data itself.  
+* The BEf offers extreme customization options, because each institution’s financial offices require often very different, 
+  and very specific files to be ingested by their financial systems, and are usually intended as machine-readable only. Therefore, the BEf allow for every single character space to be manipulated until you have a format/template that works with your institution.
