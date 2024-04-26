@@ -94,7 +94,7 @@ and RTL packages.
 
    ```tsx
    import React from "react";
-   import { render } from "@testing-library/react";
+   import { render } from "@folio/jest-config-stripes/testing-library/react";
    import { Debug } from "./Debug";
 
    describe("Debug", () => {
