@@ -26,6 +26,22 @@ Write quality tests for our application.
 This section will focus on testing; please read the [testing](../../docs/Testing.md) document before
 starting for important context.
 
+## Notes
+
+Typically, most applications would import directly from `jest` and `@testing-library/react` as needed,
+however, for FOLIO applications, we want to use the version re-exported from
+`@folio/jest-config-stripes`. This additional layer ensures that every FOLIO module uses the same
+versions, ensuring compatability and uniformity.
+
+This looks like:
+```diff
+-import { render } from '@testing-library/react';
++import { render } from '@folio/jest-config-stripes/testing-library/react';
+```
+
+Besides the import change, everything else should work just as you would expect with the regular `jest`
+and RTL packages.
+
 ## Steps
 
 1. First, let's make a branch to keep these changes separate:
