@@ -1,4 +1,4 @@
-# Frontend Training – Testing
+# Frontend Training – React Query
 
 ## Objective
 
