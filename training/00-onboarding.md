@@ -1,50 +1,75 @@
 # Onboarding
 
+_Last reviewed: September 2026_
+
+## Accounts you need
+
 First, you will need the following accounts:
 
-- `@ua.edu` email address -- temporary credentials for this should have been sent to your crimson
-  email once you were hired. If you cannot find it, search for something from "OnBase"
-- FOLIO Jira/Confluence account -- sign up at
-  [this link](https://issues.folio.org/secure/Dashboard.jspa) using your `@ua.edu` email address
-- FOLIO slack -- sign up using your `@ua.edu` email address at
-  [this link](https://slack-invitation.folio.org/)
-- GitHub account, if you do not have one.
+- **`@ua.edu` email address**: temporary credentials should have been sent to your Crimson email
+  when you were hired. If you can't find them, search your inbox for a message from "OnBase".
+- **FOLIO Atlassian account (Jira + Confluence wiki)**: FOLIO's issue tracker and wiki share one
+  account. Go to [FOLIO Jira](https://folio-org.atlassian.net/secure/Dashboard.jspa), choose
+  **Sign up**, and use your `@ua.edu` address. The same login works for Jira and the wiki.
+- **FOLIO Slack**: sign up with your `@ua.edu` address at
+  [slack-invitation.folio.org](https://slack-invitation.folio.org/).
+- **GitHub account**, if you don't already have one. Students should also claim the
+  [GitHub Student Developer Pack](https://education.github.com/pack).
 
-Once you have these accounts, we'll need to grant you access to our repositories and workspaces:
+## Access requests
 
-- A current member of the team should make a request in the FOLIO #devops channel to add your GitHub
-  account to `folio-org`'s Bama team (note, it is required that a link to the GitHub profile is
-  given, to prevent typos)
-- In the same #devops channel, a request should also be made to give your Jira user permissions, too
-- Steven will need to invite you to the UA libraries Slack and the `ualibweb` GitHub organization
+Once you have these accounts, the team needs to grant you access to our repositories and
+workspaces:
 
-Also, please add profile pictures to the following (they don't have to be yourself, but anything
-besides the default), so we can tell each other apart:
+- A current team member posts a request in the FOLIO Slack `#folio-devops` channel to add your
+  GitHub account to `folio-org`'s **Bama** team. Include a link to your GitHub profile, not just
+  your username, to prevent typos.
+- In the same `#folio-devops` channel, they also request Jira permissions for your Atlassian user.
+- The team lead invites you to the **UA Libraries Slack** and the **`ualibweb`** GitHub
+  organization.
+
+## Profile pictures
+
+Please add a profile picture to each of these (it doesn't have to be your face, just anything
+besides the default) so we can tell each other apart:
 
 - UA Slack
 - FOLIO Slack
-- FOLIO Jira/Confluence
+- FOLIO Atlassian (Jira/Confluence)
 - GitHub
 
-In the FOLIO Slack, the following channels may be of interest:
+## FOLIO Slack channels
 
-- **#bama -- our channel**
-- **#bama-internal -- team-wide discussions, requires an invite**; be sure to turn notifications on
-  for all messages!
-- #development -- general development discussion
-- #devops -- discussion of anything DevOps, mainly configuration with GitHub and build systems
-- #folio-general -- general discussion of the FOLIO project
-- #folio-spring-base -- information for the Spring Way backend framework
-- #hosted-reference-envs -- discussion and information about the reference environments, such as
-  https://folio-snapshot.dev.folio.org/. Very useful when things are down/broken
-- #random -- off topic discussion
-- #releases -- for announcements of module and project releases
-- #stripes -- general chat for the Stripes frontend framework
-- #stripes-architecture -- discussion about the high-level architecture and direction of the Stripes
-  frontend framework
-- #stripes-updates -- announcements for the Stripes frontend framework
-- #support -- general place for most simple FOLIO questions
-- #tech-council -- for when the technical council decides things
-- #ux -- general discussion for user interface design, absolutely great place to discuss design
-  choices (choosing where buttons should go, what kind of wording/display layout is most
-  appropriate, etc)
+- **`#bama`**: our team's public channel
+- `#folio-development`: general development discussion
+- `#folio-devops`: GitHub access, CI/build systems, and infrastructure requests
+- `#folio-general`: general discussion of the FOLIO project
+- `#folio-spring-base`: the Spring Way backend framework
+- `#folio-hosted-reference-envs`: status of the shared reference environments, such as the
+  [Eureka snapshot](https://folio-etesting-snapshot-diku.ci.folio.org/). Very useful when things
+  are down or broken.
+- `#folio-rancher-support`: Rancher and Eureka environments (the Eureka snapshot and sprint-testing
+  environments are supported here)
+- `#random`: off-topic discussion
+- `#folio-releases`: announcements of module and platform releases
+- `#folio-stripes`: general chat about the Stripes frontend framework
+- `#folio-stripes-architecture`: high-level architecture and direction of Stripes
+- `#folio-stripes-updates`: announcements for Stripes
+- `#folio-support`: a good place for simple FOLIO questions
+- `#folio-tech-council`: Technical Council decisions
+- `#folio-ux`: user interface design. A great place to get feedback on design choices, like where a
+  button should go or what wording fits best.
+
+> **Tip:** This is only a starting list. To see every public channel, press
+> <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> on
+> macOS), or click **Channels → Browse channels** in the sidebar. Private channels such as
+> **`#bama-internal`** (team-wide discussions) only appear once you're invited; when you join it,
+> turn on notifications for all messages.
+
+## Useful references
+- [What is Eureka?](../docs/Eureka.md): the platform FOLIO runs on today
+- [dev.folio.org](https://dev.folio.org/): the official FOLIO developer documentation
+
+## Next step
+
+Continue to [01-common-installs](01-common-installs.md).
