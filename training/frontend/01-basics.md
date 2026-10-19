@@ -1,9 +1,11 @@
 # Frontend Training — React Basics
 
+_Last reviewed: September 2026_
+
 **This tutorial does not require any setup if the online editor is used and can be completed
 separately/before any other training/accounts/etc.**
 
-If you already comfortable with basic React and TypeScript, skip this section.
+If you are already comfortable with basic React and TypeScript, skip this section.
 
 ## Objective
 
@@ -48,12 +50,12 @@ we want you to use the official React tutorial, and then we will build on that.
    `package.json`:
 
    ```json5
-   "typescript": "^4.5.4",
-   "@types/react": "^18.0.0"
+   "typescript": "^5.0.0",
+   "@types/react": "^18.2.0",
+   "@types/react-dom": "^18.2.0"
    ```
 
-   If you are not using CodeSandbox, you will need to run `npm install` to install these new
-   dependencies.
+   If you are not using CodeSandbox, run `npm install` to install these new dependencies.
 
    Next, add a `tsconfig.json` file to the root of your project. This file tells TypeScript how to
    compile your code.
@@ -63,12 +65,14 @@ we want you to use the official React tutorial, and then we will build on that.
      "compilerOptions": {
        "outDir": "build/dist",
        "module": "esnext",
-       "target": "es5",
-       "lib": ["es6", "dom"],
+       "target": "es2020",
+       "lib": ["es2020", "dom", "dom.iterable"],
        "sourceMap": true,
        "allowJs": true,
-       "jsx": "react",
-       "moduleResolution": "node",
+       "jsx": "react-jsx",
+       "moduleResolution": "bundler",
+       "esModuleInterop": true,
+       "skipLibCheck": true,
        "rootDir": "src",
        "strict": true
      }
@@ -103,14 +107,15 @@ we want you to use the official React tutorial, and then we will build on that.
    - Add types to the `useState` hook (if you are using it) by passing in the type as a generic
      - For example, `useState(0)` would become `useState<number>(0)`.
 
-1. As a final task, convert callback functions inside components to `useCallback`. This is not
-   TypeScript related, however, it improves React performance. See
-   [the docs](https://react.dev/reference/react/useCallback) for more information; this is typically
-   straightforward and just involves wrapping your `function`s in `useCallback` and adding a list of
-   dependencies.
+1. As a final exercise, try wrapping the callbacks you pass to child components in `useCallback`.
+   This isn't TypeScript related; it keeps a function's identity stable between renders, which
+   matters when a child is memoized or a function is a hook dependency. You'll see it often in
+   FOLIO code. It isn't needed for every function, though; see
+   [the docs](https://react.dev/reference/react/useCallback) for when it helps. The main things to
+   practice are wrapping a function and getting its dependency list right.
 
 1. We recommend reading through some of the other articles on the React site, especially
-   ["Thinking in React"](https://reactjs.org/docs/thinking-in-react).
+   ["Thinking in React"](https://react.dev/learn/thinking-in-react).
 
 1. Now that you know more about React, we can start using it for FOLIO. The next section,
    [02-stripes-components](./02-stripes-components.md), will introduce you to the Stripes framework

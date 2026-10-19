@@ -1,4 +1,6 @@
-# Frontend Training – Testing
+# Frontend Training — Testing
+
+_Last reviewed: September 2026_
 
 ## Objective
 
@@ -28,46 +30,41 @@ starting for important context.
 
 ## Notes
 
-Typically, most applications would import directly from `jest` and `@testing-library/react` as needed,
-however, for FOLIO applications, we want to use the version re-exported from
-`@folio/jest-config-stripes`. This additional layer ensures that every FOLIO module uses the same
-versions, ensuring compatability and uniformity.
+Most applications import directly from `@testing-library/react` and friends. FOLIO modules
+instead use the versions re-exported from `@folio/jest-config-stripes`. This extra layer makes
+every FOLIO module use the same versions (currently Jest 29+ and React Testing Library 14+),
+ensuring compatibility and uniformity.
 
 This looks like:
+
 ```diff
--import { render } from '@testing-library/react';
-+import { render } from '@folio/jest-config-stripes/testing-library/react';
+-import { render, screen } from '@testing-library/react';
+-import userEvent from '@testing-library/user-event';
++import { render, screen } from '@folio/jest-config-stripes/testing-library/react';
++import userEvent from '@folio/jest-config-stripes/testing-library/user-event';
 ```
 
-Besides the import change, everything else should work just as you would expect with the regular `jest`
-and RTL packages.
+Besides the import change, everything works just as it does with the regular Jest and RTL
+packages. `describe`, `it`, `expect`, and `jest` are globals, so they don't need importing.
 
 ## Steps
 
-1. First, let's make a branch to keep these changes separate:
+1. First, create a branch for this lesson (see [Git workflow](../02-git-workflow.md)):
 
    ```sh
-   git checkout -b your-name-or-username-03-testing
-   git push origin
+   git switch <username>-base
+   git pull
+   git switch -c <username>-03-testing
+   git push -u origin <username>-03-testing
    ```
 
 1. With testing, and JS testing in particular, there are a lot of frameworks and libraries that work
-   together, so let's take a minute to define some. Jest is the main tool we use for frontend
-   testing; it provides a system for running tests and mocking other modules. It does this using
-   Jasmine, a testing framework that provides the `describe`, `it`, and `expect` functions for
-   assertions. Finally, React Testing Library (RTL) provides a suite of tools to make testing React
-   components easier, such as ways to `render` components, interact with the DOM, and simulate user
-   events.
-
-1. Looking at the unit tests in `src/test/java/org/folio/sample/unit/domain/entity/BookTest.java`,
-   we can see some basic tests for the `isPublishedInLeapYear`. This file consists of two tests,
-   each of which begin by creating a `Book` object to test before asserting the result of
-   `isPublishedInLeapYear`. The use of `assertThat`, `is`, `equalTo`, and others are part of a
-   library called Hamcrest: Hamcrest provides a set of matchers that can be used to make assertions
-   in tests much more readable and easier to use. For example, `assertThat(someArray, hasSize(2));`
-   is more readable than `assertEquals(2, someArray.size());`. For more information on the dozens of
-   Hamcrest matchers, see
-   [this page](https://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/Matchers.html).
+   together, so let's take a minute to define some. **Jest** is the main tool we use for frontend
+   testing: it finds and runs tests, provides the `describe`/`it`/`expect` functions, and lets us
+   mock other modules. **React Testing Library (RTL)** adds tools that make testing React components
+   easier, such as ways to `render` components, query the DOM, and (with its companion
+   **user-event**) simulate user interactions. **jsdom** is the simulated browser environment Jest
+   runs these tests in.
 
 1. Before we start writing new tests, let's gauge our current coverage. To do this, run:
 
@@ -82,7 +79,7 @@ and RTL packages.
 
    ```sh
    yarn test # do not generate a coverage report, just check that they pass
-   yarn test watch # run tests and watch for changes
+   yarn test --watch # re-run tests as files change
    yarn test someFile # run tests in files matching that pattern
    # all of these also work with `yarn coverage`
    ```
@@ -93,18 +90,18 @@ and RTL packages.
    the component):
 
    ```tsx
-   import React from "react";
-   import { render } from "@folio/jest-config-stripes/testing-library/react";
-   import { Debug } from "./Debug";
+   import React from 'react';
+   import { render, screen } from '@folio/jest-config-stripes/testing-library/react';
+   import { Debug } from './Debug';
 
-   describe("Debug", () => {
-     it("renders strings correctly", () => {
+   describe('Debug', () => {
+     it('renders strings correctly', () => {
        // TODO
      });
    });
    ```
 
-   Now would be a good time to summarize the main Jest/Jasmine features:
+   Now would be a good time to summarize the main Jest features:
 
    - `describe`: denotes a group of tests, usually for a single component or function
      - these can be nested and makes it much easier to read test outputs
@@ -117,15 +114,15 @@ and RTL packages.
      - the arrow functions for these can be `async` (make sure to `await` _everything_ necessary!
        use intellisense to see what returns a `Promise`, a lot of RTL features require this)
      - `it` may seem like a weird name, but it's meant to be semantic, e.g.
-       `it("renders correctly")` or `it("calls the callback")`
+       `it('renders correctly')` or `it('calls the callback')`
    - `expect` is the main tool for assertions
      - `expect(someValue).toBe(someOtherValue)` is the most common assertion
      - `expect(someValue).toEqual(someOtherValue)` is similar to `toBe` but works for objects
      - `expect(someValue).not.toBe(someOtherValue)` is the opposite of `toBe`
-     - there are many more, such as `toBeFalse`, `toBeUndefined`, etc.; see the
-       [Jasmine docs](https://jasmine.github.io/api/5.0/matchers.html) for more information
-     - RTL extends these with DOM-related features, such as `toBeInTheDocument`, `toHaveAttribute`,
-       `toHaveClass`, `toBeDisabled`.
+     - there are many more, such as `toBeFalsy`, `toBeUndefined`, `toHaveBeenCalledWith`, etc.;
+       see the [Jest `expect` docs](https://jestjs.io/docs/expect) for the full list
+     - RTL's jest-dom matchers add DOM-related assertions, such as `toBeInTheDocument`,
+       `toHaveAttribute`, `toHaveClass`, and `toBeDisabled`
    - `waitFor` is useful for waiting for things to happen, e.g. if you're waiting for an async
      function to call a mocked function: `waitFor(() => expect(myMock).toHaveBeenCalled())`
    - `jest.fn()` creates a mock function (with optional implementation); these are useful for
@@ -151,18 +148,18 @@ and RTL packages.
          update; for example, if a button is clicked to display a dialog, `getBy` may be called too
          soon for the dialog to be present)
 
-       - There are also `all` versions; see
-         [this article](https://levelup.gitconnected.com/the-difference-between-get-find-query-react-testing-library-bcd996ba3baa)
-         for a handy reference.
+       - There are also `All` versions (`getAllBy*` and so on) that return arrays; see RTL's
+         [query reference](https://testing-library.com/docs/queries/about) and
+         [which query should I use?](https://testing-library.com/docs/queries/about#priority)
 
 1. Anyways, back to our test; let's start by rendering the component and checking that it contains
    the expected text:
 
    ```tsx
-   it("renders strings correctly", () => {
+   it('renders strings correctly', () => {
      render(<Debug label="test" value="myString" />);
 
-     expect(screen.getByRole("heading", { name: "Debug (test)" })).toBeVisible();
+     expect(screen.getByRole('heading', { name: 'Debug (test)' })).toBeVisible();
      expect(screen.getByText('"myString"')).toBeVisible();
    });
    ```
@@ -187,13 +184,13 @@ and RTL packages.
 
    ```tsx
    it.each([
-     ["myString", '"myString"'],
-     [123, "123"],
-     [true, "true"],
-     [false, "false"],
-     [null, "null"],
+     ['myString', '"myString"'],
+     [123, '123'],
+     [true, 'true'],
+     [false, 'false'],
+     [null, 'null'],
      // ...
-   ])("renders value %s as %s", (value, expected) => {
+   ])('renders value %s as %s', (value, expected) => {
      render(<Debug label="test" value={value} />);
 
      expect(screen.getByText(expected)).toBeVisible();
@@ -210,17 +207,26 @@ and RTL packages.
 
    `withIntlConfiguration` comes from `src/test/util`.
 
-1. To test interactive elements, such as buttons, use the `userEvent` library within RTL:
+1. To test interactive elements, such as buttons, use `userEvent`. Its methods return promises,
+   so make the test `async` and `await` each interaction:
 
    ```tsx
-   render(something);
+   import userEvent from '@folio/jest-config-stripes/testing-library/user-event';
 
-   await userEvent.click(await screen.findByRole("button"));
+   it('opens the second pane', async () => {
+     render(withIntlConfiguration(<MainPage />));
 
-   expect(something).toSomething();
+     await userEvent.click(await screen.findByRole('button', { name: /new/i }));
+
+     expect(await screen.findByRole('region', { name: /new/i })).toBeVisible();
+   });
    ```
 
-1. As you're working, create a pull request and request a review on it. This will allow your trainer
+   The exact roles and names depend on your component; use `screen.debug()` to print the rendered
+   DOM when a query can't find something.
+
+1. As you're working, create a pull request against your `<username>-base` branch and request a
+   review. This will allow your trainer
    to see your progress and provide feedback.
 
 1. After you have gotten sufficient coverage, a successful review, and PR merge, move onto the next

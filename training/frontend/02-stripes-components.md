@@ -1,4 +1,6 @@
-# Frontend Training - Common Components and UI/UX Patterns
+# Frontend Training — Common Components and UI/UX Patterns
+
+_Last reviewed: October 2026_
 
 ## Objective
 
@@ -7,7 +9,7 @@ After completing this section, you should:
 - be able to navigate the main parts of the FOLIO interface
 - be able to use some of the fundamental FOLIO components
 - understand some of the common FOLIO UX patterns
-- Know where to look for more information on UX patterns and components
+- know where to look for more information on UX patterns and components
 
 ## Goal
 
@@ -55,15 +57,23 @@ once it is no longer needed).
 1. Before we design anything ourselves, let's take a look at some of the rest of FOLIO, so that we
    can get a feel for the components and patterns that are used. By doing this, we can create a
    similar experience, ensuring all applications work similarly, thereby making it intuitive for
-   users. To do this, go to [the snapshot environment](https://folio-snapshot.dev.folio.org/) and
-   login as `diku_admin`/`admin` (if you are a night owl, this may be down; go to
-   https://folio-snapshot-2.dev.folio.org/ instead).
+   users. To do this, open a FOLIO reference environment and log in as `diku_admin` / `admin`:
+
+   - [Eureka snapshot](https://folio-etesting-snapshot-diku.ci.folio.org/), or
+   - its twin, [Eureka snapshot 2](https://folio-etesting-snapshot2-diku.ci.folio.org/)
+
+   These environments are rebuilt every day, so they may be briefly down, and anything you create
+   is wiped at the next rebuild. The current list is on FOLIO's
+   [reference environments](https://folio-org.atlassian.net/wiki/spaces/FOLIJET/pages/513704182/Reference+environments)
+   page.
 
 1. Play around with some modules! Feel free to create, edit, or otherwise mess with any data in
    here. Some excellent places to start would be the `Users` application or the `Calendar` settings
-   (under the `Settings` app). As you do this, you'll pick up on patterns, such as the division of
-   the screen into panes, the frequent use of those striped tables (called `MultiColumnList`s), and
-   more.
+   (under the `Settings` app). Also look at **Settings → Authorization roles**: on the
+   [Eureka platform](../../docs/Eureka.md), this is where access is managed, using roles made up of
+   capabilities rather than individual permissions. As you explore, you'll pick up on patterns,
+   such as the division of the screen into panes, the frequent use of those striped tables (called
+   `MultiColumnList`s), and more.
 
    There are a lot more subtle patterns too, such as every title/heading being in `Sentence case`,
    where only the first letter is capitalized, and the rest are lowercase. This is a common pattern
@@ -72,11 +82,12 @@ once it is no longer needed).
    module) can easily create inconsistencies that make the interface harder to use and give an
    unfinished and unprofessional appearance.
 
-1. All of these common tenets are codified in FOLIO's design system, called "MOTIF". You can find
-   the documentation for this [here](https://ux.folio.org/docs/all-guidelines/); these get very
-   detailed with, for example, "confirmation message language", "create record UX pattern". If
-   you're ever unsure of how something should look or behave, this is a great resource. There is
-   also a Slack channel #ux where you can ask for feedback for more niche use cases.
+1. All of these common tenets are codified in FOLIO's design system, called "MOTIF". Its
+   [UX patterns and guidelines](https://ux.folio.org/docs/guidelines/ux-patterns/) get very
+   detailed, covering things like "Confirmation message language" and the "Create record UX
+   pattern". If you're ever unsure of how something should look or behave, this is a great
+   resource. There is also a Slack channel, `#folio-ux`, where you can ask for feedback on more
+   niche use cases.
 
 1. Next, let's look at the main component library in [Stripes](../../docs/Stripes.md),
    [stripes-components](https://github.com/folio-org/stripes-components). This is a library of over
@@ -86,8 +97,8 @@ once it is no longer needed).
    [Pane](https://github.com/folio-org/stripes-components/blob/master/lib/Pane) and
    [MultiColumnList](https://github.com/folio-org/stripes-components/blob/master/lib/MultiColumnList).
 
-   If you want to see how these look, there is also a "storybook", accessible
-   [here](https://folio-org.github.io/stripes-components), providing a live demo of each component.
+   If you want to see how these look, there is also a
+   [Storybook](https://dev.folio.org/stripes-components/), providing a live demo of each component.
 
 1. Take a look at `src/components/Debug.tsx`; here you can see the use of an `Accordion` component
    (a type of foldable view). It's this easy to use FOLIO components! There is one important thing
@@ -97,19 +108,18 @@ once it is no longer needed).
    components, allowing us to centrally manage versions of all Stripes libraries. For example, to
    import the `Button` component, use `import { Button } from '@folio/stripes/components';`.
 
-1. Now that we know a bit more about the FOLIO UI system, let's create a branch to start designing
-   our test application.
+1. Now that we know a bit more about the FOLIO UI system, let's create a branch for this lesson
+   (see [Git workflow](../02-git-workflow.md#starting-a-lesson-or-a-feature)):
 
-   ```sh
-   git checkout -b your-name-or-username-02-basic-ux
-   git push origin
-   ```
+```sh
+   git switch <username>-base
+   git pull
+   git switch -c <username>-02-basic-ux
+   git push -u origin <username>-02-basic-ux
+```
 
-1. Also, let's run the development server (I recommend doing this in a separate server):
-
-   ```sh
-   yarn stripes serve --okapi https://folio-snapshot-okapi.dev.folio.org --tenant diku --hasAllPerms
-   ```
+1. Start the development server in a separate terminal, using the same command you used in
+   [00-prereqs-and-setup](00-prereqs-and-setup.md) (step "Run the application").
 
 1. Now, create a `<Paneset>` and `<Pane>` for the application's main view. For relevant
    documentation on panes, see
@@ -131,6 +141,6 @@ once it is no longer needed).
    second pane into its own component!
 
 1. Feel free to experiment with any other components that you'd like! Once you're satisfied, create
-   a pull request and request a review on it.
+   a pull request against your `<username>-base` branch and request a review.
 
 1. After a successful review and PR merge, move onto the next section: [03-testing](03-testing.md).
