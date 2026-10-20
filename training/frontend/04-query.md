@@ -1,8 +1,11 @@
-# Frontend Training – React Query
+# Frontend Training — React Query
+
+_Last reviewed: October 2026_
 
 ## Objective
 
-After completing this section, you should be able to make API requests using React Query and ky.
+After completing this section, you should be able to fetch data from FOLIO APIs using React Query
+and `ky`, and test code that does so.
 
 ## Goal
 
@@ -10,40 +13,45 @@ Efficiently fetch data from APIs using React.
 
 ## Deliverables
 
-- An application which displays a `MultiColumnList` (MCL) of all institutions in the system.
+- An application which displays a `MultiColumnList` (MCL) of all institutions in the system, with
+  tests for the data hook and the list's loading state.
 
 ## Introduction
 
-API requests are a core part of any modern application, allowing interactivity between the frontend
-and the backend. Over time, there have been tons of different ways to achieve this, including the
-original `XMLHttpRequest` (XHR) object, jQuery's `$.ajax`, the modern `fetch` API, and countless
-others. However, these are all best suited for traditional applications that do not use React; with
-React, components re-render often, and sending a request on every render will quickly overload your
-server. To solve this, we use [React Query](https://tanstack.com/query/v3/docs/react/overview),
-which provides a simple way to cache and manage data from APIs.
+API requests are a core part of any modern application, connecting the frontend to the backend.
+Over time there have been many ways to make them: the original `XMLHttpRequest` (XHR), jQuery's
+`$.ajax`, the modern `fetch` API, and countless libraries. With React, though, components
+re-render often, and sending a request on every render would quickly overload the server. To
+solve this, we use [React Query](https://tanstack.com/query/v3/docs/react/overview), which caches
+and manages data from APIs.
 
-React Query, however, does still need an underlying method to make the requests. For this, we use
-`ky`, a library that improves slightly on the modern `fetch`. As part of making FOLIO API requests,
-however, a large number of custom information must be included (headers about the Okapi installation
-and current user authentication); to include all of this automatically, we will use the
-`useOkapiKy()` hook from `@folio/stripes/core`.
+> **Which version?** FOLIO modules import React Query from the `react-query` package (the v3 line),
+> which Stripes provides. The newer `@tanstack/react-query` v5 has a slightly different API, so
+> when you search online, make sure the docs match the version you're using. The examples below use
+> the object form of `useQuery({ queryKey, queryFn })`, which works in both.
 
-For this exercise, we will be using the `institutions` endpoint from the inventory storage module,
-`mod-inventory-storage`. This endpoint allows us to query the list of institutions configured within
-the system (you can find these in the snapshot environment at Settings -> Tenant > Institutions).
-When testing this, feel free to add your own institution(s) to test with; since both
-https://folio-snapshot.dev.folio.org/ and your local server are using the same backend Okapi at
-https://folio-snapshot-okapi.dev.folio.org/, changes will appear in both places.
+React Query still needs something to actually make the requests. For this we use `ky`, a small
+library that improves on `fetch`. FOLIO requests must include extra information: the tenant, the
+gateway URL, and the current user's authentication. To include all of this automatically, we use
+the `useOkapiKy()` hook from `@folio/stripes/core`. Despite the name, it works on both Eureka and
+legacy Okapi platforms; it simply talks to whichever gateway Stripes is configured for (see
+[Eureka](../../docs/Eureka.md)).
 
-> Aside: In FOLIO, there is a hierarchical system to track where books are stored. The highest level
-> is the institution (FOLIO can be installed at a high level with multiple institutions, for example
-> UA System could share one installation across UA, UAB, and UAH); next is a campus, then a library,
-> and finally a shelf location.
+For this exercise, we'll use the `institutions` endpoint from `mod-inventory-storage`, which
+returns the list of institutions configured in the system. To see or add institutions, open the
+[Eureka snapshot](https://folio-etesting-snapshot-diku.ci.folio.org/) in your browser (not your
+local UI, which only includes the training app) and go to **Settings → Tenant → Institutions**.
+Feel free to add your own institutions to test with. Your local UI and the reference environment
+use the same backend, so institutions you add there show up in your app too. Reference
+environments are rebuilt daily, so your test data won't last.
 
-The full documentation for this API is
-[here](https://s3.amazonaws.com/foliodocs/api/mod-inventory-storage/r/locationunit.html) (and all
-module APIs are documented [here](https://dev.folio.org/reference/api/)). Here's a sample response
-for `GET /location-units/institutions`, which is all we will be using:
+> Aside: FOLIO tracks where items are stored hierarchically. The highest level is the institution
+> (one FOLIO installation can serve several; the UA System could share one across UA, UAB, and
+> UAH), then campus, then library, and finally location.
+
+API documentation for FOLIO modules is listed on [dev.folio.org](https://dev.folio.org/reference/api/)
+(for this endpoint, look for `mod-inventory-storage` and its location units API). Here's a sample
+response for `GET /location-units/institutions`, which is all we'll be using:
 
 ```json
 {
@@ -75,242 +83,235 @@ for `GET /location-units/institutions`, which is all we will be using:
 
 ## Steps
 
-1.  First, let's make a branch to keep these changes separate:
+1. Create a branch for this lesson (see [Git workflow](../02-git-workflow.md)):
 
-    ```sh
-    git checkout -b your-name-or-username-04-query
-    git push origin
-    ```
+   ```sh
+   git switch <username>-base
+   git pull
+   git switch -c <username>-04-query
+   git push -u origin <username>-04-query
+   ```
 
-1.  Now, let's add React Query's devtools to our project by adding this to the `MainPage`:
+1. Add React Query's devtools to `MainPage`:
 
-    ```tsx
-    import { ReactQueryDevtools } from "react-query/devtools";
+   ```tsx
+   import { ReactQueryDevtools } from 'react-query/devtools';
 
-    // throw this somewhere
-    <ReactQueryDevtools initialIsOpen={false} />;
-    ```
+   // somewhere in the returned JSX
+   <ReactQueryDevtools initialIsOpen={false} />;
+   ```
 
-    These devtools allow us to see all of the queries that are currently running, and their status.
-    We don't normally use this, however, it is great for learning.
+   The devtools show every query the page is running and its status. We don't normally ship them,
+   but they're great for learning. Remove them before your final PR.
 
-1.  Next, let's create a new folder and file to put our query in, as a hook:
-    `src/hooks/useInstitutions.ts`:
+1. Create a new folder and file for the query hook, `src/hooks/useInstitutions.ts`:
 
-    ```tsx
-    import { useOkapiKy } from "@folio/stripes/core";
-    import { useQuery } from "react-query";
+   ```ts
+   import { useOkapiKy } from '@folio/stripes/core';
+   import { useQuery } from 'react-query';
 
-    export const useInstitutions = () => {
-      const ky = useOkapiKy();
+   export const useInstitutions = () => {
+     const ky = useOkapiKy();
 
-      return useQuery(
-        ["ui-training", "institutions"],
-        async () => ((await ky("location-units/institutions").json()) as any).locinsts,
-      );
-    };
-    ```
+     return useQuery({
+       queryKey: ['ui-training', 'institutions'],
+       queryFn: async () => ((await ky.get('location-units/institutions').json()) as any).locinsts,
+     });
+   };
+   ```
 
-    There's a few things going on here:
+   A few things are going on here:
 
-    - First, we're using the `useOkapiKy` hook to get a `ky` instance that is configured with the
-      current Okapi installation and user authentication. It is important that this is done outside
-      `useQuery` since, per the [Rules of Hooks](https://legacy.reactjs.org/docs/hooks-rules.html),
-      the same number of hooks must be used on every render, outside of nested functions and before
-      any early returns.
+   - We call `useOkapiKy` to get a `ky` instance already configured with the gateway URL (Kong, on
+     Eureka), tenant, and user authentication. The "Okapi" in the name is historical; the hook
+     works the same on Eureka. It must be called at the top level of the hook, not inside
+     `queryFn`, because of the [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks):
+     hooks must run in the same order on every render, never inside nested functions or after an
+     early return.
+   - `queryKey` identifies the cached result. Starting it with our module name keeps it from
+     colliding with other modules' queries.
+   - `queryFn` is an async function that returns the data to cache. Here it requests
+     `location-units/institutions` and returns the `locinsts` property of the response.
 
-    - Then, we do our query. The first argument to `useQuery` is the key, which is used to cache the
-      result — we use the array with our module name here to ensure this does not pollute other
-      module's API requests. The second argument is the query function, which is an async function
-      that returns the data we want to cache. In this case, we are using `ky` to make a request to
-      the `location-units/institutions` endpoint, and then returning the `locinsts` property of the
-      response.
+1. Use the hook in `MainPage`. The `<Debug>` component is handy for this:
 
-1.  Now, add this hook in our `MainPage`. You can do this with the `<Debug>` component:
+   ```tsx
+   import { useInstitutions } from '../hooks/useInstitutions';
 
-    ```tsx
-    <Debug label="useInstitutions" value={useInstitutions()} />
-    ```
+   // inside the component
+   const institutionsQuery = useInstitutions();
 
-    This will show all of the information about the query, including the actual `data` as well as
-    various status flags, such as `isLoading`, `isSuccess`, and more.
+   // in the JSX
+   <Debug label="useInstitutions" value={institutionsQuery} />;
+   ```
 
-1.  This is great and all, but there's a problem: we have the dreaded `any` inside our hook's code.
-    When we use TypeScript, `any` should be an absolute last resort (outside of tests), since it
-    effectively disables all TypeScript features. Let's fix this by creating a type for the API
-    response:
+   This shows everything about the query: the `data`, plus status flags such as `isLoading`,
+   `isSuccess`, and `isError`.
 
-    ```tsx
-    interface InstitutionsResponse {
-      locinsts: Institution[];
-      totalRecords: number;
-    }
+1. There's a problem: the dreaded `any` in our hook. In TypeScript, `any` should be a last resort
+   (outside of tests), since it switches off type checking. Let's type the API response:
 
-    interface Institution {
-      id: string;
-      name: string;
+   ```ts
+   export interface InstitutionsResponse {
+     locinsts: Institution[];
+     totalRecords: number;
+   }
 
-      metadata: {
-        createdDate: string;
-        updatedDate?: string;
-      };
-      // what else should go here?  Take a look at the original documentation's at:
-      // https://s3.amazonaws.com/foliodocs/api/mod-inventory-storage/r/locationunit.html#location_units_institutions_get
-      // The JSON schema in the response provides lots of information about what is provided (and what's `required`!)
-      // Do note that `id` is technically optional, however, this is only to accommodate for requests that create a new one.
-      // All queries of existing institutions will include IDs, so it does not need to be marked as optional (with ?:).
-    }
-    ```
+   export interface Institution {
+     id: string;
+     name: string;
 
-1.  Now that we have the types made, let's use them in React Query. First, let's update that
-    `.json()` call; this accepts a generic allowing it to know exactly what kind of data it's
-    parsing. Swapping that out for `.json<InstitutionsResponse>()` allows us to get rid of the
-    `as any`.
+     metadata: {
+       createdDate: string;
+       updatedDate?: string;
+     };
+     // What else should go here? Look at the institution JSON schema in the
+     // mod-inventory-storage API docs: it lists every property and which are `required`.
+     // `id` is technically optional in the schema, but only so new institutions can be created
+     // without one; everything we read back will have an `id`, so we keep it required here.
+   }
+   ```
 
-    While we're here, though, let's add some explicit types to `useQuery`, too. `useQuery` takes a
-    generic for the resulting data's type; let's add that: `useQuery<Institution[]>`.
+1. Now use these types. `ky`'s `.json()` accepts a generic telling it what it's parsing, so
+   `.json<InstitutionsResponse>()` lets us drop `as any`. `useQuery` also takes a generic for the
+   data it returns:
 
-1.  Now that all this is here, let's actually do something with this data! Save the hook into a
-    `const` and update your `MultiColumnList` to use data retrieved from this hook and display the
-    `name` and `code` (you may want to use the `visibleColumns` prop to only show these two
-    columns). Be sure to properly handle cases where the data has not yet loaded (TS will help
-    enforce this, too).
+   ```ts
+   return useQuery<Institution[]>({
+     queryKey: ['ui-training', 'institutions'],
+     queryFn: async () =>
+       (await ky.get('location-units/institutions').json<InstitutionsResponse>()).locinsts,
+   });
+   ```
 
-    <details>
-    <summary>Hint for handling loading</summary>
+1. Now let's actually use the data! Update your `MultiColumnList` to display each institution's
+   `name` and `code` (the `visibleColumns` prop limits which columns show). Handle the case where
+   data hasn't loaded yet; TypeScript will help enforce this.
 
-    It is possible for `data` to be `undefined` when `isLoading` is `true`. There are two ways to
-    handle this:
+   <details>
+   <summary>Hint for handling loading</summary>
 
-    1.  Use the `data` prop of `MultiColumnList` and pass `data ?? []` to it. This will ensure that
-        `data` is never `undefined` when passed to `MultiColumnList`.
-    1.  Don't render the MCL at all when `isLoading` is true; this can be done with something like
-        this (or an early return):
+   `data` is `undefined` while `isLoading` is `true`. There are two common ways to handle this:
 
-        ```tsx
-        {!isLoading && <MultiColumnList ... />}
-        ```
+   1. Pass `data ?? []` to the MCL's `contentData` prop, so it's never `undefined`.
+   1. Don't render the MCL at all while loading, with something like this (or an early return):
 
-    </details>
+      ```tsx
+      {!isLoading && <MultiColumnList ... />}
+      ```
 
-1.  Play with this some; does it gracefully handle errors (you can edit the URL in the hook to a bad
-    one to test this)? If you add data to the snapshot environment, does it update?
+   </details>
 
-1.  Once everything appears to be working, let's write some tests! Testing `useInstitutions`,
-    however, will be a little trickier: it interacts with an external API which will not be
-    available when we're running our tests. To get around this, we will "mock" `ky` to give fake
-    data. Also, since we won't be rendering a component, we'll also need to use `renderHook` instead
-    of `render`.
+1. Experiment: does your page handle errors gracefully? (Change the URL in the hook to a bad one to
+   find out.) If you add an institution in the reference environment and reload, does it appear?
 
-1.  First, let's mock `ky`. This is pretty straightforward since we can just mock
-    `@folio/stripes/core`:
+1. Once it works, write tests. Testing `useInstitutions` is trickier than a component, because it
+   calls an external API that won't be available while tests run. We'll **mock** `useOkapiKy` to
+   return fake data, and use `renderHook` (instead of `render`) since we're testing a hook, not a
+   component.
 
-    ```ts
-    const kyMock = jest.fn(() => ({
-      json: () => {
-        return Promise.resolve({
-          locinsts: [
-            // we just want to check the data is returned
-            // so it doesn't have to be incredibly "real" with metadata/etc,
-            // since what we're testing doesn't use that
-            {
-              id: "inst1-id",
-              name: "institution 1",
-            },
-            {
-              id: "inst2-id",
-              name: "institution 2",
-            },
-          ],
-          totalRecords: 2,
-        });
-      },
-    }));
-    jest.mock("@folio/stripes/core", () => ({
-      ...jest.requireActual("@folio/stripes/core"),
-      useOkapiKy: () => ({
-        get: kyMock,
-      }),
-    }));
-    ```
+1. Create `src/hooks/useInstitutions.test.tsx`. First, mock `@folio/stripes/core`:
 
-    This does two things: first, it defines a mock function that will return our data (note that
-    `ky` returns an object that we `await .json()` on, we return an object with a promise that
-    resolves the data); second, it mocks `@folio/stripes/core` to use our mock whenever `ky.get()`
-    is called. However, we do not want to mock all of `@folio/stripes/core`, so we use the
-    `...jest.requireActual()` syntax to import everything else.
+   ```tsx
+   const kyGetMock = jest.fn(() => ({
+     json: () =>
+       Promise.resolve({
+         // the data doesn't need to be realistic (no metadata etc.),
+         // since the hook doesn't use it; we only check it's passed through
+         locinsts: [
+           { id: 'inst1-id', name: 'institution 1' },
+           { id: 'inst2-id', name: 'institution 2' },
+         ],
+         totalRecords: 2,
+       }),
+   }));
 
-1.  Once our infrastructure is setup, we can write a test:
+   jest.mock('@folio/stripes/core', () => ({
+     ...jest.requireActual('@folio/stripes/core'),
+     useOkapiKy: () => ({ get: kyGetMock }),
+   }));
+   ```
 
-    ```tsx
-    describe("Institution query", () => {
-      it("Returns the requested data", () => {
-        // must be provided to use react-query features. this is normally done by the Stripes interface
-        // as a whole, but since we're only rendering the hook, we need to do it ourselves
-        const queryClient = new QueryClient();
-        // provide the queryClient
-        const wrapper = ({ children }: { children: ReactNode }) => (
-          <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-        );
+   This does two things. First, it defines a mock `get` function that mirrors how `ky` behaves:
+   calling it returns an object whose `.json()` returns a promise of the data. Second, it replaces
+   `useOkapiKy` so our hook receives `{ get: kyGetMock }` instead of a real `ky`. We don't want to
+   replace all of `@folio/stripes/core`, so `...jest.requireActual()` keeps everything else real.
 
-        // a special `waitFor` for hooks is returned; we want to be sure to use it here
-        const { result, waitFor } = renderHook(() => useInstitutions(), { wrapper });
+1. Now write the test:
 
-        // renderHook's result gives us a lot of information; we care about the `current` hook
-        // this waits until the API request has been completed
-        await waitFor(() => result.current.isSuccess);
+   ```tsx
+   import React, { ReactNode } from 'react';
+   import { QueryClient, QueryClientProvider } from 'react-query';
+   import { renderHook, waitFor } from '@folio/jest-config-stripes/testing-library/react';
+   import { useInstitutions } from './useInstitutions';
 
-        // ensure that the proper endpoint was called
-        expect(kyMock).toHaveBeenCalledWith("location-units/institutions");
-        // and that it gave us what we wanted
-        expect(result.current.data).toStrictEqual([
-          {
-            id: "inst1-id",
-            name: "institution 1",
-          },
-          {
-            id: "inst2-id",
-            name: "institution 2",
-          },
-        ]);
-      });
-    });
-    ```
+   // (the jest.mock code from the previous step goes here)
 
-1.  Run the tests with `yarn test` and ensure that they pass.
+   describe('useInstitutions', () => {
+     it('returns the requested data', async () => {
+       // React Query needs a QueryClient. Stripes normally provides one for the whole app, but
+       // since we only render the hook, we provide our own. retry: false makes failures fail fast.
+       const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+       const wrapper = ({ children }: { children: ReactNode }) => (
+         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+       );
 
-1.  Now that you understand how to mock `ky` and queries, try writing a test for your
-    `MultiColumnList`, ensuring that the loading state works correctly. When dealing with this, you
-    have two options:
+       const { result } = renderHook(() => useInstitutions(), { wrapper });
 
-    1. Mock `ky` itself, as we did above. This will require using the real `react-query`, wrapping a
-       `QueryClientProvider`, etc.
-    1. Mock the `useInstitutions` hook. This will allow us to fake its response without needing to
-       mock `ky` or `react-query`.
+       // wait until the (mocked) request has finished
+       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    The second is recommended, since it removes a layer of complexity and, since we have tests for
-    `useInstitutions`, we can assume that it works (no need to test it in two places; when writing
-    tests for `MainPage`, we should focus only on `MainPage`).
+       // the right endpoint was called...
+       expect(kyGetMock).toHaveBeenCalledWith('location-units/institutions');
+       // ...and the hook returned the institutions
+       expect(result.current.data).toStrictEqual([
+         { id: 'inst1-id', name: 'institution 1' },
+         { id: 'inst2-id', name: 'institution 2' },
+       ]);
+     });
+   });
+   ```
 
-    To do this, it's very similar to how we mocked `ky` before, however, it's slightly different
-    since we're using a local file:
+   `renderHook` and `waitFor` both come from React Testing Library. Older tutorials import
+   `renderHook` from `@testing-library/react-hooks` and get `waitFor` from its return value; that
+   package is deprecated, so don't follow those examples.
 
-    ```ts
-    import useInstitutions from "../hooks/useInstitutions";
+1. Run the tests with `yarn test` and make sure they pass.
 
-    // at top of file, before the tests
-    jest.mock("../hooks/useInstitutions");
+1. Now test your `MultiColumnList`, including the loading state. You have two options:
 
-    // in the test, as needed
-    (useInstitutions as any).mockReturnValue({ isSuccess: false });
-    (useInstitutions as any).mockReturnValue({ isSuccess: true, {data: ...} });
-    ```
+   1. Mock `ky` as above. That means using the real React Query, wrapping in a
+      `QueryClientProvider`, and so on.
+   1. Mock the `useInstitutions` hook itself, faking its return value directly.
 
-    The `as any` here is necessary since otherwise TypeScript thinks `useInstitutions` is the normal
-    hook, so it won't know where `mockReturnValue` comes from and will think it is invalid.
+   The second is recommended. It removes a layer of complexity, and since `useInstitutions` has its
+   own tests, `MainPage`'s tests can focus on `MainPage`.
 
-    There are many different ways to mock modules, see
-    [this article](https://www.emgoto.com/mocking-with-jest/) for more examples.
+   Mocking a local file looks like this:
 
-1.  After you have gotten sufficient coverage, a successful review, and PR merge, move onto the next
-    section: [05-mutations](05-mutations.md).
+   ```tsx
+   import { useInstitutions } from '../hooks/useInstitutions';
+
+   // at the top of the file, before the tests
+   jest.mock('../hooks/useInstitutions');
+
+   // in each test, as needed
+   jest.mocked(useInstitutions).mockReturnValue({ isLoading: true } as any);
+
+   jest.mocked(useInstitutions).mockReturnValue({
+     isLoading: false,
+     isSuccess: true,
+     data: [{ id: 'inst1-id', name: 'institution 1', code: 'i1' }],
+   } as any);
+   ```
+
+   `jest.mocked()` tells TypeScript the function is a mock, so `mockReturnValue` is recognized. The
+   `as any` is acceptable here, in a test, because we only fake the fields our component reads
+   rather than the entire query result.
+
+   The Jest docs on [mock functions](https://jestjs.io/docs/mock-functions) and
+   [`jest.mock`](https://jestjs.io/docs/jest-object#jestmockmodulename-factory-options) cover
+   more ways to mock modules.
+
+1. After you have sufficient coverage, a successful review, and a merged PR, move on to the next
+   section: [05-mutations](05-mutations.md).
