@@ -24,7 +24,7 @@ workspaces:
 - A current team member posts a request in the FOLIO Slack `#folio-devops` channel to add your
   GitHub account to `folio-org`'s **Bama** team. Include a link to your GitHub profile, not just
   your username, to prevent typos.
-- In the same `#folio-devops` channel, they also request Jira permissions for your Atlassian user.
+- In the `#folio-atlassian-support` channel, they request Jira permissions for your Atlassian user.
 - The team lead invites you to the **UA Libraries Slack** and the **`ualibweb`** GitHub
   organization.
 
@@ -59,6 +59,7 @@ besides the default) so we can tell each other apart:
 - `#folio-tech-council`: Technical Council decisions
 - `#folio-ux`: user interface design. A great place to get feedback on design choices, like where a
   button should go or what wording fits best.
+- `#folio-atlassian-support`: request Jira permissions for new members and ask questions.
 
 > **Tip:** This is only a starting list. To see every public channel, press
 > <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> on
