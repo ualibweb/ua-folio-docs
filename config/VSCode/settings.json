@@ -22,12 +22,12 @@
   "prettier.proseWrap": "always",
   "prettier.resolveGlobalModules": true,
   "sonarlint.rules": {
-    // follow readme.md to load in UA's sonarcloud rules
+    // follow README.md to load UA's SonarQube Cloud rules
   },
   "terminal.integrated.allowChords": false,
   "terminal.integrated.sendKeybindingsToShell": true,
   "workbench.editor.untitled.hint": "hidden",
-  "jest.autoRun": {"watch": false, "onSave": "test-file"},
+  "jest.runMode": { "type": "on-save", "testFileOnly": true },
   "[java]": { "editor.defaultFormatter": "mwpb.java-prettier-formatter" },
   "[javascript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"

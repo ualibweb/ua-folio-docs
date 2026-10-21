@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+# Installs the recommended VS Code extensions. See README.md for what each one does.
+# Windows PowerShell users: use install.ps1 instead.
+
 ################## JAVA BUILD/INTELLISENSE ##################
 
 # Java language support
 code --install-extension vscjava.vscode-java-pack
-# RAML syntax highlighting
-code --install-extension blzjns.vscode-raml
 # Mustache (OpenAPI template) syntax highlighting
 code --install-extension dawhite.mustache
 # Lombok annotation support
@@ -21,17 +23,11 @@ code --install-extension mermade.openapi-lint
 code --install-extension dbaeumer.vscode-eslint
 # CSS Intellisense
 code --install-extension ecmel.vscode-html-css
-# Improved JS/TS syntax highlighting with modern esnext features
-code --install-extension mgmcdermott.vscode-language-babel
 # Show size of NPM imports
 code --install-extension wix.vscode-import-cost
-# Intellisense for PropTypes
-code --install-extension OfHumanBondage.react-proptypes-intellisense
 
 ########################### TOOLS ###########################
 
-# Control Vagrant from within VS Code
-code --install-extension bbenoist.vagrant
 # Prettier Code Formatter
 code --install-extension esbenp.prettier-vscode
 # Prettier Code Formatter, but it formats JS correctly
@@ -52,7 +48,7 @@ code --install-extension mhutchie.git-graph
 
 # Show code coverage lines in the gutter
 code --install-extension ryanluker.vscode-coverage-gutters
-# SonarLint linting rules in the Problems tab
+# SonarQube for IDE (formerly SonarLint) rules in the Problems tab
 code --install-extension SonarSource.sonarlint-vscode
 # Check for spelling mistakes
 code --install-extension streetsidesoftware.code-spell-checker
@@ -88,3 +84,8 @@ code --install-extension ms-vscode.wordcount
 code --install-extension volkerdobler.insertnums
 # Easily convert between UPPER CASE, snake_case, camelCase, etc
 code --install-extension wmaurer.change-case
+
+####################### OPTIONAL/LEGACY #####################
+# Uncomment if you need them (see README.md):
+# code --install-extension blzjns.vscode-raml   # RAML (older RMB modules)
+# code --install-extension bbenoist.vagrant     # legacy Vagrant setup
