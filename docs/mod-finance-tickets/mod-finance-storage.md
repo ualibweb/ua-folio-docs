@@ -1,8 +1,5 @@
 # Mod-Finance-Storage
 
-
-
-
 ## **Ticket:** [MODFISTO-506](https://folio-org.atlassian.net/browse/MODFISTO-506)
 
 ### Implement endpoint to return financial data for FY
@@ -26,7 +23,6 @@ New DB view created that makes joins between tables for ledgers, groups, funds, 
   - Final Coverage: 95.2% Coverage on New Code
   - Acq-models submodules was updated with new schema for FiscalYearHierarchy.
 
-
 ## **Ticket:** [MODFISTO-507](https://folio-org.atlassian.net/browse/MODFISTO-507)
 
 ### Add ability to filter DB View results by set of field
@@ -49,7 +45,6 @@ Modify existing DB view from MODFISTO-506 to filter by ledger, group, fund, budg
   - Accidentally bumped version to 1.1, when needed to be 1.0
 - **Notes:**
   - Final Coverage: 100% Coverage on New Code
-
 
 ## **Ticket:** [MODFISTO-567](https://folio-org.atlassian.net/browse/MODFISTO-567)
 

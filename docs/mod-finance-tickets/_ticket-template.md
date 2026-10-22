@@ -8,7 +8,6 @@
   - Started:
   - PR opened:
   - Merged:
-  - Total time:
 - **PR:**
   - Link: [#000](https://github.com/folio-org/<repo-name>/pull/000)
   - Status:
