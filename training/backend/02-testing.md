@@ -1,4 +1,6 @@
-# Backend Training – Testing
+# Backend Training — Testing
+
+_Last reviewed: October 2026_
 
 ## Objective
 
@@ -29,14 +31,22 @@ starting for important context.
 
 ## Steps
 
-1. First, let's make a branch to keep these changes separate:
+1. First, create a branch for this lesson (see [Git workflow](../02-git-workflow.md)):
 
    ```sh
-   git checkout -b your-name-or-username-02-testing
-   git push origin
+   git switch <username>-base
+   git pull
+   git switch -c <username>-02-testing
+   git push -u origin <username>-02-testing
    ```
 
-1. Now, let's take a look at the provided tests; these should provide a good starting point.
+1. Now, let's take a look at the provided tests; these should provide a good starting point. The tests
+   use **JUnit 5**. The integration tests (in `src/test/java/org/folio/sample/integration`) extend
+   `AbstractBaseApiTest`, which starts the whole module on a random port and gives it a throwaway
+   PostgreSQL database in Docker (the `@AutoConfigureEmbeddedDatabase` annotation, which uses
+   Testcontainers behind the scenes). Before each test, it calls `/_/tenant` to set up the tables
+   for a tenant called `test`, and afterwards removes them again, so every test starts with an
+   empty database. Make sure Docker is running before you run them.
 
 1. Looking at the unit tests in `src/test/java/org/folio/sample/unit/domain/entity/BookTest.java`,
    we can see some basic tests for the `isPublishedInLeapYear`. This file consists of two tests,
@@ -46,7 +56,7 @@ starting for important context.
    in tests much more readable and easier to use. For example, `assertThat(someArray, hasSize(2));`
    is more readable than `assertEquals(2, someArray.size());`. For more information on the dozens of
    Hamcrest matchers, see
-   [this page](https://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/Matchers.html).
+   [the Hamcrest `Matchers` reference](https://hamcrest.org/JavaHamcrest/javadoc/2.2/org/hamcrest/Matchers.html).
 
 1. Looking at the original `isPublishedInLeapYear`, we can see that these tests do not cover all
    possible conditions. To see exactly what was missed and what our current coverage status is, run:
@@ -66,14 +76,16 @@ starting for important context.
    [this article](https://www.arhohuttunen.com/junit-5-parameterized-tests/#multiple-parameters-with-methodsource)
    (only the part for `@MethodSource` is relevant).
 
-1. Now that we've completed our unit tests, lets write integration tests for the controller (and
+1. Now that we've completed our unit tests, let's write integration tests for the controller (and
    therefore the service) code. Take a look at
-   `src/test/java/org/folio/sample/integration/api/books/GetSingleBookTest.java` and try to create
-   similar tests for all the remaining conditions/lines in the controller and service.
+   `src/test/java/org/folio/sample/integration/api/books/GetSingleBookTest.java` (and
+   `GetAllBooksTest.java` next to it) and try to create similar tests for all the remaining
+   conditions/lines in the controller and service, including the PUT endpoint you added in the last
+   lesson.
 
    - The `ra()` method and requests/parameters/response methods are part of a library called
-     RestAssured; this allows easy testing of REST-based APIs. For more information, see the
-     https://rest-assured.io/.
+     RestAssured, which makes REST APIs easy to test. For more information, see
+     [rest-assured.io](https://rest-assured.io/).
    - Create an amount of tests that you feel is sufficient; there is no need to go all out here; for
      example, we have already written tests for the `isPublishedInLeapYear` method, so when we're
      testing `getAllBooksPublishedInLeapYears`, we don't need to write tests for every possible leap
@@ -86,7 +98,7 @@ starting for important context.
    IDE method allows interactive debugging, it can not compute coverage.
 
 1. Once you've reached a sufficient amount of coverage, or you want to ask your trainer for
-   insights/reviews, create a pull request and request a review on it.
+   insights/reviews, open a pull request against your `<username>-base` branch and request a review.
 
 1. After a successful review and PR merge, move onto the next section:
    [03-databases](03-databases.md).
