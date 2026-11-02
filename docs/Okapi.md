@@ -1,5 +1,13 @@
 # What is Okapi?
 
+_Last reviewed: October 2026_
+
+> **Legacy platform.** FOLIO has replaced Okapi with the [Eureka](Eureka.md) platform. As of
+> October 1, 2026, the Okapi-based reference environments are retired, and new work should assume
+> Eureka. Okapi's ideas and names are still everywhere in FOLIO (the `X-Okapi-Tenant` and
+> `X-Okapi-Token` headers, `useOkapiKy`, the `okapi_modules` database, module descriptors), so this
+> page is still worth reading. The **On Eureka** notes below explain what changed.
+
 This is an [okapi](https://en.wikipedia.org/wiki/Okapi):
 ![image](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Saint-Aignan_%28Loir-et-Cher%29._Okapi.jpg/1920px-Saint-Aignan_%28Loir-et-Cher%29._Okapi.jpg)
 
@@ -26,6 +34,9 @@ Each Okapi install comes with a `supertenant` (the default), although we will no
 Instead, we will typically use `diku`; to specify this, any request to Okapi should include the
 header `X-Okapi-Tenant: diku`.
 
+_On Eureka:_ tenants work the same way from a developer's point of view, and the header is still
+`X-Okapi-Tenant` (now required on every request). `diku` is still the usual test tenant.
+
 ## Modules
 
 Okapi is responsible for managing the modules that make up FOLIO. Each module is a separate service
@@ -35,6 +46,11 @@ need to tell it to install and enable modules for our tenant via an API request 
 `/_/tenant`. This is when the module installs itself, creating databases, sample data, etc.; for
 local development, you'll likely want to send that `/_/tenant` request yourself. This process is all
 documented in much more depth at the Okapi guide.
+
+_On Eureka:_ modules are grouped into **applications**, and tenants are **entitled** to
+applications through manager components instead of Okapi's `/_/proxy` APIs. Modules still receive
+the same `/_/tenant` call, so sending it yourself during local development (as the backend
+training does) works the same way.
 
 ## Interfaces
 
@@ -48,6 +64,10 @@ Upon install, Okapi will verify all these dependencies are met. The lists of pro
 interfaces are all specified in the `ModuleDescriptor` for backend modules and `package.json` for
 frontend ones.
 
+_On Eureka:_ interfaces work the same way, with one addition: interfaces of type `multiple` must be
+declared as **optional** dependencies so the module's sidecar sets up the route (Okapi ignores the
+optional entry, so the same descriptor works on both).
+
 ## Permissions
 
 Although not technically a first-class Okapi responsibility (since these are handled by
@@ -56,3 +76,8 @@ module provides a set of permissions via its `ModuleDescriptor` or `package.json
 interfaces can have children, making it easy to describe complex needs. For example, to check out a
 book (`ui-checkout.circulation`), you need to be able to view book information
 (`inventory.items.collection.get`).
+
+_On Eureka:_ user access is managed with **roles and capabilities** instead, and assigning
+permissions through `mod-permissions` has no effect. Modules still declare what they need in their
+descriptors and `package.json`; Eureka turns those declarations into capabilities. See
+[Eureka → Roles and capabilities](Eureka.md#roles-and-capabilities).

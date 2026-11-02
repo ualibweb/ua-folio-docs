@@ -1,5 +1,7 @@
 # The Spring Way
 
+_Last reviewed: October 2026_
+
 FOLIO defines the Spring Way as a set of technologies that work together to power backend modules.
 Notably, this includes the Spring Boot framework, an extremely popular Java framework (most popular
 by multiple magnitudes), OpenAPI, and Postgres. This moves away from Vert.X and RMB
@@ -25,7 +27,7 @@ important concepts:
 - **Entity**: An entity is a class that represents data, typically in a database. These should
   typically have no communication with services or controllers, and should be as simple as possible.
 - **Repository**: A repository is a class that handles database operations, as we saw in
-  [03-databases](../training/backend/03-databases).
+  [03-databases](../training/backend/03-databases.md).
 
 ## What's a component? And a bean?
 
@@ -44,3 +46,24 @@ ensure initialization, synchronization, and a lot more under-the-hood elements w
 A POJO is a "Plain Old Java Object," referring to a simple class with fields, getters, setters,
 etc., but no business logic. A DTO is a "Data Transfer Object," which is a POJO that is used in API
 requests and responses.
+
+## Current versions
+
+For FOLIO's Trillium release (R1 2026), the officially supported versions for Spring-based modules
+are:
+
+- **Java 21**
+- **Spring Boot 4.0** (Spring Framework 7)
+- **folio-spring-base 8.2** or later
+- **PostgreSQL 16**, and **Maven 3.8** or later
+
+Spring Boot 4 uses **Jackson 3**, whose packages moved from `com.fasterxml.jackson` to
+`tools.jackson`, so JSON-related imports copied from older modules or tutorials may need updating.
+The FOLIO wiki's Folio Development Teams (FOLIJET) space has step-by-step migration guides (for
+example "Migration to Spring Boot 4.0").
+
+Our training module, `folio-training-backend`, is simpler and still uses Spring Boot 3.0, but it
+builds and runs on Java 21, and all of the concepts on this page apply to both. For the full list
+of supported technologies per release, see the Technical Council's
+[Officially Supported Technologies](https://folio-org.atlassian.net/wiki/spaces/TC/pages/5053681/Officially+Supported+Technologies)
+page.

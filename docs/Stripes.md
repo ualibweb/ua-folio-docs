@@ -1,5 +1,7 @@
 # What is Stripes?
 
+_Last reviewed: October 2026_
+
 Stripes, like what an [okapi has](Okapi.md), is the frontend for FOLIO. It's a framework that brings
 together all of the FOLIO UI modules into a single interface, combined with a number of tools and
 component libraries. This document will describe some of the main parts of Stripes that you will
@@ -19,6 +21,10 @@ from `stripes-components`, the proper import would be
 
 This contains core functionality, routing, internationalization, and other central utilities. It
 also provides convenient methods for checking for user's permissions, enabled modules, etc.
+
+It also provides the `useOkapiKy()` hook for making API requests. Despite the name, it works on
+FOLIO's current [Eureka](Eureka.md) platform too: it simply talks to whichever gateway Stripes is
+configured for (Kong on Eureka).
 
 ## [stripes-components](https://github.com/folio-org/stripes-components)
 
@@ -42,7 +48,15 @@ package provides type definitions (similar to how many `@types/*` packages from
 Not a Stripes core package, but important nonetheless. The branches of this repository contain the
 versions of modules that should be used for a full install of the FOLIO system. Typically, you will
 want to look at `snapshot` (latest), `bama-rancher` (the one we use for our
-[Rancher](./Rancher.md`)), and `R#-20##` (for a given flower release).
+[Rancher](./Rancher.md)), and `R#-20##` (for a given flower release).
+
+> **Update (October 2026):** `platform-complete` is the legacy, Okapi-era platform repository. As of
+> October 1, 2026, it no longer receives snapshot updates; its release branches (such as
+> `R1-2025-okapi` for Sunflower on Okapi) remain for libraries still running Okapi. Eureka
+> environments are built from [platform-lsp](https://github.com/folio-org/platform-lsp) instead,
+> which lists the _applications_ that make up each release (see [Eureka](Eureka.md)). The
+> `bama-rancher` branch is outdated; see [Rancher](Rancher.md) for the current way to set up our
+> environment.
 
 ## [stripes-webpack](https://github.com/folio-org/stripes-webpack)
 
@@ -54,6 +68,9 @@ listing it for completeness.
 
 This is a CLI package that is used for creating workspaces and running a local development server.
 
+Version 5 (FOLIO's Trillium release) requires **Node.js 22**; see the
+[frontend training setup](../training/frontend/00-prereqs-and-setup.md).
+
 ## [eslint-config-stripes](https://github.com/folio-org/eslint-config-stripes)
 
 This contains a centralized eslint configuration for all of Stripes modules.
@@ -64,3 +81,6 @@ This is the old way of making "smart" components that interact with Okapi/backen
 that this library is _not_ for use in new modules; instead, `react-query` should be used. See
 [training/frontend/04-query](../training/frontend/04-query.md) and
 [training/frontend/05-mutations](../training/frontend/05-mutations.md) for more information.
+
+FOLIO modules use the `react-query` package (the v3 line) that Stripes provides, so make sure any
+React Query docs or examples you find online match that version.

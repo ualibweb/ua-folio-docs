@@ -1,7 +1,9 @@
 # Karate smoke tests
 
+_Last reviewed: October 2026_
+
 FOLIO runs a suite of Karate tests every night, written in the Gherkin language (based on
-Cucumber...yeah). These tests combine all modules together with zero mocking (see
+Cucumber). These tests combine all modules together with zero mocking (see
 [testing](Testing.md) for more information) and are stored in
 [folio-integration-tests](https://github.com/folio-org/folio-integration-tests).
 
@@ -52,7 +54,12 @@ Feature: Calendar searching
     Then status 204
 ```
 
-For more information about these tests, how to write them, and most importantly how to run them, see
-the [folio-integration-tests repo](https://github.com/folio-org/folio-integration-tests). When
-running them locally, you will need to either run them against something like the Rancher or
-snapshot environment, or a local Vagrant box.
+The `x-okapi-token` header in this example is still correct on FOLIO's current
+[Eureka](Eureka.md) platform; like `x-okapi-tenant`, it kept its original name.
+
+For more information about these tests, how to write them, and most importantly how to run them,
+see the [folio-integration-tests repo](https://github.com/folio-org/folio-integration-tests).
+FOLIO's nightly runs now target Eureka environments. To run tests yourself, point them at a shared
+Eureka environment (see [Eureka → Environments](Eureka.md#environments)), or ask in `#bama` which
+environment the team uses. The old Okapi snapshot environments were retired on October 1, 2026,
+and local Vagrant boxes are [legacy](../config/Vagrant/README.md).
