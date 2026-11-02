@@ -1,8 +1,15 @@
 # Lombok (aka, magic)
 
+_Last reviewed: October 2026_
+
 Lombok is a really cool Java library that generates a lot of the boilerplate code that people
 typically associate with Java. Gone are the days of writing dozens of getters, setters, etc; it's
 now as simple as `@Getter` or `@Data`.
+
+> **Java 21 needs Lombok 1.18.30 or later.** Older versions fail to compile with a confusing error
+> like `java.lang.NoSuchFieldError: Class com.sun.tools.javac.tree.JCTree$JCImport does not have
+> member field 'com.sun.tools.javac.tree.JCTree qualid'`. If you see that, update the Lombok
+> version in the project's `pom.xml` (`folio-training-backend` uses 1.18.34).
 
 ## Features we use a lot
 
@@ -39,3 +46,10 @@ generated for us from only these four annotations:
 @NoArgsConstructor
 @AllArgsConstructor
 ```
+
+## Lombok in VS Code
+
+VS Code needs Lombok support to understand the generated code; it's included with the
+**Extension Pack for Java** (or the separate **Lombok Annotations Support** extension, see the
+[VS Code setup guide](../config/VSCode/README.md)). Without it, VS Code may show red errors on code
+that uses Lombok, even though Maven builds it fine.
