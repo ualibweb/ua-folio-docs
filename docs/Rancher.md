@@ -28,7 +28,7 @@ team needs.
 Administration should be done through the Jenkins jobs; use the Rancher UI for viewing logs and
 status.
 
-## Our environment (verify)
+## Our environment
 
 Eureka environments run on clusters whose names start with `e`: `edev` for development, `etesting`
 for testing. Following FOLIO's naming pattern (`folio-<cluster>-<namespace>-<tenant>`), our team
@@ -40,7 +40,7 @@ environment would be:
 | Kong gateway (replaces Okapi) | <https://folio-edev-bama-kong.ci.folio.org/> |
 | Keycloak (logins) | <https://folio-edev-bama-keycloak.ci.folio.org/>|
 
-Cluster `edev`, namespace `bama` **(verify)**. If these don't load, the environment may not exist
+Cluster `edev`, namespace `bama`. If these don't load, the environment may not exist
 yet (or may have been removed); see "I want to create or recreate our environment" below.
 
 **Shutdown schedule:** team environments have historically been shut down overnight and on weekends
