@@ -4,7 +4,7 @@ _Last reviewed: October 2026_
 
 If you are at all unsure during this process, or do not have permissions, ask before proceeding;
 `#folio-devops` can be asked about permissions and Oleksii Petrenko in Slack is a wonderful person
-to ask if you have any questions **(verify: confirm he's still the right contact)**.
+to ask if you have any questions.
 
 For frontend modules, follow
 [this guide](https://github.com/folio-org/stripes/blob/master/doc/release-procedure.md#release-procedure).
