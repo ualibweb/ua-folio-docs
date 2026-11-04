@@ -36,9 +36,9 @@ environment would be:
 
 | What | URL |
 | --- | --- |
-| FOLIO UI (tenant `diku`) | <https://folio-edev-bama-diku.ci.folio.org/> **(verify)** |
-| Kong gateway (replaces Okapi) | <https://folio-edev-bama-kong.ci.folio.org/> **(verify)** |
-| Keycloak (logins) | <https://folio-edev-bama-keycloak.ci.folio.org/> **(verify)** |
+| FOLIO UI (tenant `diku`) | <https://folio-edev-bama-diku.ci.folio.org/> |
+| Kong gateway (replaces Okapi) | <https://folio-edev-bama-kong.ci.folio.org/> |
+| Keycloak (logins) | <https://folio-edev-bama-keycloak.ci.folio.org/>|
 
 Cluster `edev`, namespace `bama` **(verify)**. If these don't load, the environment may not exist
 yet (or may have been removed); see "I want to create or recreate our environment" below.
@@ -68,7 +68,7 @@ and related FOLIJET pages:
 | --- | --- |
 | `PLATFORM` | `Eureka` |
 | `CLUSTER` | `edev` |
-| `NAMESPACE` | `bama` **(verify)** |
+| `NAMESPACE` | `bama`|
 | `FOLIO_BRANCH` | The `platform-lsp` branch to build from (for example `snapshot`) |
 | Optional flags | Such as sample/reference data or consortia; the job describes each one |
 
@@ -85,7 +85,7 @@ From
    access if needed). Work on FOLIO modules belongs on branches under `folio-org`, not `ualibweb`.
 2. Sign in to <https://jenkins.ci.folio.org> and open the job **deployModuleFromFeatureBranchEureka**.
 3. Click **Build with Parameters** and set: `MODULE_NAME` (your module), `MODULE_BRANCH` (your
-   branch), `JAVA_VERSION` `21`, `CLUSTER` `edev`, `NAMESPACE` `bama` **(verify)**, and
+   branch), `JAVA_VERSION` `21`, `CLUSTER` `edev`, `NAMESPACE` `bama`, and
    `CONFIG_TYPE` `development`.
 4. Click **Build** and wait. The job builds the module, creates a Docker image, and deploys it to the
    namespace. Optional flags can load the module's sample or reference data.
@@ -96,7 +96,7 @@ Protected namespaces need approval from Kitfox (FOLIO's DevOps team) before depl
 
 The old flow (cloning `platform-complete`, editing the `bama-rancher` branch, and running
 `ui-bundle-deploy`) no longer applies. Follow the FOLIJET wiki page **Build/Deploy UI for Eureka
-environment**, or ask in `#folio-rancher-support` for the current job **(verify)**.
+environment**, or ask in `#folio-rancher-support` for the current job.
 
 For day-to-day UI development, you usually don't need Rancher at all: run your module locally
 against a shared Eureka environment, as described in the
